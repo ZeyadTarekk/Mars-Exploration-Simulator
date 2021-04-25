@@ -22,4 +22,9 @@
       <Filter>DataStructures</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Node.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
