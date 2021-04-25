@@ -2,7 +2,7 @@
 template<typename T>
 class Node
 {
-private:
+protected:
 	T item;	// A data item (can be any complex sturcture)
 	Node<T>* next;
 	// pointer to next node
@@ -13,13 +13,18 @@ public:
 		next = nullptr;
 	}
 
-	Node(T newItem) //non-default constructor
+	Node(const T &newItem) //non-default constructor
 	{
 		item = newItem;
 		next = nullptr;
 	}
+	Node(const T &newItem, Node<T>*nextNode ) //non-default constructor
+	{
+		item = newItem;
+		next = nextNode;
+	}
 
-	void setItem(T newItem)
+	void setItem(const T &newItem)
 	{
 		item = newItem;
 	} // end setItem
