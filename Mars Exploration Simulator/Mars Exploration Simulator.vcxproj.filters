@@ -17,4 +17,9 @@
       <UniqueIdentifier>{147e7ff8-63a2-4bff-8665-a14b98de0606}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source.cpp">
+      <Filter>DataStructures</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
