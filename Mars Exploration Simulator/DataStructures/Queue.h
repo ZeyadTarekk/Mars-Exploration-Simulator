@@ -1,5 +1,5 @@
 #pragma once
-#include"DataStructures/Node.h"
+#include"Node.h"
 
 
 template<class dataType>

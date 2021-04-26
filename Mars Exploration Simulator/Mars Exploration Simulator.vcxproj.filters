@@ -27,7 +27,7 @@
     <ClInclude Include="DataStructures\Stack.h">
       <Filter>DataStructures</Filter>
     </ClInclude>
-    <ClInclude Include="Queue.h">
+    <ClInclude Include="DataStructures\Queue.h">
       <Filter>DataStructures</Filter>
     </ClInclude>
   </ItemGroup>
