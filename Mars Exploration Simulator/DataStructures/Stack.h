@@ -1,4 +1,6 @@
 #pragma once
+#include<iostream>
+using namespace std;
 #include"Node.h"
 template<class T>
 class Stack
@@ -36,17 +38,67 @@ public:
 		}
 
 	}
-	void pop()     //delete the last Node in the stack
+	bool pop(T& item)     //delete the last Node in the stack
 	{
 		if (!isEmpty())
 		{
-			Node<T>* temp = top;             //create temp pointer 
+			Node<T>* temp = top;  //create temp pointer
+			item = temp->getItem();
 			top = top->getNext();           //increament top
 			delete temp;                //delete topEntry value
 			temp = nullptr;
+			return true;
+		}
+		return false;
 
+	}
+	bool peek( T& topItem) const //can get top value
+	{
+		if (!isEmpty())
+		{
+			topItem = top->getItem();
+			return true;
+		}
+		return false;
+	}
+	bool clear() //clear the whole stack
+	{
+		if (isEmpty())
+		{
+			return false;
+		}
+		else
+		{
+			while (top)
+			{
+				Node<T>* newPtr = top;
+				top = top->getNext();
+				delete newPtr;
+				newPtr = nullptr;
+				
+
+			}
+			
 		}
 
+		
+		return true;
+	}
+	void DisplayStack() const //print all values in the stack
+	{
+		Node<T>* temp = top;
+		if (!isEmpty())
+		{
+			while (temp)
+			{
+				cout << "(" << temp->getItem() << ")" << "--->";
+				temp = temp->getNext();
+
+			}
+			cout << "NULL" << endl;;
+		}
+		else
+			cout << "List is Empty" << endl;
 	}
 
 
