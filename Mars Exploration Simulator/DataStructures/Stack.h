@@ -1,16 +1,49 @@
 #pragma once
-#include<iostream>
-using namespace std;
 #include"Node.h"
-template<class T>
+template<class itemType>
 class Stack
 {
 private:
-	Node<T>* top; //pointer that refers to the last node in the stack
+	Node<itemType>* top; //pointer that refers to the last node in the stack
 public:
 	Stack() //default constructor
 	{
 		top = nullptr;
+
+	}
+	Stack(const Stack<itemType>& stackTemp)//copy construtor 
+	{
+
+		Node<itemType>* originalTop = stackTemp.top;
+		if (stackTemp.isEmpty())
+		{
+			top = nullptr;
+		}
+		else
+		{
+			Stack<itemType>* tempPtr = new Stack<itemType>(); //temp Stack
+
+			while (originalTop)
+			{
+				itemType item = originalTop->getItem();
+				tempPtr->push(item);
+				originalTop = originalTop->getNext();
+
+			}
+			Node<itemType>* copyPtr = tempPtr->top; //copy temp stack into invoked stack
+			while (copyPtr)
+			{
+
+				itemType itemCopy = copyPtr->getItem();
+				this->push(itemCopy);
+				copyPtr = copyPtr->getNext();
+
+			}
+
+			delete tempPtr; // delete temp stack
+			tempPtr = nullptr;
+		}
+		
 
 	}
 	bool isEmpty()const //check if stack is empty or not
@@ -22,9 +55,9 @@ public:
 		return false;
 
 	}
-	void push(const T& value) //push values in the top of the stack
+	void push(const itemType& value) //push values in the top of the stack
 	{
-		Node<T>* newNode = new Node<T>(value);      //create a new Node  
+		Node<itemType>* newNode = new Node<itemType>(value);      //create a new Node  
 		if (!isEmpty())
 		{
 			newNode->setNext(top);      //link new Node with the previous node 
@@ -35,14 +68,15 @@ public:
 		{
 			top = newNode;
 			newNode->setNext(nullptr);
+
 		}
 
 	}
-	bool pop(T& item)     //delete the last Node in the stack
+	bool pop(itemType& item)     //delete the last Node in the stack
 	{
 		if (!isEmpty())
 		{
-			Node<T>* temp = top;  //create temp pointer
+			Node<itemType>* temp = top;  //create temp pointer
 			item = temp->getItem();
 			top = top->getNext();           //increament top
 			delete temp;                //delete topEntry value
@@ -52,7 +86,7 @@ public:
 		return false;
 
 	}
-	bool peek( T& topItem) const //can get top value
+	bool peek(itemType& topItem) const //can get top value
 	{
 		if (!isEmpty())
 		{
@@ -61,45 +95,40 @@ public:
 		}
 		return false;
 	}
-	bool clear() //clear the whole stack
+	bool clearAll() //clear the whole stack
 	{
 		if (isEmpty())
-		{
 			return false;
-		}
 		else
 		{
-			while (top)
+			itemType item;
+
+			while (!isEmpty())
 			{
-				Node<T>* newPtr = top;
-				top = top->getNext();
-				delete newPtr;
-				newPtr = nullptr;
-				
-
+				this->pop(item);
 			}
-			
 		}
-
-		
-		return true;
 	}
-	void DisplayStack() const //print all values in the stack
+	void printStack() const //print all values in the stack
 	{
-		Node<T>* temp = top;
+		Node<itemType>* temp = top;
 		if (!isEmpty())
 		{
 			while (temp)
 			{
-				cout << "(" << temp->getItem() << ")" << "--->";
+				std::cout << "(" << temp->getItem() << ")" << "--->";
 				temp = temp->getNext();
 
 			}
-			cout << "NULL" << endl;;
+			std::cout << "NULL" << endl;;
 		}
 		else
-			cout << "List is Empty" << endl;
+			std::cout << "List is Empty" << endl;
 	}
-
+	~Stack()
+	{
+			clearAll();
+		
+	}
 
 };
