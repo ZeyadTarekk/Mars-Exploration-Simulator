@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="DataStructures\Node.h" />
     <ClInclude Include="DataStructures\PriorityNode.h" />
+    <ClInclude Include="DataStructures\Stack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructures\Source.cpp" />
