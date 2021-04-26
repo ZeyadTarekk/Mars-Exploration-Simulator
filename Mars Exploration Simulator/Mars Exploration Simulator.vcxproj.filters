@@ -18,13 +18,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp">
-      <Filter>DataStructures</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Node.h">
+    <ClInclude Include="DataStructures\Node.h">
       <Filter>DataStructures</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DataStructures\Source.cpp">
+      <Filter>DataStructures</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
