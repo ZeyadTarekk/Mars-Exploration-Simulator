@@ -24,6 +24,9 @@
     <ClInclude Include="DataStructures\PriorityNode.h">
       <Filter>DataStructures</Filter>
     </ClInclude>
+    <ClInclude Include="DataStructures\Stack.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructures\Source.cpp">
