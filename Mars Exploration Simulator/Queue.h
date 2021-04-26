@@ -11,22 +11,24 @@ private:
 	Node<dataType>* rear;
 
 public:
-	
+
 	Queue();
-	
+
 	Queue(const Queue<dataType>&);
 
 	bool enqueue(const dataType&);
-	
+
 	bool dequeue(dataType&);
-    
+
 	bool peek(dataType&);
-	
+
 	bool isEmpty();
+
+	~Queue();
 };
 //default constructor
 template<class datatype>
-Queue<datatype>::Queue() :top(nullptr),rear(nullptr){}
+Queue<datatype>::Queue() :top(nullptr), rear(nullptr) {}
 
 
 
@@ -52,11 +54,12 @@ Queue<dataType>::Queue(const Queue& q2)
 template<class dataType>
 bool Queue<dataType>::enqueue(const dataType& item)
 {
-	Node<dataType>* temp(item,nullptr);
+	Node<dataType>* temp = new Node<dataType>(item, nullptr);
 	if (temp) {
 		if (!top)   //if en queue first time
 			top = temp;
-		rear->setNext(temp);
+		else
+			rear->setNext(temp);
 		rear = temp;
 		return true;
 	}
@@ -97,4 +100,13 @@ template<class dataType>
 bool Queue<dataType>::isEmpty()
 {
 	return (top == nullptr);
+}
+
+
+//destructor
+template<class dataType>
+Queue<dataType>::~Queue()
+{
+	dataType dummy;
+	while (this->dequeue(dummy));
 }
