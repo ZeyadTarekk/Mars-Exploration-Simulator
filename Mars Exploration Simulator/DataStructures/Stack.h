@@ -43,7 +43,7 @@ public:
 			delete tempPtr; // delete temp stack
 			tempPtr = nullptr;
 		}
-		
+
 
 	}
 	bool isEmpty()const //check if stack is empty or not
@@ -120,15 +120,14 @@ public:
 				temp = temp->getNext();
 
 			}
-			std::cout << "NULL" << endl;;
+			std::cout << "NULL" << std::endl;;
 		}
 		else
-			std::cout << "List is Empty" << endl;
+			std::cout << "List is Empty" << std::endl;
 	}
 	~Stack()
 	{
-			clearAll();
-		
+		clearAll();
 	}
 
 };

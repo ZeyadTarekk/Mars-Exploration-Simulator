@@ -36,9 +36,10 @@ Queue<datatype>::Queue() :top(nullptr), rear(nullptr) {}
 template<class dataType>
 Queue<dataType>::Queue(const Queue& q2)
 {
+	dataType var;
 	while (!this->isEmpty())  // make sure the destination is empty
 	{
-		this->dequeue();
+		this->dequeue(var);
 	}
 	Node<dataType>* front = q2.top;
 	while (front)
@@ -88,7 +89,8 @@ bool Queue<dataType>::dequeue(dataType& item)
 template<class dataType>
 bool Queue<dataType>::peek(dataType& item)
 {
-	if (isEmpty)return false;
+	if (isEmpty())
+		return false;
 	item = top->getItem();
 	return  true;
 }
