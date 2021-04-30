@@ -27,6 +27,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructures\Source.cpp" />
+    <ClCompile Include="Missions\TestMission.cpp" />
+    <ClCompile Include="Rovers\TestRover.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

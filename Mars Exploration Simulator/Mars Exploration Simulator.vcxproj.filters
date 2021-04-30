@@ -16,6 +16,12 @@
     <Filter Include="DataStructures">
       <UniqueIdentifier>{147e7ff8-63a2-4bff-8665-a14b98de0606}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Missions">
+      <UniqueIdentifier>{6015698f-24ee-4a86-9da7-c4fea602b10d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rovers">
+      <UniqueIdentifier>{1dbad704-3b14-4079-8b05-a8140032c9d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataStructures\Node.h">
@@ -37,6 +43,12 @@
   <ItemGroup>
     <ClCompile Include="DataStructures\Source.cpp">
       <Filter>DataStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="Missions\TestMission.cpp">
+      <Filter>Missions</Filter>
+    </ClCompile>
+    <ClCompile Include="Rovers\TestRover.cpp">
+      <Filter>Rovers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
