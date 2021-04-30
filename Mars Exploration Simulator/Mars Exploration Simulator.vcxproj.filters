@@ -39,6 +39,30 @@
     <ClInclude Include="DataStructures\PriorityQueue.h">
       <Filter>DataStructures</Filter>
     </ClInclude>
+    <ClInclude Include="Missions\EmergencyMission.h">
+      <Filter>Missions</Filter>
+    </ClInclude>
+    <ClInclude Include="Missions\Mission.h">
+      <Filter>Missions</Filter>
+    </ClInclude>
+    <ClInclude Include="Missions\MountainousMission.h">
+      <Filter>Missions</Filter>
+    </ClInclude>
+    <ClInclude Include="Missions\PolarMission.h">
+      <Filter>Missions</Filter>
+    </ClInclude>
+    <ClInclude Include="Rovers\MountainousRover.h">
+      <Filter>Rovers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rovers\PolarRover.h">
+      <Filter>Rovers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rovers\Rover.h">
+      <Filter>Rovers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rovers\EmergencyRover.h">
+      <Filter>Rovers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructures\Source.cpp">

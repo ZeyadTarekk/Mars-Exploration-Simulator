@@ -24,6 +24,14 @@
     <ClInclude Include="DataStructures\PriorityQueue.h" />
     <ClInclude Include="DataStructures\Queue.h" />
     <ClInclude Include="DataStructures\Stack.h" />
+    <ClInclude Include="Missions\EmergencyMission.h" />
+    <ClInclude Include="Missions\Mission.h" />
+    <ClInclude Include="Missions\MountainousMission.h" />
+    <ClInclude Include="Missions\PolarMission.h" />
+    <ClInclude Include="Rovers\EmergencyRover.h" />
+    <ClInclude Include="Rovers\MountainousRover.h" />
+    <ClInclude Include="Rovers\PolarRover.h" />
+    <ClInclude Include="Rovers\Rover.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructures\Source.cpp" />
