@@ -63,6 +63,9 @@
     <ClInclude Include="Rovers\EmergencyRover.h">
       <Filter>Rovers</Filter>
     </ClInclude>
+    <ClInclude Include="DataStructures\Bag.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructures\Source.cpp">
