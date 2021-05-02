@@ -31,17 +31,17 @@ public:
 	virtual void assignCheckup();
 
 	//getters
-	virtual unsigned int getID();
-	virtual int getSpeed();
-	virtual int getCheckupReqDays();
-	virtual int getCheckupReqMissions();
+	virtual unsigned int getID() const;
+	virtual int getSpeed() const ;
+	virtual int getCheckupReqDays() const;
+	virtual int getCheckupReqMissions() const;
 
-	virtual int getMissionID();
-	virtual int getMissionDuration();
-	virtual int getMissionLocation();
-	virtual int getMissionOrCheckupEndDay();
+	virtual int getMissionID()const;
+	virtual int getMissionDuration()const;
+	virtual int getMissionLocation()const;
+	virtual int getMissionOrCheckupEndDay()const;
 
-	virtual int getMissionNumber();
-	virtual bool getneedCheckup();
+	virtual int getMissionNumber()const;
+	virtual bool getneedCheckup()const;
 };
 

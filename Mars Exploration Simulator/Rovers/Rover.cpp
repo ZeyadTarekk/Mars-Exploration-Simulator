@@ -49,52 +49,52 @@ void Rover::assignCheckup()
 	reset();
 }
 
-unsigned int Rover::getID()
+unsigned int Rover::getID() const
 {
 	return ID;
 }
 
-int Rover::getSpeed()
+int Rover::getSpeed() const
 {
 	return speed;
 }
 
-int Rover::getCheckupReqDays()
+int Rover::getCheckupReqDays() const
 {
 	return checkupDays;
 }
 
-int Rover::getCheckupReqMissions()
+int Rover::getCheckupReqMissions() const
 {
 	return checkupMissions;
 }
 
-int Rover::getMissionID()
+int Rover::getMissionID() const
 {
 	return missionId;
 }
 
-int Rover::getMissionDuration()
+int Rover::getMissionDuration() const
 {
 	return missionDuration;
 }
 
-int Rover::getMissionLocation()
+int Rover::getMissionLocation() const
 {
 	return missionLocation;
 }
 
-int Rover::getMissionOrCheckupEndDay()
+int Rover::getMissionOrCheckupEndDay() const
 {
 	return missionOrCheckupEndDay;
 }
 
-int Rover::getMissionNumber()
+int Rover::getMissionNumber() const
 {
 	return missionsNumber;
 }
 
-bool Rover::getneedCheckup()
+bool Rover::getneedCheckup() const
 {
 	return needCheckup;
 }

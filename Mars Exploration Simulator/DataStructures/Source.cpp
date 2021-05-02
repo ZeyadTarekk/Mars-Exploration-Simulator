@@ -5,6 +5,7 @@
 //#include"PriorityQueue.h"
 //#include"Queue.h"
 //#include"Stack.h"
+//#include"Bag.h"
 //using namespace std;
 //int main()
 //{
@@ -59,7 +60,42 @@
 //	cout << z << endl; // 5 
 //	q1.dequeue(z);
 //	cout << z << endl; // 12
-//
+//	//=====================================================
+//	//             testing Bag                            = 
+//	//=====================================================
+//	Bag<int> b1;
+//	cout << b1.isEmpty() << endl;
+//	//cout << b1.remove(3) << endl;
+//	b1.add(3);
+//	//cout << b1.remove(3) << endl;
+//	cout << b1.isEmpty() << endl;
+//	b1.add(4);
+//	
+//	b1.add(5);
+//	b1.add(5);
+//	cout << "++++++++++++++++++++++++\n";
+//	Bag<int> b2(b1);
+//	cout << b2.isEmpty() << endl;
+//	cout << b2.getCurrentSize() << endl;
+//	cout << b1.getCurrentSize() << endl;
+//	cout << b1.getFrequencyOf(5) << endl;
+//	cout << b2.getFrequencyOf(5) << endl;
+//	b2.remove(5);
+//	cout << b2.getCurrentSize() << endl;
+//	cout << b1.getCurrentSize() << endl;
+//	cout << b2.getFrequencyOf(5) << endl;
+//	cout << b1.getFrequencyOf(5) << endl;
+//	b2.remove(3);
+//	cout << b2.getCurrentSize() << endl;
+//	cout << b1.getCurrentSize() << endl;
+//	cout << b2.getFrequencyOf(3) << endl;
+//	cout << b1.getFrequencyOf(3) << endl;
+//	cout << "++++++++++++++++++++++++\n";
+//	cout << b1.isEmpty() << endl;
+//	cout << b1.getFrequencyOf(5) << endl;
+//	cout << b1.getFrequencyOf(9) << endl;
+//	b1.clear();
+//	cout << b1.isEmpty() << endl;
 //
 //	return 0;
 //}
