@@ -3,7 +3,7 @@
 class Mission
 {
 private:
-	//-->>>Check if e should use enumerator soon or not in mission's status(completed||waiting||in-excuetion)
+	//-->>>Check if we should use enumerator soon or not in mission's status(completed||waiting||in-excuetion)
 	const int formulationDay,
 		targetLocation,
 		missionDuration,
