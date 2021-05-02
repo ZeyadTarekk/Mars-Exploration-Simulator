@@ -34,7 +34,7 @@ void Rover::assignMission(int idMission, int duration,int location)
 	missionId = (idMission>0?idMission:0);
 	missionDuration = (duration>0?duration:0);
 	missionLocation = (location > 0? location : 0);
-	missionOrCheckupEndDay = missionDuration + ceil( ((float)missionLocation / speed ) /25.0);
+	missionOrCheckupEndDay = missionDuration + ceil( (2*(float)missionLocation / speed ) /25.0);
 	
 	missionsNumber++;
 	if (missionsNumber%checkupMissions==0)
