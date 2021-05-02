@@ -57,13 +57,13 @@
     <ClInclude Include="Rovers\PolarRover.h">
       <Filter>Rovers</Filter>
     </ClInclude>
-    <ClInclude Include="Rovers\EmergencyRover.h">
-      <Filter>Rovers</Filter>
-    </ClInclude>
     <ClInclude Include="DataStructures\Bag.h">
       <Filter>DataStructures</Filter>
     </ClInclude>
     <ClInclude Include="Rovers\Rover.h">
+      <Filter>Rovers</Filter>
+    </ClInclude>
+    <ClInclude Include="Rovers\EmergencyRover.h">
       <Filter>Rovers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -78,6 +78,9 @@
       <Filter>Rovers</Filter>
     </ClCompile>
     <ClCompile Include="Rovers\Rover.cpp">
+      <Filter>Rovers</Filter>
+    </ClCompile>
+    <ClCompile Include="Rovers\EmergencyRover.cpp">
       <Filter>Rovers</Filter>
     </ClCompile>
   </ItemGroup>

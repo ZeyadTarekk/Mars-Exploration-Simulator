@@ -27,21 +27,21 @@ public:
 	void reset();
 
 	//setters
-	void assignMission(int idMission,int duration, int location);
-	void assignCheckup();
+	virtual void assignMission(int idMission,int duration, int location);
+	virtual void assignCheckup();
 
 	//getters
-	unsigned int getID();
-	int getSpeed();
-	int getCheckupReqDays();
-	int getCheckupReqMissions();
+	virtual unsigned int getID();
+	virtual int getSpeed();
+	virtual int getCheckupReqDays();
+	virtual int getCheckupReqMissions();
 
-	int getMissionID();
-	int getMissionDuration();
-	int getMissionLocation();
-	int getMissionOrCheckupEndDay();
+	virtual int getMissionID();
+	virtual int getMissionDuration();
+	virtual int getMissionLocation();
+	virtual int getMissionOrCheckupEndDay();
 
-	int getMissionNumber();
-	bool getneedCheckup();
+	virtual int getMissionNumber();
+	virtual bool getneedCheckup();
 };
 
