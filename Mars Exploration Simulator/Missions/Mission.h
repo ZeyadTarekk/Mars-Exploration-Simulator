@@ -3,6 +3,7 @@
 class Mission
 {
 private:
+	//-->>>Check if we should use enumerator soon or not in mission's status(completed||waiting||in-excuetion)
 	const int formulationDay,
 		targetLocation,
 		missionDuration,
@@ -11,23 +12,22 @@ private:
 	Rover * assignedRover;   //the attribute isn't const because it's assigned after formulation
 public:
 	Mission(int, int, int, int, double);
-	virtual ~Mission() = 0;  //make destructor pure virtual to make the class abstract
 	void assignRover(Rover*);
 	int getFormulationDay() const;
 	int getTargetLocation() const;
 	int getMissionDuration() const;
 	double getSignificance() const;
 	Rover * getAssignedRover() const;
+	virtual ~Mission() = 0;  //make destructor pure virtual to make the class abstract
 };
 
 
 Mission::Mission(int fD, int tL, int mD, int i, double s) :
-	formulationDay(fD),
-	targetLocation(tL),
-	missionDuration(mD),
-	id(i),
-	significance(s)
-{}
+formulationDay(fD),targetLocation(tL),missionDuration(mD),
+id(i),significance(s)
+{
+	assignedRover = nullptr;
+}
 
 
 
