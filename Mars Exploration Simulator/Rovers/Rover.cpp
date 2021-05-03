@@ -1,6 +1,6 @@
 #include "Rover.h"
 
-Rover::Rover(int roverspeed, int checkupCount, int Days)
+Rover::Rover(double roverspeed, int checkupCount, int Days)
 {
 	ID = idCounter;
 	speed = (roverspeed > 0 ? roverspeed : 0);
@@ -47,6 +47,11 @@ void Rover::assignCheckup()
 	//missionsNumber = 0;
 	needCheckup = false;
 	reset();
+}
+
+void Rover::decreaseSpeedToHalf()
+{
+	speed /= 2;
 }
 
 unsigned int Rover::getID() const

@@ -83,5 +83,11 @@
     <ClCompile Include="Rovers\EmergencyRover.cpp">
       <Filter>Rovers</Filter>
     </ClCompile>
+    <ClCompile Include="Rovers\PolarRover.cpp">
+      <Filter>Rovers</Filter>
+    </ClCompile>
+    <ClCompile Include="Rovers\MountainousRover.cpp">
+      <Filter>Rovers</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

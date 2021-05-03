@@ -7,7 +7,7 @@ class Rover
 	
 	//essential info ---> given
 	unsigned int ID;
-	int speed;
+	double speed;
 	int checkupDays;
 	int checkupMissions;	
 
@@ -22,13 +22,14 @@ class Rover
 	bool needCheckup;			//calculated
 
 public:
-	Rover(int roverspeed, int checkupCount, int Days); //essential data only
+	Rover(double roverspeed, int checkupCount, int Days); //essential data only
 
 	void reset();
 
 	//setters
 	virtual void assignMission(int idMission,int duration, int location);
 	virtual void assignCheckup();
+	virtual void decreaseSpeedToHalf();
 
 	//getters
 	virtual unsigned int getID() const;
