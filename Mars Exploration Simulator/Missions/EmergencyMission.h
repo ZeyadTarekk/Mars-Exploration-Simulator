@@ -8,6 +8,7 @@ private:
 public:
 	EmergencyMission(int, int, int, int, double);
 	double getPriority();
+	~EmergencyMission() ;
 };
 
 

@@ -17,3 +17,7 @@ double EmergencyMission::getPriority()
 {
 	return priority;
 }
+
+EmergencyMission::~EmergencyMission()
+{
+}
