@@ -9,10 +9,11 @@ private:
 		missionDuration,
 		id;
 	const double significance;
+	int endDay;
 	Rover * assignedRover;   //the attribute isn't const because it's assigned after formulation
 public:
 	Mission(int, int, int, int, double);
-	void assignRover(Rover*);
+	void assignRover(Rover*,int);
 	int getFormulationDay() const;
 	int getTargetLocation() const;
 	int getMissionDuration() const;
@@ -31,9 +32,10 @@ id(i),significance(s)
 
 
 
-void Mission::assignRover(Rover* rV)
+void Mission::assignRover(Rover* rV, int d) //d will be the day of assignment
 {
 	assignedRover = rV;
+	endDay = rV->getMissionOrCheckupEndDay();
 }
 
 
