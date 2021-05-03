@@ -92,5 +92,14 @@
     <ClCompile Include="Missions\Mission.cpp">
       <Filter>Missions</Filter>
     </ClCompile>
+    <ClCompile Include="Missions\PolarMission.cpp">
+      <Filter>Missions</Filter>
+    </ClCompile>
+    <ClCompile Include="Missions\MountainousMission.cpp">
+      <Filter>Missions</Filter>
+    </ClCompile>
+    <ClCompile Include="Missions\EmergencyMission.cpp">
+      <Filter>Missions</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
