@@ -89,5 +89,8 @@
     <ClCompile Include="Rovers\MountainousRover.cpp">
       <Filter>Rovers</Filter>
     </ClCompile>
+    <ClCompile Include="Missions\Mission.cpp">
+      <Filter>Missions</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
