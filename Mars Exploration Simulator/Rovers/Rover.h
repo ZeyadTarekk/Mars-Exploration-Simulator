@@ -33,7 +33,7 @@ public:
 
 	//getters
 	virtual unsigned int getID() const;
-	virtual int getSpeed() const ;
+	virtual double getSpeed() const ;
 	virtual int getCheckupReqDays() const;
 	virtual int getCheckupReqMissions() const;
 
