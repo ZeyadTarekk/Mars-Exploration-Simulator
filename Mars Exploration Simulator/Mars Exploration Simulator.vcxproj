@@ -36,7 +36,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructures\Source.cpp" />
+    <ClCompile Include="Missions\EmergencyMission.cpp" />
     <ClCompile Include="Missions\Mission.cpp" />
+    <ClCompile Include="Missions\MountainousMission.cpp" />
+    <ClCompile Include="Missions\PolarMission.cpp" />
     <ClCompile Include="Missions\TestMission.cpp" />
     <ClCompile Include="Rovers\EmergencyRover.cpp" />
     <ClCompile Include="Rovers\MountainousRover.cpp" />
