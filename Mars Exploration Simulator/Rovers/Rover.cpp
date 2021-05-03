@@ -59,7 +59,7 @@ unsigned int Rover::getID() const
 	return ID;
 }
 
-int Rover::getSpeed() const
+double Rover::getSpeed() const
 {
 	return speed;
 }
