@@ -1,5 +1,9 @@
 //#include<iostream>
+//#include"EmergencyMission.h"
+//
 //int main()
 //{
-//	return 0;
+//	EmergencyMission E1();
+//
+//	
 // }

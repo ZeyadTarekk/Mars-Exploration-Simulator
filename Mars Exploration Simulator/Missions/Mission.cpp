@@ -38,3 +38,7 @@ Rover* Mission::getAssignedRover() const
 { 
 	return assignedRover; 
 }
+
+Mission::~Mission()
+{
+}

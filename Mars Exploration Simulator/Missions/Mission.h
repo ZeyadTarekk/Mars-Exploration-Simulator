@@ -19,7 +19,7 @@ public:
 	int getMissionDuration() const;
 	double getSignificance() const;
 	Rover * getAssignedRover() const;
-	virtual ~Mission() = 0;  //make destructor pure virtual to make the class abstract
+	virtual ~Mission()=0 ;  //make destructor pure virtual to make the class abstract
 };
 
 
