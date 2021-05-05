@@ -22,6 +22,15 @@
     <Filter Include="Rovers">
       <UniqueIdentifier>{1dbad704-3b14-4079-8b05-a8140032c9d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Events">
+      <UniqueIdentifier>{9ead835e-bb8f-43db-9e3b-87c9e2464362}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{c81f3311-b25d-478f-9f67-e4bc1456b626}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MarsStation">
+      <UniqueIdentifier>{d5e2a8a1-e970-4289-9d21-602b089a2299}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataStructures\Node.h">
@@ -100,6 +109,15 @@
     </ClCompile>
     <ClCompile Include="Missions\EmergencyMission.cpp">
       <Filter>Missions</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Source1.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\Source2.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="MarsStation\Source.cpp">
+      <Filter>MarsStation</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -36,6 +36,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructures\Source.cpp" />
+    <ClCompile Include="Events\Source2.cpp" />
+    <ClCompile Include="MarsStation\Source.cpp" />
     <ClCompile Include="Missions\EmergencyMission.cpp" />
     <ClCompile Include="Missions\Mission.cpp" />
     <ClCompile Include="Missions\MountainousMission.cpp" />
@@ -46,6 +48,7 @@
     <ClCompile Include="Rovers\PolarRover.cpp" />
     <ClCompile Include="Rovers\Rover.cpp" />
     <ClCompile Include="Rovers\TestRover.cpp" />
+    <ClCompile Include="UI\Source1.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
