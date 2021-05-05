@@ -1,8 +1,9 @@
 #include"Mission.h"
-
+using namespace std;
 Mission::Mission(int fD, int tL, int mD, int i, double s):formulationDay(fD),targetLocation(tL),missionDuration(mD),id(i),significance(s)
 {
 	assignedRover = nullptr;
+	endDay = -1;
 }
 
 
@@ -29,8 +30,13 @@ int Mission::getMissionDuration()const
 	return missionDuration;
 }
 
+int Mission::getEndDay() const
+{
+	return endDay;
+}
+
 double Mission::getSignificance() const 
-{ 
+{	
 	return significance;
 }
 
