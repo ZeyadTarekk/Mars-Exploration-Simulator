@@ -75,6 +75,9 @@
     <ClInclude Include="Rovers\EmergencyRover.h">
       <Filter>Rovers</Filter>
     </ClInclude>
+    <ClInclude Include="MarsStation\MarsStation.h">
+      <Filter>MarsStation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructures\Source.cpp">
@@ -117,6 +120,9 @@
       <Filter>Events</Filter>
     </ClCompile>
     <ClCompile Include="MarsStation\Source.cpp">
+      <Filter>MarsStation</Filter>
+    </ClCompile>
+    <ClCompile Include="MarsStation\MarsStation.cpp">
       <Filter>MarsStation</Filter>
     </ClCompile>
   </ItemGroup>

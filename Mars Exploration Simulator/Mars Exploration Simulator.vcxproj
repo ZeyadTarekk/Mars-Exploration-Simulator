@@ -25,6 +25,7 @@
     <ClInclude Include="DataStructures\PriorityQueue.h" />
     <ClInclude Include="DataStructures\Queue.h" />
     <ClInclude Include="DataStructures\Stack.h" />
+    <ClInclude Include="MarsStation\MarsStation.h" />
     <ClInclude Include="Missions\EmergencyMission.h" />
     <ClInclude Include="Missions\Mission.h" />
     <ClInclude Include="Missions\MountainousMission.h" />
@@ -37,6 +38,7 @@
   <ItemGroup>
     <ClCompile Include="DataStructures\Source.cpp" />
     <ClCompile Include="Events\Source2.cpp" />
+    <ClCompile Include="MarsStation\MarsStation.cpp" />
     <ClCompile Include="MarsStation\Source.cpp" />
     <ClCompile Include="Missions\EmergencyMission.cpp" />
     <ClCompile Include="Missions\Mission.cpp" />

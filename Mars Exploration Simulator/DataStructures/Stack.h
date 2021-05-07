@@ -1,5 +1,6 @@
 #pragma once
 #include"Node.h"
+#include<iostream>
 template<class itemType>
 class Stack
 {
