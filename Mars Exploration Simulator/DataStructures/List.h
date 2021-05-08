@@ -58,18 +58,19 @@ public:
 	{
 		return count;
 	}
-	bool search(const itemType&item)const
+	Node<itemType>* search(const itemType&target)const
 	{
+		bool found = false;
 		Node<itemType>* targetPtr = head;
-		while (targetPtr)
+		while (!found && targetPtr)
 		{
-			if (targetPtr->getItem() == item)
-			{
-				return true;
-			}
-			targetPtr = targetPtr->getNext();
+			if (targetPtr->getItem() == target)
+				found = true;
+			else
+				targetPtr = targetPtr->getNext();
+			
 		}
-		return false;
+		return targetPtr;
 	}
 
 	void insertEnd(const itemType& item)

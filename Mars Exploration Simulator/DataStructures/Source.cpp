@@ -28,14 +28,16 @@ int main()
 	L.print();
 	L.deleteAll();
 	cout << L.getLength() << endl;
-	cout<<L.search(5)<<endl;
 	L2.print();
-	cout << L2.search(1)<< endl;
-	cout << L2.search(10)<< endl;
 	L.deleteNode(3);
 	L2.insertEnd(15);
 	L.print();
 	cout << L2.getLength() << endl;
+	// testin Search
+	Node<int> *ptr=L2.search(3);
+	if (ptr)
+		ptr->setItem(25);
+	L2.print();
 }
 //{
 //	//=====================================================
