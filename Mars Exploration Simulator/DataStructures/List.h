@@ -5,15 +5,10 @@ class List
 {
 	Node<itemType>* head; //pointer points to the first node in the list
 	Node<itemType>* tail; //pointer points to the last node in the list
+	int count; //current count of list item
 	Node<itemType>* getNodeAt(int position) const //get pointer which refers to this position
 	{
-		int count = 0;
 		Node<itemType>* temp = head;
-		while (temp)
-		{
-			count++;
-			temp = temp->getNext();
-		}
 		if (count < position || position < 0)
 		{
 			return nullptr;
@@ -33,6 +28,7 @@ public:
 	{
 		head = nullptr;
 		tail = nullptr;
+		count = 0;
 	}
 	List(const List<itemType> &L2) //copy constructor
 	{
@@ -48,6 +44,7 @@ public:
 			this->insertEnd(item);
 			original = original->getNext();
 		}
+		count = L2.count;
 	}
 	bool contains()const
 	{
@@ -56,6 +53,10 @@ public:
 			return false;
 		}
 		return true;
+	}
+	int getLength()const
+	{
+		return count;
 	}
 	bool search(const itemType&item)const
 	{
@@ -71,7 +72,7 @@ public:
 		return false;
 	}
 
-	void insertEnd(itemType& item)
+	void insertEnd(const itemType& item)
 	{
 		Node<itemType>* newNode = new Node<itemType>(item);
 		Node<itemType>* temp = head;
@@ -85,6 +86,7 @@ public:
 			tail->setNext(newNode);
 			tail = newNode;
 		}
+		count++;
 	
 	}
 	
@@ -122,15 +124,18 @@ public:
 			}
 
 		}
+		count--;
 	}
 	void deleteFirst()
 	{
-		Node<itemType>* temp = head;
 		if (contains())
 		{
+			Node<itemType>* temp = head;
 			head = head->getNext();
 			delete temp;
+			count--;
 		}
+		
 		/*deleteNode(getNodeAt(1)->getItem());*/
 	}
 	void deleteAll() 
@@ -143,7 +148,9 @@ public:
 				head=head->getNext();
 				delete temp;
 			}
+			count = 0;
 		}
+		
 	}
 	void print()const //for testing
 	{
@@ -155,7 +162,7 @@ public:
 		}
 		std::cout << "NULL" << std::endl;
 	}
-	~List()
+	virtual ~List()
 	{
 		deleteAll();
 	}
