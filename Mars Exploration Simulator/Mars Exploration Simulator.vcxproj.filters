@@ -78,6 +78,9 @@
     <ClInclude Include="MarsStation\MarsStation.h">
       <Filter>MarsStation</Filter>
     </ClInclude>
+    <ClInclude Include="DataStructures\List.h">
+      <Filter>DataStructures</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructures\Source.cpp">

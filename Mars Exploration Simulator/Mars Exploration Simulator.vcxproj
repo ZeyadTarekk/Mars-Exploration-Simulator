@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataStructures\Bag.h" />
+    <ClInclude Include="DataStructures\List.h" />
     <ClInclude Include="DataStructures\Node.h" />
     <ClInclude Include="DataStructures\PriorityNode.h" />
     <ClInclude Include="DataStructures\PriorityQueue.h" />
