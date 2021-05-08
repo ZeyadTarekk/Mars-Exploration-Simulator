@@ -1,4 +1,4 @@
-//#include<iostream>
+#include<iostream>
 ////=====================================================
 ////             testing DataStructures                 = 
 ////=====================================================
@@ -6,8 +6,31 @@
 //#include"Queue.h"
 //#include"Stack.h"
 //#include"Bag.h"
-//using namespace std;
-//int main()
+#include"List.h"
+using namespace std;
+//============ testing List================
+int main()
+{
+
+	List<int>L;
+	int x;
+	cin >> x;
+	while (x !=-1)
+	{
+		L.insertEnd(x);
+		cin >> x;
+	}
+	L.print();
+	List<int>L2(L);
+	L.deleteAll();
+	cout<<L.search(5)<<endl;
+	L2.print();
+	cout << L2.search(1)<< endl;
+	cout << L2.search(10)<< endl;
+	L.deleteNode(3);
+	L.print();
+
+}
 //{
 //	//=====================================================
 //	//             testing PriorityQueue                  = 
