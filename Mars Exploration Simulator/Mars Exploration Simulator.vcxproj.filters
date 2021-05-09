@@ -81,6 +81,12 @@
     <ClInclude Include="DataStructures\List.h">
       <Filter>DataStructures</Filter>
     </ClInclude>
+    <ClInclude Include="Events\Event.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Events\FormulationEvent.h">
+      <Filter>Events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructures\Source.cpp">
@@ -127,6 +133,12 @@
     </ClCompile>
     <ClCompile Include="MarsStation\MarsStation.cpp">
       <Filter>MarsStation</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\Event.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\FormulationEvent.cpp">
+      <Filter>Events</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
