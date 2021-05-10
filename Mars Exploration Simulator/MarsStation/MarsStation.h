@@ -43,5 +43,6 @@ class MarsStation
 public:
 	MarsStation();
 	~MarsStation();
+	void addMission(Mission*);
 };
 

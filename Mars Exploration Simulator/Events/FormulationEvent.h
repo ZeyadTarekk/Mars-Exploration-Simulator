@@ -12,7 +12,7 @@ private:
 public:
 	FormulationEvent(int, int, char, int, int, int);
 	~FormulationEvent();
-	virtual void execute();
+	virtual void execute(MarsStation*);
 	int getTargetLocation()const;
 	int getNumDaysNeeded()const;
 	int getMissionSignificance()const;

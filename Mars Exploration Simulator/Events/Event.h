@@ -10,7 +10,7 @@ private:
 public:
 	int getId() const;
 	int getEventDay()const;
-	virtual void execute() = 0; //pure virtual as each event has its logic and to make the event abstract class
+	virtual void execute(MarsStation*) = 0; //pure virtual as each event has its logic and to make the event abstract class
 	Event(int, int);
 	~Event();
 };
