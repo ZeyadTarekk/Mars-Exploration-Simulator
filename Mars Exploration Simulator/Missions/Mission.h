@@ -22,6 +22,7 @@ public:
 	//void print()const;//for testing only 
 	Rover * getAssignedRover() const;
 	virtual ~Mission()=0 ;  //make destructor pure virtual to make the class abstract
+	bool operator==(const Mission&);
 };
 
 

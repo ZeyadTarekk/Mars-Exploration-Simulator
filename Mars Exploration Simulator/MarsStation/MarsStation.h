@@ -4,6 +4,7 @@
 #include"../DataStructures/PriorityQueue.h"
 #include"../DataStructures/Queue.h"
 #include"../DataStructures/Stack.h"
+#include"../DataStructures/List.h"
 //missions
 #include"../Missions/Mission.h"
 #include"../Missions/EmergencyMission.h"
@@ -14,13 +15,15 @@
 #include"../Rovers/EmergencyRover.h"
 #include"../Missions/MountainousMission.h"
 #include"../Missions/PolarMission.h"
+//Events
+#include"../Events/Event.h"
 class MarsStation
 {
 	unsigned long long currentDay;
 	//Missions :-
 	// 1) Waiting
 	PriorityQueue<EmergencyMission*> emergencyWaitingMission;
-	Queue<MountainousMission*> mountainousWaitingMission;
+	List<MountainousMission*> mountainousWaitingMission;
 	Queue<PolarMission*> polarWaitingMission;
 
 	// 2) Completed

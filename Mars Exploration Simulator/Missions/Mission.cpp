@@ -48,3 +48,10 @@ Rover* Mission::getAssignedRover() const
 Mission::~Mission()
 {
 }
+
+bool Mission::operator==(const Mission&recivedMission)
+{
+	if(recivedMission.id == id)
+		return true;
+	return false;
+}

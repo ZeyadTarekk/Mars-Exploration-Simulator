@@ -1,9 +1,10 @@
 #pragma once
 #include<iostream>
 #include"../MarsStation/MarsStation.h"
+class MarsStation;
 class Event
 {
-private:
+protected:
 	//these are the common data members between all events
 	const int id;
 	const int eventDay;
