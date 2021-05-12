@@ -9,7 +9,7 @@ class List
 	Node<itemType>* getNodeAt(int position) const //get pointer which refers to this position
 	{
 		Node<itemType>* temp = head;
-		if (count < position || position < 0)
+		if (count < position || position <= 0)
 		{
 			return nullptr;
 		}
@@ -23,20 +23,22 @@ class List
 			return temp;
 		}
 	}
-	Node<itemType>* search(const itemType& target)const
-	{
-		bool found = false;
-		Node<itemType>* targetPtr = head;
-		while (!found && targetPtr)
-		{
-			if (targetPtr->getItem() == target)
-				found = true;
-			else
-				targetPtr = targetPtr->getNext();
+	//Node<itemType>* search(const itemType& target)const
+	//{
+	//	bool found = false;
+	//	Node<itemType>* targetPtr = head;
+	//	while (!found && targetPtr)
+	//	{
+	//		if (targetPtr->getItem() == target)
+	//			found = true;
+	//		else
+	//			targetPtr = targetPtr->getNext();
 
-		}
-		return targetPtr;
-	}
+	//	}
+	//	return targetPtr;
+	//}
+	//getEntry
+	//remove(pos)
 public:
 	List() //default constructor
 	{
@@ -52,15 +54,17 @@ public:
 		{
 			return;
 		}
+		int i = 1;
 		while (original)
 		{
 			itemType item = original->getItem();
-			this->insertEnd(item);
+			this->insert(i,item);
 			original = original->getNext();
+			i++;
 		}
 		count = L2.count;
 	}
-	bool contains()const
+	bool isEmpty()const
 	{
 		if (head==nullptr)
 		{
@@ -72,24 +76,12 @@ public:
 	{
 		return count;
 	}
-	
-
-	void insertEnd(const itemType& item)
+	itemType getEntry(int pos)const
 	{
-		Node<itemType>* newNode = new Node<itemType>(item);
-		Node<itemType>* temp = head;
-		if (temp == nullptr)
-		{
-			head = newNode;
-			tail = newNode;
-		}
-		else
-		{
-			tail->setNext(newNode);
-			tail = newNode;
-		}
-		count++;
-	
+		Node<itemType>* target = getNodeAt(pos);
+		if (target)
+			return target->getItem();
+		return -1;
 	}
 	bool insert(const int index, const itemType item)
 	{
@@ -99,9 +91,10 @@ public:
 		if (index == 1)
 		{
 			newNode->setNext(head);
+			tail = newNode;
 			head = newNode;
 		}
-		else if (index==count)
+		else if (index==count+1)
 		{
 			tail->setNext(newNode);
 			tail = newNode;
@@ -111,68 +104,57 @@ public:
 			Node<itemType>* temp = head;
 			for (int i = 1; i < index - 1 && temp->getNext(); i++)
 			{
-
 				temp = temp->getNext();
+			}
+			if (temp->getNext() == tail)
+			{
+				temp->setNext(newNode);
+				newNode->setNext(tail);
+				return true;
 			}
 			newNode->setNext(temp->getNext());
 			temp->setNext(newNode);
 		}
 		count++;
 		return true;
-		
 	}
-	
-	bool deleteNode(const itemType&item)
+	bool remove(int pos)
 	{
-		if (!contains())
-			return false;
-		Node<itemType>* temp = head;
-		Node<itemType>* prev = head;
-		if (temp->getItem() == item)
+		Node<itemType>* temp = getNodeAt(pos);
+		if (temp)
 		{
-			head = head->getNext();
-			delete temp;
-			temp = nullptr;
-			return true;
-		}
-		else
-		{
-			while (temp->getNext() != nullptr && temp->getItem()!= item)
+			Node<itemType>* target = head;
+			if (temp==head)
 			{
-				prev = temp;
-				temp = temp->getNext();
-
+				head = head->getNext();
+				delete temp;      
 			}
-			if (!temp)
+			else if (temp==tail)
 			{
-				return false;
+				while (target->getNext()!=tail)
+				{
+					target = target->getNext();
+				}
+				tail = target;
+				tail->setNext(nullptr);
+				delete temp;
 			}
 			else
 			{
-				prev->setNext(temp->getNext());
+				while (target->getNext()!=temp)
+				{
+					target = target->getNext();
+				}
+				target->setNext(temp->getNext());
 				delete temp;
-				temp = nullptr;
-				return true;
 			}
+			return true;
+		}
 
-		}
-		count--;
 	}
-	void deleteFirst()
+	void clear() 
 	{
-		if (contains())
-		{
-			Node<itemType>* temp = head;
-			head = head->getNext();
-			delete temp;
-			count--;
-		}
-		
-		/*deleteNode(getNodeAt(1)->getItem());*/
-	}
-	void deleteAll() 
-	{
-		if (contains())
+		if (isEmpty())
 		{
 			while (head)
 			{
@@ -196,7 +178,7 @@ public:
 	}
 	virtual ~List()
 	{
-		deleteAll();
+		clear();
 	}
 
 };

@@ -18,7 +18,7 @@ void MarsStation::addMission(Mission*nM) //add new mission im the appropriate fu
 	MountainousMission* newMission2 = dynamic_cast<MountainousMission*>(nM);
 	if (newMission2)
 	{
-		mountainousWaitingMission.insertEnd(newMission2);
+		mountainousWaitingMission.insert(mountainousWaitingMission.getLength(),newMission2);
 		return;
 	}
 	PolarMission* newMission3 = dynamic_cast<PolarMission*>(nM);

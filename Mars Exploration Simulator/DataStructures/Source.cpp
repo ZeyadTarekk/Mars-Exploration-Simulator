@@ -11,27 +11,26 @@ using namespace std;
 //============ testing List================
 int main()
 {
-
 	List<int>L;
 	int x;
 	cin >> x;
+	int  i = 1;
 	while (x !=-1)
 	{
-		L.insertEnd(x);
+		L.insert(i,x);
 		cin >> x;
+		i++;
 	}
 	L.print();
 	cout << L.getLength() << endl;
-	L.insert(10, 10);
+	L.remove(5);
 	L.print();
 	List<int>L2(L);
-	/*L.deleteFirst();*/
-	cout << L.getLength() << endl;
-	/*L.deleteAll();*/
-	cout << L.getLength() << endl;
+	///*L.deleteFirst();*/
+	//cout << L.getLength() << endl;
+	L.clear();
+	//cout << L.getLength() << endl;
 	L2.print();
-	L.deleteNode(3);
-	L2.insertEnd(15);
 	L.print();
 	
 }
