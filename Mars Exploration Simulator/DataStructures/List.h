@@ -23,6 +23,20 @@ class List
 			return temp;
 		}
 	}
+	Node<itemType>* search(const itemType& target)const
+	{
+		bool found = false;
+		Node<itemType>* targetPtr = head;
+		while (!found && targetPtr)
+		{
+			if (targetPtr->getItem() == target)
+				found = true;
+			else
+				targetPtr = targetPtr->getNext();
+
+		}
+		return targetPtr;
+	}
 public:
 	List() //default constructor
 	{
@@ -58,20 +72,7 @@ public:
 	{
 		return count;
 	}
-	Node<itemType>* search(const itemType&target)const
-	{
-		bool found = false;
-		Node<itemType>* targetPtr = head;
-		while (!found && targetPtr)
-		{
-			if (targetPtr->getItem() == target)
-				found = true;
-			else
-				targetPtr = targetPtr->getNext();
-			
-		}
-		return targetPtr;
-	}
+	
 
 	void insertEnd(const itemType& item)
 	{
@@ -89,6 +90,36 @@ public:
 		}
 		count++;
 	
+	}
+	bool insert(const int index, const itemType item)
+	{
+		if (count+1 < index || index <= 0)
+			return false;
+		Node<itemType>* newNode = new Node<itemType>(item);
+		if (index == 1)
+		{
+			newNode->setNext(head);
+			head = newNode;
+		}
+		else if (index==count)
+		{
+			tail->setNext(newNode);
+			tail = newNode;
+		}
+		else
+		{
+			Node<itemType>* temp = head;
+			for (int i = 1; i < index - 1 && temp->getNext(); i++)
+			{
+
+				temp = temp->getNext();
+			}
+			newNode->setNext(temp->getNext());
+			temp->setNext(newNode);
+		}
+		count++;
+		return true;
+		
 	}
 	
 	bool deleteNode(const itemType&item)

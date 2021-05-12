@@ -22,22 +22,18 @@ int main()
 	}
 	L.print();
 	cout << L.getLength() << endl;
-	List<int>L2(L);
-	L.deleteFirst();
-	cout << L.getLength() << endl;
+	L.insert(10, 10);
 	L.print();
-	L.deleteAll();
+	List<int>L2(L);
+	/*L.deleteFirst();*/
+	cout << L.getLength() << endl;
+	/*L.deleteAll();*/
 	cout << L.getLength() << endl;
 	L2.print();
 	L.deleteNode(3);
 	L2.insertEnd(15);
 	L.print();
-	cout << L2.getLength() << endl;
-	// testin Search
-	Node<int> *ptr=L2.search(3);
-	if (ptr)
-		ptr->setItem(25);
-	L2.print();
+	
 }
 //{
 //	//=====================================================
