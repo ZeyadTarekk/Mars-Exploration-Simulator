@@ -22,6 +22,10 @@ Rover::Rover(double roverspeed, int checkupCount, int Days)
 	overallDistance = 0;
 }
 
+Rover::~Rover()
+{
+}
+
 void Rover::reset()
 {
 	missionId = -1;
