@@ -20,6 +20,7 @@ class Rover
 	//checkupInfo
 	int missionsNumber;			//calculated
 	bool needCheckup;			//calculated
+	bool inMaintainance;        //calculated
 
 public:
 	Rover(double roverspeed, int checkupCount, int Days); //essential data only
@@ -30,6 +31,7 @@ public:
 	virtual void assignMission(int idMission,int duration, int location,int curDay);
 	virtual void assignCheckup(int curDay);
 	virtual void decreaseSpeedToHalf();
+	virtual void increaseSpeedToDouble();
 
 	//getters
 	virtual unsigned int getID() const;
@@ -44,5 +46,6 @@ public:
 
 	virtual int getMissionNumber()const;
 	virtual bool getneedCheckup()const;
+	virtual bool getMaintainance()const;
 };
 

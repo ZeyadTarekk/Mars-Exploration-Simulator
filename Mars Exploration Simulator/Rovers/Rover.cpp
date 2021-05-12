@@ -51,7 +51,14 @@ void Rover::assignCheckup(int curDay)
 
 void Rover::decreaseSpeedToHalf()
 {
+	inMaintainance = true;
 	speed /= 2;
+}
+
+void Rover::increaseSpeedToDouble()
+{
+	inMaintainance = false;
+	speed *= 2;
 }
 
 unsigned int Rover::getID() const
@@ -102,6 +109,11 @@ int Rover::getMissionNumber() const
 bool Rover::getneedCheckup() const
 {
 	return needCheckup;
+}
+
+bool Rover::getMaintainance() const
+{
+	return inMaintainance;
 }
 
 
