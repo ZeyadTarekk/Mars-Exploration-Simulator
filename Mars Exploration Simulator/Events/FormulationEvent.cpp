@@ -3,12 +3,12 @@
 
 
 //constructor
-FormulationEvent::FormulationEvent(int i, int e, char t, int tL, int nD, int s) :
-	Event(i, e),
+FormulationEvent::FormulationEvent(int e,int i, char t, int tL, int nD, int s) :Event(e),
 	missionType(t),
 	targetLocation(tL),
 	numDaysNeeded(nD),
-	missionSignificance(s) {}
+	missionSignificance(s),
+	id(i) {}
 
 
 
@@ -23,6 +23,11 @@ int FormulationEvent::getNumDaysNeeded()const { return numDaysNeeded; }
 
 //getmissionSignificance
 int FormulationEvent::getMissionSignificance()const { return missionSignificance; }
+
+int FormulationEvent::getId() const
+{
+	return id;
+}
 
 //execute
 void FormulationEvent::execute(MarsStation* station)
