@@ -27,8 +27,8 @@ public:
 	void reset();
 
 	//setters
-	virtual void assignMission(int idMission,int duration, int location);
-	virtual void assignCheckup();
+	virtual void assignMission(int idMission,int duration, int location,int curDay);
+	virtual void assignCheckup(int curDay);
 	virtual void decreaseSpeedToHalf();
 
 	//getters

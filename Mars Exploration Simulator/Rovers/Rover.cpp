@@ -29,21 +29,21 @@ void Rover::reset()
 	missionLocation = -1;
 }
 
-void Rover::assignMission(int idMission, int duration,int location)
+void Rover::assignMission(int idMission, int duration,int location, int curDay)
 {
 	missionId = (idMission>0?idMission:0);
 	missionDuration = (duration>0?duration:0);
 	missionLocation = (location > 0? location : 0);
-	missionOrCheckupEndDay = missionDuration + ceil( (2*(float)missionLocation / speed ) /25.0);
+	missionOrCheckupEndDay = curDay + missionDuration + ceil( (2*(float)missionLocation / speed ) /25.0);
 	
 	missionsNumber++;
 	if (missionsNumber%checkupMissions==0)
 		needCheckup = true;
 }
 
-void Rover::assignCheckup()
+void Rover::assignCheckup(int curDay)
 {
-	missionOrCheckupEndDay = checkupDays;
+	missionOrCheckupEndDay = curDay+checkupDays;
 	//missionsNumber = 0;
 	needCheckup = false;
 	reset();
