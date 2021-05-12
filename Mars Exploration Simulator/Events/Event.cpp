@@ -8,7 +8,7 @@ Event::~Event() {}
 
 
 //getId
-//int Event::getId()const { return id; }
+int Event::getId()const { return id; }
 
 
 //geteventDay
