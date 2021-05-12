@@ -29,6 +29,7 @@
     <ClInclude Include="Events\CompletionEvent.h" />
     <ClInclude Include="Events\Event.h" />
     <ClInclude Include="Events\FormulationEvent.h" />
+    <ClInclude Include="Events\MissionFailure.h" />
     <ClInclude Include="Events\PromotionEvent.h" />
     <ClInclude Include="MarsStation\MarsStation.h" />
     <ClInclude Include="Missions\EmergencyMission.h" />
@@ -45,6 +46,7 @@
     <ClCompile Include="Events\CompletionEvent.cpp" />
     <ClCompile Include="Events\Event.cpp" />
     <ClCompile Include="Events\FormulationEvent.cpp" />
+    <ClCompile Include="Events\MissionFailure.cpp" />
     <ClCompile Include="Events\PromotionEvent.cpp" />
     <ClCompile Include="Events\Source2.cpp" />
     <ClCompile Include="MarsStation\MarsStation.cpp" />

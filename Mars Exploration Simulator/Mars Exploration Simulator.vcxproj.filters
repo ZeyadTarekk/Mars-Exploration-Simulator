@@ -93,6 +93,9 @@
     <ClInclude Include="Events\CompletionEvent.h">
       <Filter>Events</Filter>
     </ClInclude>
+    <ClInclude Include="Events\MissionFailure.h">
+      <Filter>Events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructures\Source.cpp">
@@ -150,6 +153,9 @@
       <Filter>Events</Filter>
     </ClCompile>
     <ClCompile Include="Events\CompletionEvent.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\MissionFailure.cpp">
       <Filter>Events</Filter>
     </ClCompile>
   </ItemGroup>
