@@ -5,6 +5,7 @@
 class FormulationEvent : public Event
 {
 private:
+	const int id;
 	const char missionType;
 	const int targetLocation;
 	const int numDaysNeeded;
@@ -16,4 +17,5 @@ public:
 	int getTargetLocation()const;
 	int getNumDaysNeeded()const;
 	int getMissionSignificance()const;
+	int getId() const;
 };

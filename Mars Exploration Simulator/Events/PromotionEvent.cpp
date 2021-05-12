@@ -1,7 +1,12 @@
 #include "PromotionEvent.h"
 
-PromotionEvent::PromotionEvent(int i, int day):Event(i,day)
+PromotionEvent::PromotionEvent(int day,int i):Event(day),id(i)
 {}
+
+int PromotionEvent::getId() const
+{
+	return id;
+}
 
 PromotionEvent::~PromotionEvent()
 {
