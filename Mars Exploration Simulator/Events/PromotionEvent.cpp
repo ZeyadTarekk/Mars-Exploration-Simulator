@@ -9,7 +9,7 @@ PromotionEvent::~PromotionEvent()
 
 void PromotionEvent::execute(MarsStation* MStation)
 {
-	MountainousMission mountMission(0, 0, 0, id, 0);
+	MountainousMission mountMission(0, 0, 0,Event::getId(),0);
 	int indexOfMission = MStation->IndexOfMountainousMission(mountMission);
 	//cout << "Index = " << indexOfMission << endl;
 	if (indexOfMission != -1)

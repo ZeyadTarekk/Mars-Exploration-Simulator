@@ -10,6 +10,8 @@ class Rover
 	double speed;
 	int checkupDays;
 	int checkupMissions;	
+	int overallDistance;        //all distance had been taken by the rover to enter in maintainance
+	int maintainanceDuration;   //the period the rover will take 
 
 	//missions info
 	int missionId;				//given
@@ -32,7 +34,7 @@ public:
 	virtual void assignCheckup(int curDay);
 	virtual void decreaseSpeedToHalf();
 	virtual void increaseSpeedToDouble();
-
+	virtual void assignMaintainance(int);
 	//getters
 	virtual unsigned int getID() const;
 	virtual double getSpeed() const ;
@@ -47,5 +49,7 @@ public:
 	virtual int getMissionNumber()const;
 	virtual bool getneedCheckup()const;
 	virtual bool getMaintainance()const;
+	virtual int getOverallDistance()const;
+
 };
 

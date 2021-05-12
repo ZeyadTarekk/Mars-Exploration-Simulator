@@ -19,6 +19,7 @@ Rover::Rover(double roverspeed, int checkupCount, int Days)
 
 	idCounter++;
 
+	overallDistance = 0;
 }
 
 void Rover::reset()
@@ -27,6 +28,7 @@ void Rover::reset()
 	missionDuration = -1;
 	missionOrCheckupEndDay = -1;
 	missionLocation = -1;
+
 }
 
 void Rover::assignMission(int idMission, int duration,int location, int curDay)
@@ -39,6 +41,7 @@ void Rover::assignMission(int idMission, int duration,int location, int curDay)
 	missionsNumber++;
 	if (missionsNumber%checkupMissions==0)
 		needCheckup = true;
+	overallDistance += missionLocation;
 }
 
 void Rover::assignCheckup(int curDay)
@@ -48,6 +51,7 @@ void Rover::assignCheckup(int curDay)
 	needCheckup = false;
 	reset();
 }
+
 
 void Rover::decreaseSpeedToHalf()
 {
@@ -59,6 +63,15 @@ void Rover::increaseSpeedToDouble()
 {
 	inMaintainance = false;
 	speed *= 2;
+}
+
+void Rover::assignMaintainance(int curDay)
+{
+	missionOrCheckupEndDay = curDay + maintainanceDuration;
+	//missionsNumber = 0;
+	needCheckup = false;
+	reset();
+	overallDistance = 0;
 }
 
 unsigned int Rover::getID() const
@@ -114,6 +127,11 @@ bool Rover::getneedCheckup() const
 bool Rover::getMaintainance() const
 {
 	return inMaintainance;
+}
+
+int Rover::getOverallDistance() const
+{
+	return overallDistance;
 }
 
 
