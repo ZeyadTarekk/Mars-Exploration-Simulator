@@ -4,5 +4,6 @@ class EmergencyRover:public Rover
 {
 public:
 	EmergencyRover(int roverspeed, int checkupCount, int Days);
+	~EmergencyRover();
 };
 
