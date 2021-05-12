@@ -19,6 +19,7 @@ public:
 	int getMissionDuration() const;
 	int getEndDay()const;
 	double getSignificance() const;
+	int getID();
 	//void print()const;//for testing only 
 	Rover * getAssignedRover() const;
 	virtual ~Mission()=0 ;  //make destructor pure virtual to make the class abstract

@@ -1,4 +1,6 @@
 #pragma once
+#include<iostream>
+using namespace std;
 //data strucures
 #include"../DataStructures/Bag.h"
 #include"../DataStructures/PriorityQueue.h"
@@ -13,8 +15,8 @@
 //Rovers
 #include"../Rovers/Rover.h"
 #include"../Rovers/EmergencyRover.h"
-#include"../Missions/MountainousMission.h"
-#include"../Missions/PolarMission.h"
+#include"../Rovers/MountainousRover.h"
+#include"../Rovers/PolarRover.h"
 //Events
 #include"../Events/Event.h"
 class MarsStation
@@ -23,7 +25,7 @@ class MarsStation
 	//Missions :-
 	// 1) Waiting
 	PriorityQueue<EmergencyMission*> emergencyWaitingMission;
-	List<MountainousMission*> mountainousWaitingMission;
+	List<MountainousMission> mountainousWaitingMission;
 	Queue<PolarMission*> polarWaitingMission;
 
 	// 2) Completed
@@ -35,8 +37,8 @@ class MarsStation
 	//Rovers
 	//1) Available rovers
 	PriorityQueue<EmergencyRover*> emergencyAvailableRover;
-	PriorityQueue<PolarMission*> polarAvailableMission;
-	PriorityQueue<MountainousMission*> mountainousAvailableMission;
+	PriorityQueue<PolarRover*> polarAvailableRover;
+	PriorityQueue<MountainousRover*> mountainousAvailableRover;
 
 	//2) Unavailable rovers
 	PriorityQueue<Rover*> unavailableRovers;	//Pointers for polymorphism
@@ -47,5 +49,14 @@ public:
 	MarsStation();
 	~MarsStation();
 	void addMission(Mission*);
+
+	// Promotion event functions
+	int IndexOfMountainousMission(const MountainousMission&);
+	MountainousMission getMountainousMission(int);
+	void removeMountainousMission(int);
+
+	//test functions for Promotion event
+	void PrintMountList();
+	void PrintEmergencyList();
 };
 

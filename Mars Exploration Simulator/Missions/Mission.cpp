@@ -40,6 +40,11 @@ double Mission::getSignificance() const
 	return significance;
 }
 
+int Mission::getID()
+{
+	return id;
+}
+
 Rover* Mission::getAssignedRover() const 
 { 
 	return assignedRover; 

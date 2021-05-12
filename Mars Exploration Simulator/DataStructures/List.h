@@ -23,20 +23,7 @@ class List
 			return temp;
 		}
 	}
-	//Node<itemType>* search(const itemType& target)const
-	//{
-	//	bool found = false;
-	//	Node<itemType>* targetPtr = head;
-	//	while (!found && targetPtr)
-	//	{
-	//		if (targetPtr->getItem() == target)
-	//			found = true;
-	//		else
-	//			targetPtr = targetPtr->getNext();
 
-	//	}
-	//	return targetPtr;
-	//}
 	//getEntry
 	//remove(pos)
 public:
@@ -57,8 +44,8 @@ public:
 		int i = 1;
 		while (original)
 		{
-			itemType item = original->getItem();
-			this->insert(i,item);
+			//itemType item = original->getItem();
+			this->insert(i, original->getItem());
 			original = original->getNext();
 			i++;
 		}
@@ -81,9 +68,12 @@ public:
 		Node<itemType>* target = getNodeAt(pos);
 		if (target)
 			return target->getItem();
-		return -1;
+		else {
+			std::cout << "Out of range in get entry method --> list ADT" << std::endl;
+			exit(12);
+		}
 	}
-	bool insert(const int index, const itemType item)
+	bool insert(const int index, const itemType& item)
 	{
 		if (count+1 < index || index <= 0)
 			return false;
@@ -148,9 +138,10 @@ public:
 				target->setNext(temp->getNext());
 				delete temp;
 			}
+			count--;
 			return true;
 		}
-
+		return false;
 	}
 	void clear() 
 	{
@@ -165,6 +156,25 @@ public:
 			count = 0;
 		}
 		
+	}
+	int getIndexOf(const itemType& target)const
+	{
+		bool found = false;
+		Node<itemType>* targetPtr = head;
+		int position = -1;
+		int count = 1;
+		while (!found && targetPtr)
+		{
+			if (targetPtr->getItem() == target)
+			{
+				found = true;
+				position = count;
+			}
+			else
+				targetPtr = targetPtr->getNext();
+			count++;
+		}
+		return position;
 	}
 	void print()const //for testing
 	{

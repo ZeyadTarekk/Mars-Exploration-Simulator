@@ -13,14 +13,14 @@ public:
 		next = nullptr;
 	}
 
-	Node(const T &newItem) //non-default constructor
+	Node(const T &newItem):item(newItem) //non-default constructor
 	{
-		item = newItem;
+		//item = newItem;
 		next = nullptr;
 	}
-	Node(const T &newItem, Node<T>*nextNode ) //non-default constructor
+	Node(const T &newItem, Node<T>*nextNode ):item(newItem) //non-default constructor
 	{
-		item = newItem;
+		//item = newItem;
 		next = nextNode;
 	}
 
