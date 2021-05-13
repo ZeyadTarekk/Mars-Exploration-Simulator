@@ -26,6 +26,7 @@
     <ClInclude Include="DataStructures\PriorityQueue.h" />
     <ClInclude Include="DataStructures\Queue.h" />
     <ClInclude Include="DataStructures\Stack.h" />
+    <ClInclude Include="Events\Assign.h" />
     <ClInclude Include="Events\Event.h" />
     <ClInclude Include="Events\FormulationEvent.h" />
     <ClInclude Include="Events\PromotionEvent.h" />
@@ -41,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructures\Source.cpp" />
+    <ClCompile Include="Events\Assign.cpp" />
     <ClCompile Include="Events\Event.cpp" />
     <ClCompile Include="Events\FormulationEvent.cpp" />
     <ClCompile Include="Events\PromotionEvent.cpp" />

@@ -90,6 +90,9 @@
     <ClInclude Include="Events\PromotionEvent.h">
       <Filter>Events</Filter>
     </ClInclude>
+    <ClInclude Include="Events\Assign.h">
+      <Filter>Events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructures\Source.cpp">
@@ -144,6 +147,9 @@
       <Filter>Events</Filter>
     </ClCompile>
     <ClCompile Include="Events\PromotionEvent.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\Assign.cpp">
       <Filter>Events</Filter>
     </ClCompile>
   </ItemGroup>
