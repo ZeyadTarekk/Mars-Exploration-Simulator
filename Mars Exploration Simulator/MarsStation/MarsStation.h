@@ -49,14 +49,29 @@ public:
 	MarsStation();
 	~MarsStation();
 	void addMission(Mission*);
-
+	void addRover(Rover*);
 	// Promotion event functions
 	int IndexOfMountainousMission(const MountainousMission&);
 	MountainousMission getMountainousMission(int);
 	void removeMountainousMission(int);
 
-	//test functions for Promotion event
+
+	//Mission Failure functions
+	Mission* inserviceRemove(int);
+	Rover* UnavailableRemove(int);
+
+	//test functions 
 	void PrintMountList();
 	void PrintEmergencyList();
+	void printPolarList();
+	void printInserviceMissions();
+
+	void printUnavRovers();
+	void printMountRovers();
+	void printEmRovers();
+	void printPolarRovers();
+	void ExecuteEm(Rover*);
+	void Executemount(Rover*);
+	void ExecutePolar(Rover*);
 };
 

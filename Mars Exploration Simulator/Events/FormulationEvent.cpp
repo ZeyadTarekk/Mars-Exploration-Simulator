@@ -3,12 +3,12 @@
 
 
 //constructor
-FormulationEvent::FormulationEvent(int i, int e, char t, int tL, int nD, int s) :
-	Event(i, e),
+FormulationEvent::FormulationEvent(int e,int i, string t, int tL, int nD, int s) :Event(e),
 	missionType(t),
 	targetLocation(tL),
 	numDaysNeeded(nD),
-	missionSignificance(s) {}
+	missionSignificance(s),
+	id(i) {}
 
 
 
@@ -24,12 +24,17 @@ int FormulationEvent::getNumDaysNeeded()const { return numDaysNeeded; }
 //getmissionSignificance
 int FormulationEvent::getMissionSignificance()const { return missionSignificance; }
 
+int FormulationEvent::getId() const
+{
+	return id;
+}
+
 //execute
 void FormulationEvent::execute(MarsStation* station)
 {
 
 
-	if (missionType == 'M')
+	if (missionType == "M")
 	{
 		//create new Mountainous mission
 		Mission* newMountainousMission = new MountainousMission(getEventDay(), getTargetLocation(), getNumDaysNeeded(), getId(), getMissionSignificance());
@@ -37,14 +42,14 @@ void FormulationEvent::execute(MarsStation* station)
 		station->addMission(newMountainousMission);
 		return;
 	}
-	if (missionType == 'EM')
+	if (missionType == "EM")
 	{	//create new Emergency mission
 		Mission* newEmergencyMission = new EmergencyMission(getEventDay(), getTargetLocation(), getNumDaysNeeded(), getId(), getMissionSignificance());
 		//put it in appropriate list
 		station->addMission(newEmergencyMission);
 		return;
 	}
-	if (missionType == 'P')
+	if (missionType == "P")
 	{//create new Polar mission
 		Mission* newPolarMission = new PolarMission(getEventDay(), getTargetLocation(), getNumDaysNeeded(), getId(), getMissionSignificance());
 		//put it in appropriate list

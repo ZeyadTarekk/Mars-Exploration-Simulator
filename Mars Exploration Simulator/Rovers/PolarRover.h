@@ -4,5 +4,6 @@ class PolarRover : public Rover
 {
 public:
 	PolarRover(double speed, int checkupMissions, int checkupDays);
+	~PolarRover();
 };
 

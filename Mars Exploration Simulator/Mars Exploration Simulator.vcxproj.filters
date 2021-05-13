@@ -90,6 +90,12 @@
     <ClInclude Include="Events\PromotionEvent.h">
       <Filter>Events</Filter>
     </ClInclude>
+    <ClInclude Include="Events\CompletionEvent.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Events\MissionFailure.h">
+      <Filter>Events</Filter>
+    </ClInclude>
     <ClInclude Include="Events\Assign.h">
       <Filter>Events</Filter>
     </ClInclude>
@@ -147,6 +153,12 @@
       <Filter>Events</Filter>
     </ClCompile>
     <ClCompile Include="Events\PromotionEvent.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\CompletionEvent.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\MissionFailure.cpp">
       <Filter>Events</Filter>
     </ClCompile>
     <ClCompile Include="Events\Assign.cpp">
