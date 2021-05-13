@@ -7,6 +7,10 @@ MarsStation::MarsStation() :currentDay(0)
 MarsStation::~MarsStation()
 {
 }
+unsigned long long MarsStation::getCurDay()
+{
+	return currentDay;
+}
 void MarsStation::addMission(Mission* nM) //add new mission im the appropriate function
 {
 	EmergencyMission* newMission1 = dynamic_cast<EmergencyMission*>(nM);
@@ -37,6 +41,11 @@ void MarsStation::addRover(Rover* genRover)
 		mountainousAvailableRover.enqueue((MountainousRover*)genRover, genRover->getSpeed());
 	else if (dynamic_cast<PolarRover*>(genRover))
 		polarAvailableRover.enqueue((PolarRover*)genRover, genRover->getSpeed());
+}
+
+void MarsStation::addUnavailableRover(Rover* rov)
+{
+	unavailableRovers.enqueue(rov, -1 * rov->getMissionOrCheckupEndDay());
 }
 
 int MarsStation::IndexOfMountainousMission(const MountainousMission& mMission)
@@ -296,7 +305,7 @@ bool MarsStation::assignMountainousMission(int evDay)
 	MountainousRover* mRoverTemp;
 	if (mountainousAvailableRover.dequeue(mRoverTemp))
 	{
-		mMissionTemp = &(mountainousWaitingMission.getEntry(mountainousWaitingMission.getLength()));
+		mMissionTemp =new MountainousMission(mountainousWaitingMission.getEntry(mountainousWaitingMission.getLength()));
 		mountainousWaitingMission.remove(mountainousWaitingMission.getLength());
 		mMissionTemp->assignRover(mRoverTemp);
 		mRoverTemp->assignMission(mMissionTemp->getID(), mMissionTemp->getMissionDuration(), mMissionTemp->getTargetLocation(), evDay);
@@ -305,7 +314,7 @@ bool MarsStation::assignMountainousMission(int evDay)
 	EmergencyRover* emRoverTemp;
 	if (emergencyAvailableRover.dequeue(emRoverTemp))
 	{
-		mMissionTemp = &(mountainousWaitingMission.getEntry(mountainousWaitingMission.getLength()));
+		mMissionTemp = new MountainousMission(mountainousWaitingMission.getEntry(mountainousWaitingMission.getLength()));
 		mountainousWaitingMission.remove(mountainousWaitingMission.getLength());
 		mMissionTemp->assignRover(emRoverTemp);
 		emRoverTemp->assignMission(mMissionTemp->getID(), mMissionTemp->getMissionDuration(), mMissionTemp->getTargetLocation(), evDay);

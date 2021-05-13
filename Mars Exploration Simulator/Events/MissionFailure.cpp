@@ -17,14 +17,17 @@ int MissionFailure::IDprobability()
 void MissionFailure::execute(MarsStation* MStation)
 {
 	Mission* foundMission = MStation->inserviceRemove(IDprobability());
-//	Mission* foundMission = MStation->inserviceRemove(3);
+	//Mission* foundMission = MStation->inserviceRemove(3);
 	if (foundMission)
 	{
 		MStation->addMission(foundMission); //reformulate mission
 		Rover* foundRover = MStation->UnavailableRemove(foundMission->getAssignedRover()->getID());//remover rover
 		foundMission->getAssignedRover()->reset(); //Reset info
-		if(foundRover)
-			MStation->addRover(foundRover);
+		if (foundRover)
+		{
+			foundRover->assignCheckup(MStation->getCurDay());
+			MStation->addUnavailableRover(foundRover);
+		}
 		//else {
 		//	cout << "Rover not found in unavailable rovers --> Mission failure event" << endl;
 		//	exit(12);

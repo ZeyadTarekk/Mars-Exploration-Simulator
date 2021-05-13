@@ -35,7 +35,7 @@ void Rover::reset()
 
 }
 
-void Rover::assignMission(int idMission, int duration,int location, int curDay)
+void Rover::assignMission(int idMission, int duration,int location, unsigned long long curDay)
 {
 	missionId = (idMission>0?idMission:0);
 	missionDuration = (duration>0?duration:0);
@@ -48,12 +48,12 @@ void Rover::assignMission(int idMission, int duration,int location, int curDay)
 	overallDistance += missionLocation;
 }
 
-void Rover::assignCheckup(int curDay)
+void Rover::assignCheckup(unsigned long long curDay)
 {
+	reset();
 	missionOrCheckupEndDay = curDay+checkupDays;
 	//missionsNumber = 0;
 	needCheckup = false;
-	reset();
 }
 
 

@@ -48,8 +48,10 @@ class MarsStation
 public:
 	MarsStation();
 	~MarsStation();
+	unsigned long long getCurDay();
 	void addMission(Mission*);
 	void addRover(Rover*);
+	void addUnavailableRover(Rover*);
 	// Promotion event functions
 	int IndexOfMountainousMission(const MountainousMission&);
 	MountainousMission getMountainousMission(int);
