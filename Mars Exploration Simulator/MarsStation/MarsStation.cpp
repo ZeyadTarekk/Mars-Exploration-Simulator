@@ -77,10 +77,10 @@ Mission* MarsStation::inserviceRemove(int id)
 			found = true;
 		}
 		else
-			tempQ.enqueue(genMission, -1 * genMission->getEndDay());
+			tempQ.enqueue(genMission, -1 * genMission->getAssignedRover()->getCheckupReqDays());
 	}
 	while (tempQ.dequeue(genMission))
-		inServiceMissions.enqueue(genMission, -1 * genMission->getEndDay());
+		inServiceMissions.enqueue(genMission, -1 * genMission->getAssignedRover()->getCheckupReqDays());
 	return foundMission;
 }
 
