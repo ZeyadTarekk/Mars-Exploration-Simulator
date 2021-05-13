@@ -96,6 +96,9 @@
     <ClInclude Include="Events\MissionFailure.h">
       <Filter>Events</Filter>
     </ClInclude>
+    <ClInclude Include="Events\CancelationEvent.h">
+      <Filter>Events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructures\Source.cpp">
@@ -156,6 +159,9 @@
       <Filter>Events</Filter>
     </ClCompile>
     <ClCompile Include="Events\MissionFailure.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\CancelationEvent.cpp">
       <Filter>Events</Filter>
     </ClCompile>
   </ItemGroup>
