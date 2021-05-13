@@ -42,6 +42,7 @@
     <ClInclude Include="Rovers\MountainousRover.h" />
     <ClInclude Include="Rovers\PolarRover.h" />
     <ClInclude Include="Rovers\Rover.h" />
+    <ClInclude Include="UI\UI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructures\Source.cpp" />
@@ -66,6 +67,11 @@
     <ClCompile Include="Rovers\Rover.cpp" />
     <ClCompile Include="Rovers\TestRover.cpp" />
     <ClCompile Include="UI\Source1.cpp" />
+    <ClCompile Include="UI\UI.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="InputFiles\Input.txt" />
+    <Text Include="OutputFiles\Output.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

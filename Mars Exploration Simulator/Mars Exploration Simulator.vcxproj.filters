@@ -31,6 +31,12 @@
     <Filter Include="MarsStation">
       <UniqueIdentifier>{d5e2a8a1-e970-4289-9d21-602b089a2299}</UniqueIdentifier>
     </Filter>
+    <Filter Include="InputFiles">
+      <UniqueIdentifier>{816ae175-e4b9-47ff-8834-22e3ea58e0e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OutputFiles">
+      <UniqueIdentifier>{e8cbbd90-9ca0-4c0f-a86e-5c76a605568c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataStructures\Node.h">
@@ -102,6 +108,9 @@
     <ClInclude Include="Events\Assign.h">
       <Filter>Events</Filter>
     </ClInclude>
+    <ClInclude Include="UI\UI.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructures\Source.cpp">
@@ -170,5 +179,16 @@
     <ClCompile Include="Events\Assign.cpp">
       <Filter>Events</Filter>
     </ClCompile>
+    <ClCompile Include="UI\UI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="InputFiles\Input.txt">
+      <Filter>InputFiles</Filter>
+    </Text>
+    <Text Include="OutputFiles\Output.txt">
+      <Filter>OutputFiles</Filter>
+    </Text>
   </ItemGroup>
 </Project>
