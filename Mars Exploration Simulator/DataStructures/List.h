@@ -55,9 +55,9 @@ public:
 	{
 		if (head==nullptr)
 		{
-			return false;
+			return true;
 		}
-		return true;
+		return false;
 	}
 	int getLength()const
 	{
