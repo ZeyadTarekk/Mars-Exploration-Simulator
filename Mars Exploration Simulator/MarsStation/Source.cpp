@@ -58,8 +58,8 @@ int main()
 
 	
 	MarsStation* m = new MarsStation;
-	FormulationEvent f1(1, 1, 'M', 1, 1, 1);
-	FormulationEvent f2(2, 2, 'M', 2, 2, 2);
+	FormulationEvent f1(1, 1, "M", 1, 1, 1);
+	FormulationEvent f2(2, 2, "M", 2, 2, 2);
 	f1.execute(m);f2.execute(m);
 	PromotionEvent Pevent(1,2);
 
@@ -74,8 +74,8 @@ int main()
 	cout << "\n++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
 	cout << "Testing Cancelation\n";
 
-	FormulationEvent f3(6, 3, 'M', 1, 1, 1);
-	FormulationEvent f4(7, 4, 'M', 2, 2, 2);
+	FormulationEvent f3(6, 3, "M", 1, 1, 1);
+	FormulationEvent f4(7, 4, "M", 2, 2, 2);
 	f3.execute(m);
 	f4.execute(m);
 	CancelationEvent cEvent(3, 3);
