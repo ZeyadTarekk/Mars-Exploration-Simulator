@@ -60,6 +60,14 @@ public:
 	Mission* inserviceRemove(int);
 	Rover* UnavailableRemove(int);
 
+	//Assign functions
+	bool assignEmergencyMission(int);
+	bool assignMountainousMission(int);
+	bool assignPolarMission(int);
+
+
+
+
 	//test functions 
 	void PrintMountList();
 	void PrintEmergencyList();

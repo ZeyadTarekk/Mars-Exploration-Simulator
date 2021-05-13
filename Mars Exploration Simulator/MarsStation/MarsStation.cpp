@@ -1,24 +1,24 @@
 #include "MarsStation.h"
 
-MarsStation::MarsStation():currentDay(0)
+MarsStation::MarsStation() :currentDay(0)
 {
 }
 
 MarsStation::~MarsStation()
 {
 }
-void MarsStation::addMission(Mission*nM) //add new mission im the appropriate function
+void MarsStation::addMission(Mission* nM) //add new mission im the appropriate function
 {
 	EmergencyMission* newMission1 = dynamic_cast<EmergencyMission*>(nM);
 	if (newMission1)
 	{
-		emergencyWaitingMission.enqueue(newMission1,newMission1->getPriority());
+		emergencyWaitingMission.enqueue(newMission1, newMission1->getPriority());
 		return;
 	}
 	MountainousMission* newMission2 = dynamic_cast<MountainousMission*>(nM);
 	if (newMission2)
 	{
-		mountainousWaitingMission.insert(mountainousWaitingMission.getLength()+1,*newMission2);
+		mountainousWaitingMission.insert(mountainousWaitingMission.getLength() + 1, *newMission2);
 		return;
 	}
 	PolarMission* newMission3 = dynamic_cast<PolarMission*>(nM);
@@ -93,17 +93,17 @@ Rover* MarsStation::UnavailableRemove(int id)
 	}
 	while (tempQ.dequeue(genRover))
 		unavailableRovers.enqueue(genRover, -1 * genRover->getMissionOrCheckupEndDay());
-	
+
 	return foundRover;
 }
 
 void MarsStation::PrintMountList()
 {
 	cout << "Size of mountianous list is : " << mountainousWaitingMission.getLength() << endl;
-	for (int i = 0;i < mountainousWaitingMission.getLength();i++)
+	for (int i = 0; i < mountainousWaitingMission.getLength(); i++)
 	{
 		std::cout << "\nItem number : " << i + 1 << std::endl;
-		std::cout<<"FormulationDay : " << mountainousWaitingMission.getEntry(i + 1).getFormulationDay() << std::endl;
+		std::cout << "FormulationDay : " << mountainousWaitingMission.getEntry(i + 1).getFormulationDay() << std::endl;
 		std::cout << "TargetLocation : " << mountainousWaitingMission.getEntry(i + 1).getTargetLocation() << std::endl;
 		std::cout << "MissionDuration : " << mountainousWaitingMission.getEntry(i + 1).getMissionDuration() << std::endl;
 		std::cout << "Significance : " << mountainousWaitingMission.getEntry(i + 1).getSignificance() << std::endl;
@@ -206,14 +206,14 @@ void MarsStation::ExecuteEm(Rover* r)
 	{
 		EmMission->assignRover(r);
 		inServiceMissions.enqueue(EmMission, 0);
-		unavailableRovers.enqueue(r,0);
+		unavailableRovers.enqueue(r, 0);
 	}
 	else
 		cout << "Empty list" << endl;
-		
+
 }
 
-void MarsStation::Executemount(Rover*r)
+void MarsStation::Executemount(Rover* r)
 {
 	if (!mountainousWaitingMission.isEmpty())
 	{
@@ -251,4 +251,81 @@ void MarsStation::printInserviceMissions()
 		std::cout << "Significance : " << EMission->getSignificance() << std::endl;
 		//std::cout << "Priority : " << EMission->getPriority() << std::endl;
 	}
+}
+
+
+
+bool MarsStation::assignEmergencyMission(int evDay)
+{
+	EmergencyMission* emMissionTemp;
+	if (!emergencyWaitingMission.peek(emMissionTemp))
+		return false;   //if emergency waiting list is empty
+	EmergencyRover* emRoverTemp;
+	if (emergencyAvailableRover.dequeue(emRoverTemp))
+	{
+		emergencyWaitingMission.dequeue(emMissionTemp);
+		emMissionTemp->assignRover(emRoverTemp);
+		emRoverTemp->assignMission(emMissionTemp->getID(), emMissionTemp->getMissionDuration(), emMissionTemp->getTargetLocation(), evDay);
+		return true;
+	}
+	MountainousRover* mRoverTemp;
+	if (mountainousAvailableRover.dequeue(mRoverTemp))
+	{
+		emergencyWaitingMission.dequeue(emMissionTemp);
+		emMissionTemp->assignRover(mRoverTemp);
+		mRoverTemp->assignMission(emMissionTemp->getID(), emMissionTemp->getMissionDuration(), emMissionTemp->getTargetLocation(), evDay);
+		return true;
+	}
+	PolarRover* pRoverTemp;
+	if (polarAvailableRover.dequeue(pRoverTemp))
+	{
+		emergencyWaitingMission.dequeue(emMissionTemp);
+		emMissionTemp->assignRover(mRoverTemp);
+		pRoverTemp->assignMission(emMissionTemp->getID(), emMissionTemp->getMissionDuration(), emMissionTemp->getTargetLocation(), evDay);
+		return true;
+	}
+	return false;//if all rovers are unavailable
+}
+
+
+bool MarsStation::assignMountainousMission(int evDay)
+{
+	MountainousMission* mMissionTemp;
+	if (mountainousWaitingMission.getLength() == 0)
+		return false; //if the list of waiting mountainous mission is empty
+	MountainousRover* mRoverTemp;
+	if (mountainousAvailableRover.dequeue(mRoverTemp))
+	{
+		mMissionTemp = &(mountainousWaitingMission.getEntry(mountainousWaitingMission.getLength()));
+		mountainousWaitingMission.remove(mountainousWaitingMission.getLength());
+		mMissionTemp->assignRover(mRoverTemp);
+		mRoverTemp->assignMission(mMissionTemp->getID(), mMissionTemp->getMissionDuration(), mMissionTemp->getTargetLocation(), evDay);
+		return true;
+	}
+	EmergencyRover* emRoverTemp;
+	if (emergencyAvailableRover.dequeue(emRoverTemp))
+	{
+		mMissionTemp = &(mountainousWaitingMission.getEntry(mountainousWaitingMission.getLength()));
+		mountainousWaitingMission.remove(mountainousWaitingMission.getLength());
+		mMissionTemp->assignRover(emRoverTemp);
+		emRoverTemp->assignMission(mMissionTemp->getID(), mMissionTemp->getMissionDuration(), mMissionTemp->getTargetLocation(), evDay);
+		return true;
+	}
+	return false;  //if all mountainous and emergency rovers are unavailable
+}
+
+bool MarsStation::assignPolarMission(int evDay)
+{
+	PolarMission* pMissionTemp;
+	if (!polarWaitingMission.peek(pMissionTemp))
+		return false;   //if the list of waiting polar mission is empty 
+	PolarRover* pRoverTemp;
+	if (polarAvailableRover.dequeue(pRoverTemp))
+	{
+		polarWaitingMission.dequeue(pMissionTemp);
+		pMissionTemp->assignRover(pRoverTemp);
+		pRoverTemp->assignMission(pMissionTemp->getID(), pMissionTemp->getMissionDuration(), pMissionTemp->getTargetLocation(), evDay);
+		return true;
+	}
+	return false;  //if polar rovers are un available
 }

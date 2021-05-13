@@ -16,8 +16,8 @@ int MissionFailure::IDprobability()
 
 void MissionFailure::execute(MarsStation* MStation)
 {
-	//Mission* foundMission = MStation->inserviceRemove(IDprobability());
-	Mission* foundMission = MStation->inserviceRemove(3);
+	Mission* foundMission = MStation->inserviceRemove(IDprobability());
+//	Mission* foundMission = MStation->inserviceRemove(3);
 	if (foundMission)
 	{
 		MStation->addMission(foundMission); //reformulate mission
