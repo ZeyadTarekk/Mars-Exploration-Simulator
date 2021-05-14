@@ -1,18 +1,19 @@
 #pragma once
 #include"Event.h"
 #include<string>
+#include"../MarsStation/MarsStation.h"
 
 //class FormulatoinEvent
 class FormulationEvent : public Event
 {
 private:
 	const int id;
-	const string missionType;
+	const char missionType;
 	const int targetLocation;
 	const int numDaysNeeded;
 	const int missionSignificance;
 public:
-	FormulationEvent(int, int, string, int, int, int);
+	FormulationEvent(int, int, char, int, int, int);
 	~FormulationEvent();
 	virtual void execute(MarsStation*);
 	int getTargetLocation()const;

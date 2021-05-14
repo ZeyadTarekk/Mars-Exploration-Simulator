@@ -1,6 +1,5 @@
 #pragma once
 #include<iostream>
-#include"../MarsStation/MarsStation.h"
 class MarsStation;
 class Event
 {

@@ -6,21 +6,21 @@ class PriorityQueue
 	//No need for backPtr? insertion not and the end
 	PriorityNode<itemType>* frontPtr; 
 	//Gets the node before the passed priority
-	PriorityNode<itemType>* getNodeBefore(const long long&);
+	PriorityNode<itemType>* getNodeBefore(const double&);
 public:
 	// Constructors and destructors
 	PriorityQueue();
 	PriorityQueue(const PriorityQueue<itemType>&);
 	~PriorityQueue();
 
-	bool enqueue(const itemType&, const long long&);
+	bool enqueue(const itemType&, const double&);
 	bool dequeue(itemType&);
 	bool peek(itemType&);
 	bool isEmpty();
 };
 
 template<class itemType>
-PriorityNode<itemType>* PriorityQueue<itemType>::getNodeBefore(const long long& recivedPriority)
+PriorityNode<itemType>* PriorityQueue<itemType>::getNodeBefore(const double& recivedPriority)
 {
 	PriorityNode<itemType>* curPtr = frontPtr;
 	PriorityNode<itemType>* prevPtr = nullptr;
@@ -75,7 +75,7 @@ PriorityQueue<itemType>::~PriorityQueue()
 }
 
 template<class itemType>
-bool PriorityQueue<itemType>::enqueue(const itemType& item, const long long& recivedPriority)
+bool PriorityQueue<itemType>::enqueue(const itemType& item, const double& recivedPriority)
 {
 	PriorityNode<itemType>* newNodePtr = new PriorityNode<itemType>(item, recivedPriority);
 	PriorityNode<itemType>* prevNode = getNodeBefore(recivedPriority);

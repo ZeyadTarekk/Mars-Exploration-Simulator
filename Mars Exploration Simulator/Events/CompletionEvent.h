@@ -1,5 +1,6 @@
 #pragma once
 #include"Event.h"
+#include"../MarsStation/MarsStation.h"
 class CompletionEvent:public Event
 {
 

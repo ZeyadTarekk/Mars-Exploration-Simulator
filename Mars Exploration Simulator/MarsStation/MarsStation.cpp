@@ -7,6 +7,14 @@ MarsStation::MarsStation() :currentDay(0)
 MarsStation::~MarsStation()
 {
 }
+void MarsStation::setAutoPromot(int autoProm)
+{
+	autoPromot = autoProm;
+}
+int MarsStation::getAutoPromot()
+{
+	return autoPromot;
+}
 unsigned long long MarsStation::getCurDay()
 {
 	return currentDay;
@@ -42,6 +50,52 @@ void MarsStation::addRover(Rover* genRover)
 	else if (dynamic_cast<PolarRover*>(genRover))
 		polarAvailableRover.enqueue((PolarRover*)genRover, genRover->getSpeed());
 }
+
+void MarsStation::createRover(char type, int speed, int checkCount, int checkDays)
+{
+	switch (type)
+	{
+		case 'M':
+		{
+			MountainousRover* mountRover = new MountainousRover(speed, checkCount, checkDays);
+			mountainousAvailableRover.enqueue(mountRover, speed);
+			break;
+		}
+		case 'P':
+		{
+			PolarRover* polRover = new PolarRover(speed, checkCount, checkDays);
+			polarAvailableRover.enqueue(polRover, speed);
+			break;
+		}
+		case'E':
+		{
+			EmergencyRover* emRover = new EmergencyRover(speed, checkCount, checkDays);
+			emergencyAvailableRover.enqueue(emRover, speed);
+			break;
+		}
+	}
+	
+}
+
+void MarsStation::createFormEvent(char type, int eventDay, int id, int targetLoc, int MDuration, int sig)
+{
+	FormulationEvent* fEvent = new FormulationEvent(eventDay, id, type, targetLoc, MDuration, sig);
+	eventList.enqueue(fEvent);
+}
+
+void MarsStation::createCancelEvent(int eventDay, int id)
+{
+	CancelationEvent* cEvent = new CancelationEvent(eventDay, id);
+	eventList.enqueue(cEvent);
+}
+
+void MarsStation::createPromotEvent(int eventDay, int id)
+{
+	PromotionEvent* pEvent = new PromotionEvent(eventDay, id);
+	eventList.enqueue(pEvent);
+}
+
+
 
 void MarsStation::addUnavailableRover(Rover* rov)
 {
@@ -247,6 +301,13 @@ void MarsStation::ExecutePolar(Rover* r)
 	}
 	else
 		cout << "Empty list" << endl;
+}
+
+void MarsStation::executeEvents()
+{
+	Event* e;
+	while (eventList.dequeue(e))
+		e->execute(this);
 }
 
 void MarsStation::printInserviceMissions()

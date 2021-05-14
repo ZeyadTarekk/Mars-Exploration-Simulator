@@ -1,6 +1,8 @@
 #pragma once
 #include"Event.h"
 #include"../Missions/EmergencyMission.h"
+#include"../MarsStation/MarsStation.h"
+
 class PromotionEvent:public Event
 {
 	const int id;

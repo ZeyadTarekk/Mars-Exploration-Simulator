@@ -190,5 +190,8 @@
     <Text Include="OutputFiles\Output.txt">
       <Filter>OutputFiles</Filter>
     </Text>
+    <Text Include="C:\Users\Lenovo\OneDrive\Desktop\files\Project1\Input file\Input file description.txt">
+      <Filter>InputFiles</Filter>
+    </Text>
   </ItemGroup>
 </Project>

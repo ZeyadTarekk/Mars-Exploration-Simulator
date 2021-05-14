@@ -19,6 +19,10 @@ using namespace std;
 #include"../Rovers/PolarRover.h"
 //Events
 #include"../Events/Event.h"
+#include"../Events/FormulationEvent.h"
+#include"../Events/PromotionEvent.h"
+#include"../Events/CancelationEvent.h"
+class Event;
 class MarsStation
 {
 	unsigned long long currentDay;
@@ -44,14 +48,22 @@ class MarsStation
 	PriorityQueue<Rover*> unavailableRovers;	//Pointers for polymorphism
 
 	//Event List
-	//Queue<Event> eventList;
+	Queue<Event*> eventList;
+	int autoPromot;
 public:
 	MarsStation();
 	~MarsStation();
+	void setAutoPromot(int);
+	int getAutoPromot();
 	unsigned long long getCurDay();
 	void addMission(Mission*);
-	void addRover(Rover*);
+	void addRover(Rover*); // used in case of search (class responsibilities)
+	void createRover(char type,int speed,int checkCount,int checkDays); // use in case of create (class responsibilities)
+	void createFormEvent(char type,int eventDay,int id,int targetLoc,int MDuration,int sig);
+	void createCancelEvent(int eventDay, int id);
+	void createPromotEvent(int eventDay, int id);
 	void addUnavailableRover(Rover*);
+	
 	// Promotion event functions
 	int IndexOfMountainousMission(const MountainousMission&);
 	MountainousMission getMountainousMission(int);
@@ -83,5 +95,6 @@ public:
 	void ExecuteEm(Rover*);
 	void Executemount(Rover*);
 	void ExecutePolar(Rover*);
+	void executeEvents();
 };
 

@@ -4,18 +4,18 @@
 template<class type>
 class PriorityNode
 {
-	long long priority;
+	double priority;
 	PriorityNode<type>* next;
 	type item;
 public:
 
 	//Construtors
-	PriorityNode(const long long);									//Recives priority only
-	PriorityNode(const type&, const long long);						//Recives item and priority 
-	PriorityNode(const type&, PriorityNode<type>*, const long long);	//Recives item ,next and priority
+	PriorityNode(const double);									//Recives priority only
+	PriorityNode(const type&, const double);						//Recives item and priority 
+	PriorityNode(const type&, PriorityNode<type>*, const double);	//Recives item ,next and priority
 
 	//Additional Setters and getters
-	void setPriority(const long long);
+	void setPriority(const double);
 	long long getPriority() const;
 
 	void setNext(PriorityNode<type>*);
@@ -26,22 +26,22 @@ public:
 };
 
 template<class type>
-inline PriorityNode<type>::PriorityNode(const long long recivedPriority) :priority(recivedPriority), next(nullptr)
+inline PriorityNode<type>::PriorityNode(const double recivedPriority) :priority(recivedPriority), next(nullptr)
 {
 }
 
 template<class type>
-inline PriorityNode<type>::PriorityNode(const type& recivedItem, const long long recivedPriority) : item(recivedItem), priority(recivedPriority), next(nullptr)
+inline PriorityNode<type>::PriorityNode(const type& recivedItem, const double recivedPriority) : item(recivedItem), priority(recivedPriority), next(nullptr)
 {
 }
 
 template<class type>
-inline PriorityNode<type>::PriorityNode(const type& recivedItem, PriorityNode<type>* recivedNext, const long long recivedPriority) : item(recivedItem), next(recivedNext), priority(recivedPriority)
+inline PriorityNode<type>::PriorityNode(const type& recivedItem, PriorityNode<type>* recivedNext, const double recivedPriority) : item(recivedItem), next(recivedNext), priority(recivedPriority)
 {
 }
 
 template<class type>
-inline void PriorityNode<type>::setPriority(const long long recivedPriority)
+inline void PriorityNode<type>::setPriority(const double recivedPriority)
 {
 	priority = recivedPriority;
 }
