@@ -23,9 +23,6 @@ class List
 			return temp;
 		}
 	}
-
-	//getEntry
-	//remove(pos)
 public:
 	List() //default constructor
 	{
@@ -110,6 +107,8 @@ public:
 	}
 	bool remove(int pos)
 	{
+		if (isEmpty())
+			return false;
 		Node<itemType>* temp = getNodeAt(pos);
 		if (temp)
 		{
@@ -145,7 +144,7 @@ public:
 	}
 	void clear() 
 	{
-		if (isEmpty())
+		if (!isEmpty())
 		{
 			while (head)
 			{

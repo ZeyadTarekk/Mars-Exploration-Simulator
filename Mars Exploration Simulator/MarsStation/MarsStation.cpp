@@ -399,3 +399,50 @@ bool MarsStation::assignPolarMission(int evDay)
 	}
 	return false;  //if polar rovers are un available
 }
+
+void MarsStation::addToCompletedMission(int eD)
+{
+	Mission *m;
+	inServiceMissions.dequeue(m);
+	completedMissions.enqueue(m);
+
+}
+
+void MarsStation::moveRoverFromExcuetionToCheckUp(int eD)
+{
+	Rover* rV;
+	bool Found = unavailableRovers.peek(rV);
+	if (Found && rV->getMaintainance())
+	{
+		rV->assignMaintainance(eD);
+		return;
+	}
+	if (Found && rV->getneedCheckup())
+	{
+		rV->assignCheckup(eD);
+		return;
+
+	}
+	EmergencyRover* eR = dynamic_cast<EmergencyRover*>(rV);
+	MountainousRover* mR = dynamic_cast<MountainousRover*>(rV);
+	PolarRover* pR = dynamic_cast<PolarRover*>(rV);
+	if (Found)
+	{
+		if (eR)
+			emergencyAvailableRover.enqueue(eR, eR->getSpeed());
+		else if (mR)
+			mountainousAvailableRover.enqueue(mR, mR->getSpeed());
+		else if(pR)
+			polarAvailableRover.enqueue(pR, pR->getSpeed());
+
+	}
+}
+
+	bool MarsStation::isCompleted(int eD)
+	{
+		Mission* mTemp=nullptr;
+		bool Found = inServiceMissions.peek(mTemp);
+		if (Found && mTemp->getEndDay() == eD) // check if there is a mission in IN-Ex. 
+			return true;
+		return false;
+	}
