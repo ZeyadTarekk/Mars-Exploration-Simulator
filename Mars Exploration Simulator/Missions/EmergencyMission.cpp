@@ -8,7 +8,9 @@ EmergencyMission::EmergencyMission(int fD, int tL, int mD, int i, double s):Miss
 
 double EmergencyMission::calculatePriority()
 {
-	return getSignificance() / (getFormulationDay() * getMissionDuration() * getTargetLocation());
+	
+	priority = getSignificance() / (getMissionDuration() + ceil((2 * getTargetLocation() * 0.75) / (25*12.5)));
+	return priority;
 	//this equation is primary one 
 }
 

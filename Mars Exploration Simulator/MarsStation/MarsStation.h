@@ -90,6 +90,7 @@ public:
 	void PrintEmergencyList();
 	void printPolarList();
 	void printInserviceMissions();
+	void printCompleteMission();
 
 	void printUnavRovers();
 	void printMountRovers();
