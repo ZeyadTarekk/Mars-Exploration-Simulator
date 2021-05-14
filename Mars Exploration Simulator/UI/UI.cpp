@@ -31,13 +31,13 @@ void UI::read()
 	for (int i = 0;i < NoEvents;i++)
 	{
 		in >> eventType;
-		cout << eventType << endl;
+		//cout << eventType << endl;
 		switch (eventType)
 		{
 			case 'F':
 			{
 				in >> missionType >> eventDay >> ID >> location >> duration >> signifiance;
-				cout << missionType << " " << eventDay << " " << ID << " " << location << " " << duration << " " << signifiance << endl;
+				//cout << missionType << " " << eventDay << " " << ID << " " << location << " " << duration << " " << signifiance << endl;
 				MStation->createFormEvent(missionType, eventDay, ID, location, duration, signifiance);
 				break;
 			}
