@@ -9,7 +9,11 @@ CompletionEvent::~CompletionEvent()
 {
 }
 
-void CompletionEvent::execute(MarsStation*)
+void CompletionEvent::execute(MarsStation*m)
 {
-
+	while (m->isCompleted(getEventDay()))
+	{
+		m->addToCompletedMission(getEventDay());
+	}
+	m->moveRoverFromExcuetionToCheckUp(getEventDay());
 }

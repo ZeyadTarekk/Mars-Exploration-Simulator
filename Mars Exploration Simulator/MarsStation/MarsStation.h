@@ -79,7 +79,10 @@ public:
 	bool assignMountainousMission(int);
 	bool assignPolarMission(int);
 
-
+	// Completed Mission && Rover
+	void addToCompletedMission(int);
+	void moveRoverFromExcuetionToCheckUp(int);
+	bool isCompleted(int);
 
 
 	//test functions 
@@ -87,6 +90,7 @@ public:
 	void PrintEmergencyList();
 	void printPolarList();
 	void printInserviceMissions();
+	void printCompleteMission();
 
 	void printUnavRovers();
 	void printMountRovers();

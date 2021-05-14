@@ -55,26 +55,26 @@ void MarsStation::createRover(char type, int speed, int checkCount, int checkDay
 {
 	switch (type)
 	{
-		case 'M':
-		{
-			MountainousRover* mountRover = new MountainousRover(speed, checkCount, checkDays);
-			mountainousAvailableRover.enqueue(mountRover, speed);
-			break;
-		}
-		case 'P':
-		{
-			PolarRover* polRover = new PolarRover(speed, checkCount, checkDays);
-			polarAvailableRover.enqueue(polRover, speed);
-			break;
-		}
-		case'E':
-		{
-			EmergencyRover* emRover = new EmergencyRover(speed, checkCount, checkDays);
-			emergencyAvailableRover.enqueue(emRover, speed);
-			break;
-		}
+	case 'M':
+	{
+		MountainousRover* mountRover = new MountainousRover(speed, checkCount, checkDays);
+		mountainousAvailableRover.enqueue(mountRover, speed);
+		break;
 	}
-	
+	case 'P':
+	{
+		PolarRover* polRover = new PolarRover(speed, checkCount, checkDays);
+		polarAvailableRover.enqueue(polRover, speed);
+		break;
+	}
+	case'E':
+	{
+		EmergencyRover* emRover = new EmergencyRover(speed, checkCount, checkDays);
+		emergencyAvailableRover.enqueue(emRover, speed);
+		break;
+	}
+	}
+
 }
 
 void MarsStation::createFormEvent(char type, int eventDay, int id, int targetLoc, int MDuration, int sig)
@@ -323,6 +323,22 @@ void MarsStation::printInserviceMissions()
 	}
 }
 
+void MarsStation::printCompleteMission()
+{
+	Mission* EMission;
+	while (completedMissions.dequeue(EMission))
+	{
+		std::cout << "ID :" << EMission->getID() << endl;
+		std::cout << "FormulationDay : " << EMission->getFormulationDay() << std::endl;
+		std::cout << "TargetLocation : " << EMission->getTargetLocation() << std::endl;
+		std::cout << "MissionDuration : " << EMission->getMissionDuration() << std::endl;
+		std::cout << "Significance : " << EMission->getSignificance() << std::endl;
+
+
+	}
+
+}
+
 
 
 bool MarsStation::assignEmergencyMission(int evDay)
@@ -336,6 +352,7 @@ bool MarsStation::assignEmergencyMission(int evDay)
 		emergencyWaitingMission.dequeue(emMissionTemp);
 		emMissionTemp->assignRover(emRoverTemp);
 		emRoverTemp->assignMission(emMissionTemp->getID(), emMissionTemp->getMissionDuration(), emMissionTemp->getTargetLocation(), evDay);
+		unavailableRovers.enqueue(emRoverTemp, -1 * emMissionTemp->getEndDay()); //due to enqueue rover in order of it's day
 		return true;
 	}
 	MountainousRover* mRoverTemp;
@@ -344,6 +361,7 @@ bool MarsStation::assignEmergencyMission(int evDay)
 		emergencyWaitingMission.dequeue(emMissionTemp);
 		emMissionTemp->assignRover(mRoverTemp);
 		mRoverTemp->assignMission(emMissionTemp->getID(), emMissionTemp->getMissionDuration(), emMissionTemp->getTargetLocation(), evDay);
+		unavailableRovers.enqueue(mRoverTemp, -1 * emMissionTemp->getEndDay());
 		return true;
 	}
 	PolarRover* pRoverTemp;
@@ -352,6 +370,7 @@ bool MarsStation::assignEmergencyMission(int evDay)
 		emergencyWaitingMission.dequeue(emMissionTemp);
 		emMissionTemp->assignRover(mRoverTemp);
 		pRoverTemp->assignMission(emMissionTemp->getID(), emMissionTemp->getMissionDuration(), emMissionTemp->getTargetLocation(), evDay);
+		unavailableRovers.enqueue(mRoverTemp, -1 * emMissionTemp->getEndDay());
 		return true;
 	}
 	return false;//if all rovers are unavailable
@@ -366,10 +385,11 @@ bool MarsStation::assignMountainousMission(int evDay)
 	MountainousRover* mRoverTemp;
 	if (mountainousAvailableRover.dequeue(mRoverTemp))
 	{
-		mMissionTemp =new MountainousMission(mountainousWaitingMission.getEntry(mountainousWaitingMission.getLength()));
+		mMissionTemp = new MountainousMission(mountainousWaitingMission.getEntry(mountainousWaitingMission.getLength()));
 		mountainousWaitingMission.remove(mountainousWaitingMission.getLength());
 		mMissionTemp->assignRover(mRoverTemp);
 		mRoverTemp->assignMission(mMissionTemp->getID(), mMissionTemp->getMissionDuration(), mMissionTemp->getTargetLocation(), evDay);
+		unavailableRovers.enqueue(mRoverTemp, -1 * mMissionTemp->getEndDay());
 		return true;
 	}
 	EmergencyRover* emRoverTemp;
@@ -379,6 +399,7 @@ bool MarsStation::assignMountainousMission(int evDay)
 		mountainousWaitingMission.remove(mountainousWaitingMission.getLength());
 		mMissionTemp->assignRover(emRoverTemp);
 		emRoverTemp->assignMission(mMissionTemp->getID(), mMissionTemp->getMissionDuration(), mMissionTemp->getTargetLocation(), evDay);
+		unavailableRovers.enqueue(emRoverTemp, -1 * mMissionTemp->getEndDay());
 		return true;
 	}
 	return false;  //if all mountainous and emergency rovers are unavailable
@@ -395,7 +416,58 @@ bool MarsStation::assignPolarMission(int evDay)
 		polarWaitingMission.dequeue(pMissionTemp);
 		pMissionTemp->assignRover(pRoverTemp);
 		pRoverTemp->assignMission(pMissionTemp->getID(), pMissionTemp->getMissionDuration(), pMissionTemp->getTargetLocation(), evDay);
+		unavailableRovers.enqueue(pRoverTemp, -1 * pMissionTemp->getEndDay());
 		return true;
 	}
 	return false;  //if polar rovers are un available
+}
+
+void MarsStation::addToCompletedMission(int eD)
+{
+	Mission* m;
+	inServiceMissions.dequeue(m);
+	completedMissions.enqueue(m);
+
+}
+
+void MarsStation::moveRoverFromExcuetionToCheckUp(int eD)
+{
+	Rover* rV;
+	bool Found = unavailableRovers.peek(rV);
+	while (Found && rV->getMissionOrCheckupEndDay() == eD)
+	{
+		unavailableRovers.dequeue(rV);
+		rV->reset();
+		if (rV->getneedCheckup())
+		{
+			rV->assignCheckup(eD);
+			unavailableRovers.enqueue(rV, rV->getMissionOrCheckupEndDay());
+		}
+
+		else
+		{
+			if (rV->getMaintainance())
+				rV->assignMaintainance(eD);
+
+			EmergencyRover* eR = dynamic_cast<EmergencyRover*>(rV);
+			MountainousRover* mR = dynamic_cast<MountainousRover*>(rV);
+			PolarRover* pR = dynamic_cast<PolarRover*>(rV);
+			if (eR)
+				emergencyAvailableRover.enqueue(eR, eR->getSpeed());
+			else if (mR)
+				mountainousAvailableRover.enqueue(mR, mR->getSpeed());
+			else if (pR)
+				polarAvailableRover.enqueue(pR, pR->getSpeed());
+		}
+		Found = unavailableRovers.peek(rV);
+	}
+}
+
+bool MarsStation::isCompleted(int eD)
+{
+	Mission* mTemp = nullptr;
+	bool Found = inServiceMissions.peek(mTemp);
+	if (Found && mTemp->getEndDay() == eD) // check if there is a mission in IN-Ex. 
+		return true;
+	return false;
 }
