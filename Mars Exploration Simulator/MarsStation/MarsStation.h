@@ -26,6 +26,7 @@ class Event;
 class MarsStation
 {
 	unsigned long long currentDay;
+	double avgSpeed;
 	//Missions :-
 	// 1) Waiting
 	PriorityQueue<EmergencyMission*> emergencyWaitingMission;
@@ -56,6 +57,8 @@ public:
 	void setAutoPromot(int);
 	int getAutoPromot();
 	unsigned long long getCurDay();
+	void setAvgSpeed(double);
+	double getAvgSpeed();
 	void addMission(Mission*);
 	void addRover(Rover*); // used in case of search (class responsibilities)
 	void createRover(char type,int speed,int checkCount,int checkDays); // use in case of create (class responsibilities)

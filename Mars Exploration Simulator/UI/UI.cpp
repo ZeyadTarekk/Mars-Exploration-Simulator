@@ -1,5 +1,16 @@
 #include "UI.h"
 
+void UI::calcAvgSpeed()
+{
+	for (int i = 0;i < mountRoverCount;i++)
+		avgSpeed+= mountSpeed[i];
+	for (int i = 0;i < polRoverCount;i++)
+		avgSpeed += polSpeed[i];
+	for (int i = 0;i < emRoverCount;i++)
+		avgSpeed += emSpeed[i];
+	avgSpeed /= (mountRoverCount + emRoverCount + polRoverCount);
+}
+
 void UI::read()
 {
 	ifstream in;
@@ -23,7 +34,8 @@ void UI::read()
 	in >> checkCount >> mountCheck >> polCheck >> emCheck;
 	
 	createRovers();
-	
+	calcAvgSpeed();
+	MStation->setAvgSpeed(avgSpeed);
 	in >> autoPromLimit;
 	MStation->setAutoPromot(autoPromLimit);
 

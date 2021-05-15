@@ -25,7 +25,8 @@ void PromotionEvent::execute(MarsStation* MStation)
 			mountMission2.getTargetLocation(),
 			mountMission2.getMissionDuration(),
 			mountMission2.getID(),
-			mountMission2.getSignificance());
+			mountMission2.getSignificance(),
+			MStation->getAvgSpeed());
 		MStation->removeMountainousMission(indexOfMission);
 		MStation->addMission(emMission);
 	}

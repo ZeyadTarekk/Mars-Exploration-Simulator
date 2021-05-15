@@ -19,6 +19,14 @@ unsigned long long MarsStation::getCurDay()
 {
 	return currentDay;
 }
+void MarsStation::setAvgSpeed(double speed)
+{
+	avgSpeed = speed;
+}
+double MarsStation::getAvgSpeed()
+{
+	return avgSpeed;
+}
 void MarsStation::addMission(Mission* nM) //add new mission im the appropriate function
 {
 	EmergencyMission* newMission1 = dynamic_cast<EmergencyMission*>(nM);

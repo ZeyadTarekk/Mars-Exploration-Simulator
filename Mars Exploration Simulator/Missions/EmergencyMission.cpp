@@ -1,15 +1,15 @@
 #include"EmergencyMission.h"
 
-EmergencyMission::EmergencyMission(int fD, int tL, int mD, int i, double s):Mission(fD, tL, mD, i, s),priority(calculatePriority())
+EmergencyMission::EmergencyMission(int fD, int tL, int mD, int i, double s,double avgSpeed):Mission(fD, tL, mD, i, s),priority(calculatePriority(avgSpeed))
 {
 }
 
 
 
-double EmergencyMission::calculatePriority()
+double EmergencyMission::calculatePriority(double avgSpeed)
 {
 	
-	priority = getSignificance() / (getMissionDuration() + ceil((2 * getTargetLocation() * 0.75) / (25*12.5)));
+	priority = getSignificance() / (getMissionDuration() + ceil((2 * getTargetLocation() * 0.75) / (25.0*avgSpeed)));
 	return priority;
 	//this equation is primary one 
 }

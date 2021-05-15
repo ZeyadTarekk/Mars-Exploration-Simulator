@@ -18,6 +18,8 @@ class UI
 	//line 8
 	char eventType, missionType; int eventDay, ID, location, duration, signifiance;
 	
+	double avgSpeed;
+	void calcAvgSpeed();
 	void read();
 	void createRovers();
 public:

@@ -44,7 +44,7 @@ void FormulationEvent::execute(MarsStation* station)
 	}
 	if (missionType == 'E')
 	{	//create new Emergency mission
-		Mission* newEmergencyMission = new EmergencyMission(getEventDay(), getTargetLocation(), getNumDaysNeeded(), getId(), getMissionSignificance());
+		Mission* newEmergencyMission = new EmergencyMission(getEventDay(), getTargetLocation(), getNumDaysNeeded(), getId(), getMissionSignificance(),station->getAvgSpeed());
 		//put it in appropriate list
 		station->addMission(newEmergencyMission);
 		return;
