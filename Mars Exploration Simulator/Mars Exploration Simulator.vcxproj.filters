@@ -111,6 +111,9 @@
     <ClInclude Include="UI\UI.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="Events\AutoPromotionEvent.h">
+      <Filter>Events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DataStructures\Source.cpp">
@@ -181,6 +184,9 @@
     </ClCompile>
     <ClCompile Include="UI\UI.cpp">
       <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\AutoPromotionEvent.cpp">
+      <Filter>Events</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

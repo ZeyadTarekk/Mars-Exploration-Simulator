@@ -85,6 +85,9 @@ public:
 	MountainousMission getMountainousMission(int);
 	void removeMountainousMission(int);
 
+	//Auto Promotion event
+	void promoteMountainousToEmergencyMission(int);
+
 
 	//Mission Failure functions
 	Mission* inserviceRemove(int);
