@@ -138,6 +138,23 @@ void MarsStation::removeMountainousMission(int index)
 	mountainousWaitingMission.remove(index);
 }
 
+void MarsStation::promoteMountainousToEmergencyMission(int cD)
+{	
+	MountainousMission* mtemp = new MountainousMission(mountainousWaitingMission.getEntry(1));
+	while(mtemp->needAutoProm(cD))
+	{
+		EmergencyMission* PromotedMission = new EmergencyMission(mtemp->getFormulationDay(),
+			mtemp->getTargetLocation(),
+			mtemp->getMissionDuration(), mtemp->getID(),
+			mtemp->getSignificance(),getAvgSpeed());
+
+		emergencyWaitingMission.enqueue(PromotedMission,PromotedMission->getPriority());
+		mountainousWaitingMission.remove(1);
+		mtemp = new MountainousMission(mountainousWaitingMission.getEntry(1));
+	}
+
+}
+
 Mission* MarsStation::inserviceRemove(int id)
 {
 	Mission* genMission = nullptr;
@@ -527,27 +544,37 @@ void MarsStation::moveRoverFromExcuetionToCheckUp(int eD)
 	while (Found && rV->getMissionOrCheckupEndDay() == eD)
 	{
 		unavailableRovers.dequeue(rV);
-		rV->reset();
 		if (rV->getneedCheckup())
 		{
 			rV->assignCheckup(eD);
 			unavailableRovers.enqueue(rV, rV->getMissionOrCheckupEndDay());
 		}
-
-		else
+		else 
 		{
-			if (rV->getMaintainance())
-				rV->assignMaintainance(eD);
-
 			EmergencyRover* eR = dynamic_cast<EmergencyRover*>(rV);
 			MountainousRover* mR = dynamic_cast<MountainousRover*>(rV);
 			PolarRover* pR = dynamic_cast<PolarRover*>(rV);
-			if (eR)
-				emergencyAvailableRover.enqueue(eR, eR->getSpeed());
-			else if (mR)
-				mountainousAvailableRover.enqueue(mR, mR->getSpeed());
-			else if (pR)
-				polarAvailableRover.enqueue(pR, pR->getSpeed());
+			if (rV->getMaintainance())
+			{
+				rV->assignMaintainance(eD);
+				if (eR)
+					unAvailableMaintainanceEmergency.insert(unAvailableMaintainanceEmergency.getLength() + 1, eR);
+				else if (mR)
+					unAvailableMaintainanceMountainous.insert(unAvailableMaintainanceMountainous.getLength() + 1, mR);
+				else
+					unAvailableMaintainancePolar.insert(unAvailableMaintainancePolar.getLength() + 1, pR);
+			}
+			else
+			{
+				if (eR)
+					emergencyAvailableRover.enqueue(eR, eR->getSpeed());
+				else if (mR)
+					mountainousAvailableRover.enqueue(mR, mR->getSpeed());
+				else if(pR)
+					polarAvailableRover.enqueue(pR, pR->getSpeed());
+				    
+			}
+			rV->setOutOfCheckup();  //rover is available to be assigned
 		}
 		Found = unavailableRovers.peek(rV);
 	}
