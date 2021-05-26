@@ -459,6 +459,8 @@ bool MarsStation::assignMountainousMission(int evDay)
 	Rover* generalTemp;
 	if (!unAvailableMaintainanceMountainous.isEmpty())
 	{
+		mMissionTemp = new MountainousMission(mountainousWaitingMission.getEntry(mountainousWaitingMission.getLength()));
+		mountainousWaitingMission.remove(mountainousWaitingMission.getLength());
 		generalTemp = getFastestRover(&unAvailableMaintainanceMountainous);
 		mMissionTemp->assignRover(generalTemp);
 		generalTemp->assignMission(mMissionTemp->getID(), mMissionTemp->getMissionDuration(), mMissionTemp->getTargetLocation(), evDay);
@@ -468,6 +470,8 @@ bool MarsStation::assignMountainousMission(int evDay)
 
 	if (!unAvailableMaintainanceEmergency.isEmpty())
 	{
+		mMissionTemp = new MountainousMission(mountainousWaitingMission.getEntry(mountainousWaitingMission.getLength()));
+		mountainousWaitingMission.remove(mountainousWaitingMission.getLength());
 		generalTemp = getFastestRover(&unAvailableMaintainanceEmergency);
 		mMissionTemp->assignRover(generalTemp);
 		generalTemp->assignMission(mMissionTemp->getID(), mMissionTemp->getMissionDuration(), mMissionTemp->getTargetLocation(), evDay);
