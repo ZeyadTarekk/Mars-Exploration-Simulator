@@ -1,4 +1,17 @@
 #include "MarsStation.h"
+template<class T>
+ Rover* MarsStation::getFastestRover(List<T>*maintainanceList)
+{
+	Rover* fastest = maintainanceList->getEntry(1);
+	Rover* temp ;
+	for (int i = 2; i <= maintainanceList->getLength(); i++)
+	{
+		temp = maintainanceList->getEntry(i);
+		if (temp->getSpeed() > fastest->getSpeed())
+			fastest = temp;
+	}
+	return fastest;
+}
 
 MarsStation::MarsStation() :currentDay(0)
 {
@@ -381,7 +394,38 @@ bool MarsStation::assignEmergencyMission(int evDay)
 		unavailableRovers.enqueue(mRoverTemp, -1 * emMissionTemp->getEndDay());
 		return true;
 	}
+	// now we will check the lists of maintainance Rovers
+	Rover* generalTemp;
+	if (!unAvailableMaintainanceEmergency.isEmpty())
+	{
+		generalTemp= getFastestRover(&unAvailableMaintainanceEmergency);
+		emMissionTemp->assignRover(generalTemp);
+		generalTemp->assignMission(emMissionTemp->getID(), emMissionTemp->getMissionDuration(), emMissionTemp->getTargetLocation(), evDay);
+		unavailableRovers.enqueue(generalTemp, -1 * emMissionTemp->getEndDay()); //due to enqueue rover in order of it's day
+		return true;
+	}
+
+	if (!unAvailableMaintainanceMountainous.isEmpty())
+	{
+		generalTemp = getFastestRover(&unAvailableMaintainanceMountainous);
+		emMissionTemp->assignRover(generalTemp);
+		generalTemp->assignMission(emMissionTemp->getID(), emMissionTemp->getMissionDuration(), emMissionTemp->getTargetLocation(), evDay);
+		unavailableRovers.enqueue(generalTemp, -1 * emMissionTemp->getEndDay()); //due to enqueue rover in order of it's day
+		return true;
+	}
+
+	if (!unAvailableMaintainancePolar.isEmpty())
+	{
+		generalTemp = getFastestRover(&unAvailableMaintainancePolar);
+		emMissionTemp->assignRover(generalTemp);
+		generalTemp->assignMission(emMissionTemp->getID(), emMissionTemp->getMissionDuration(), emMissionTemp->getTargetLocation(), evDay);
+		unavailableRovers.enqueue(generalTemp, -1 * emMissionTemp->getEndDay()); //due to enqueue rover in order of it's day
+		return true;
+	}
+
+
 	return false;//if all rovers are unavailable
+
 }
 
 
@@ -410,6 +454,28 @@ bool MarsStation::assignMountainousMission(int evDay)
 		unavailableRovers.enqueue(emRoverTemp, -1 * mMissionTemp->getEndDay());
 		return true;
 	}
+
+	// check the maintainance Rovers
+	Rover* generalTemp;
+	if (!unAvailableMaintainanceMountainous.isEmpty())
+	{
+		generalTemp = getFastestRover(&unAvailableMaintainanceMountainous);
+		mMissionTemp->assignRover(generalTemp);
+		generalTemp->assignMission(mMissionTemp->getID(), mMissionTemp->getMissionDuration(), mMissionTemp->getTargetLocation(), evDay);
+		unavailableRovers.enqueue(generalTemp, -1 * mMissionTemp->getEndDay()); //due to enqueue rover in order of it's day
+		return true;
+	}
+
+	if (!unAvailableMaintainanceEmergency.isEmpty())
+	{
+		generalTemp = getFastestRover(&unAvailableMaintainanceEmergency);
+		mMissionTemp->assignRover(generalTemp);
+		generalTemp->assignMission(mMissionTemp->getID(), mMissionTemp->getMissionDuration(), mMissionTemp->getTargetLocation(), evDay);
+		unavailableRovers.enqueue(generalTemp, -1 * mMissionTemp->getEndDay()); //due to enqueue rover in order of it's day
+		return true;
+	}
+	 
+
 	return false;  //if all mountainous and emergency rovers are unavailable
 }
 
@@ -427,6 +493,18 @@ bool MarsStation::assignPolarMission(int evDay)
 		unavailableRovers.enqueue(pRoverTemp, -1 * pMissionTemp->getEndDay());
 		return true;
 	}
+
+	//check the maintainance Rovers
+	Rover* generalTemp;
+	if (!unAvailableMaintainancePolar.isEmpty())
+	{
+		generalTemp = getFastestRover(&unAvailableMaintainancePolar);
+		pMissionTemp->assignRover(generalTemp);
+		generalTemp->assignMission(pMissionTemp->getID(), pMissionTemp->getMissionDuration(), pMissionTemp->getTargetLocation(), evDay);
+		unavailableRovers.enqueue(generalTemp, -1 * pMissionTemp->getEndDay()); //due to enqueue rover in order of it's day
+		return true;
+	}
+
 	return false;  //if polar rovers are un available
 }
 

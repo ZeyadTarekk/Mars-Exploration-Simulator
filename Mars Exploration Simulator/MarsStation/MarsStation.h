@@ -48,6 +48,19 @@ class MarsStation
 	//2) Unavailable rovers
 	PriorityQueue<Rover*> unavailableRovers;	//Pointers for polymorphism
 
+
+	//3) Unavailable maintainance Rovers 
+	      // we have separarted the maintainance Rovers cause it have different properties.. 
+	      // from available and un available 
+		  // and we separated every type to enable us to assign it correctly and easily in assign functions
+	List<EmergencyRover*>unAvailableMaintainanceEmergency;
+	List<PolarRover*>unAvailableMaintainancePolar;
+	List<MountainousRover*>unAvailableMaintainanceMountainous;
+	// utility function to get fastest Rover in maintainance Rovers 
+	template<class T>
+	Rover* getFastestRover(List<T>*);
+
+
 	//Event List
 	Queue<Event*> eventList;
 	int autoPromot;
