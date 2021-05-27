@@ -24,6 +24,7 @@ class UI
 	void createRovers();
 public:
 	UI(MarsStation*);
+	void outputStart();
 	~UI();
 	void TestPrint();
 

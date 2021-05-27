@@ -9,19 +9,20 @@ int main()
 	UI u(MS);
 	cout << MS->getAvgSpeed() << endl;
 	cout << "Emergency rovers \n\n";
-	MS->printEmRovers();
+//	MS->printEmRovers();
 	cout << "\n\nmountainous rovers \n\n";
-	MS->printMountRovers();
+//	MS->printMountRovers();
 	cout << "\n\Polar rovers \n\n";
-	MS->printPolarRovers();
+//	MS->printPolarRovers();
 	
 	MS->executeEvents();
 	cout << "\n\nEmergency Missions \n\n";
-	MS->PrintEmergencyList();
+//	MS->PrintEmergencyList();
 	cout << "\n\nmount Missions \n\n";
-	MS->PrintMountList();
+//	MS->PrintMountList();
 	cout << "\n\nPolar Missions \n\n";
-	MS->printPolarList();
+//	MS->printPolarList();
+	u.outputStart();
 	return 0;
 }
 //ofstream out;

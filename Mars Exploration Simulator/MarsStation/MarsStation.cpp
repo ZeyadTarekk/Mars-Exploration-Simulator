@@ -1,5 +1,6 @@
 #include "MarsStation.h"
-
+#include<fstream>
+#include<Windows.h>
 MarsStation::MarsStation() :currentDay(0)
 {
 }
@@ -317,6 +318,8 @@ void MarsStation::executeEvents()
 	while (eventList.dequeue(e))
 		e->execute(this);
 }
+
+
 
 void MarsStation::printInserviceMissions()
 {
