@@ -7,6 +7,6 @@ public:
 	AutoPromotionEvent(int);
 	void execute(MarsStation* mStation);
 
-	
+	~AutoPromotionEvent();
 };
 

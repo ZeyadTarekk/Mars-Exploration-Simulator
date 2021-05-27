@@ -9,3 +9,7 @@ void AutoPromotionEvent::execute(MarsStation* mStation)
 	mStation->promoteMountainousToEmergencyMission(getEventDay());
 
 }
+
+AutoPromotionEvent::~AutoPromotionEvent()
+{
+}

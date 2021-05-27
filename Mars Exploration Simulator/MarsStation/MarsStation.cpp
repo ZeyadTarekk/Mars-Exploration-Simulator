@@ -142,6 +142,8 @@ void MarsStation::removeMountainousMission(int index)
 
 void MarsStation::promoteMountainousToEmergencyMission(int cD)
 {	
+	if (mountainousWaitingMission.isEmpty()) 
+		return;
 	MountainousMission* mtemp = new MountainousMission(mountainousWaitingMission.getEntry(1));
 	while(mtemp->needAutoProm(cD))
 	{
@@ -152,6 +154,8 @@ void MarsStation::promoteMountainousToEmergencyMission(int cD)
 
 		emergencyWaitingMission.enqueue(PromotedMission,PromotedMission->getPriority());
 		mountainousWaitingMission.remove(1);
+		/*if (mountainousWaitingMission.isEmpty())
+			return;*/
 		mtemp = new MountainousMission(mountainousWaitingMission.getEntry(1));
 	}
 
@@ -686,9 +690,9 @@ bool MarsStation::assignMountainousMission(int evDay)
 		return false; //if the list of waiting mountainous mission is empty
 	MountainousRover* mRoverTemp;
 	if (mountainousAvailableRover.dequeue(mRoverTemp))
-	{
-		mMissionTemp = new MountainousMission(mountainousWaitingMission.getEntry(mountainousWaitingMission.getLength()));
-		mountainousWaitingMission.remove(mountainousWaitingMission.getLength());
+	{																			 //->>> .getEntry(1))
+		mMissionTemp = new MountainousMission(mountainousWaitingMission.getEntry(mountainousWaitingMission.getLength())); //getEntry of first mission in list due to its day (waitlinglist priority ->>>autoPromotoion)
+		mountainousWaitingMission.remove(mountainousWaitingMission.getLength()); //->>remove(1)
 		mMissionTemp->assignRover(mRoverTemp);
 		mRoverTemp->assignMission(mMissionTemp->getID(), mMissionTemp->getMissionDuration(), mMissionTemp->getTargetLocation(), evDay);
 		unavailableRovers.enqueue(mRoverTemp, -1 * mMissionTemp->getEndDay());
