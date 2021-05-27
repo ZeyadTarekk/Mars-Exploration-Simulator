@@ -13,15 +13,29 @@ void UI::calcAvgSpeed()
 
 void UI::read()
 {
+	string Filename;
+	cout << "Please enter the name of the input file without the extention: ";
+	cin >> Filename;
+
 	ifstream in;
-	in.open("InputFiles/Input.txt");
+	in.open("InputFiles/"+Filename+".txt");
 	if (!in.is_open())
 	{
-		cout << "Input.txt not found" << endl;
+		cout << Filename+".txt not found" << endl;
 		exit(1);
 	}
+	int ModeOfOperation;
+	cout << "Please choose mode of operation : -" << endl;
+	cout << "For interactive mode press 1 :" << endl;
+	cout << "For step-by-step mode press 2 :" << endl;
+	cout << "For silent mode press any other key :" << endl;
+	cin >> ModeOfOperation;
+	MStation->setModeOperation(ModeOfOperation);
 
 	in >> mountRoverCount >> polRoverCount >> emRoverCount;
+	MStation->setEmRoverCount(emRoverCount);
+	MStation->setMountRoverCount(mountRoverCount);
+	MStation->setPolRoverCount(polRoverCount);
 	mountSpeed = new int[mountRoverCount];
 	polSpeed = new int[polRoverCount];
 	emSpeed = new int[emRoverCount];
@@ -40,6 +54,7 @@ void UI::read()
 	MStation->setAutoPromot(autoPromLimit);
 
 	in >> NoEvents;
+	MStation->setEventCount(NoEvents);
 	for (int i = 0; i < NoEvents; i++)
 	{
 		in >> eventType;

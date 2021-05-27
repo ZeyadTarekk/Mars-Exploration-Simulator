@@ -23,10 +23,17 @@ using namespace std;
 #include"../Events/PromotionEvent.h"
 #include"../Events/CancelationEvent.h"
 class Event;
+enum ModeOpeartion
+{
+	Interactive,
+	step_by_step,
+	silent
+};
 class MarsStation
 {
 	unsigned long long currentDay;
 	double avgSpeed;
+	int emRoverNo, mountRoverNo, polRoverNo,eventCount;
 	//Missions :-
 	// 1) Waiting
 	PriorityQueue<EmergencyMission*> emergencyWaitingMission;
@@ -64,11 +71,23 @@ class MarsStation
 	//Event List
 	Queue<Event*> eventList;
 	int autoPromot;
+	ModeOpeartion Mode;
 public:
 	MarsStation();
 	~MarsStation();
+	int getEventCount() const;
+	int getEmRoverCount() const;
+	int getMountRoverCount() const;
+	int getPolRoverCount() const;
+	int getTotalNoRovers() const;
+	void setEventCount(int count);
+	void setEmRoverCount(int count);
+	void setMountRoverCount(int count);
+	void setPolRoverCount(int count);
 	void setAutoPromot(int);
 	int getAutoPromot();
+	void setModeOperation(int m);
+	ModeOpeartion getModeOperation();
 	unsigned long long getCurDay();
 	void setAvgSpeed(double);
 	double getAvgSpeed();

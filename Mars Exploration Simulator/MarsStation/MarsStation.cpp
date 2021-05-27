@@ -17,10 +17,52 @@ template<class T>
 
 MarsStation::MarsStation() :currentDay(0)
 {
+	avgSpeed = 0;
+	mountRoverNo = 0;
+	emRoverNo = 0;
+	polRoverNo = 0;
+	eventCount = 0;
+	autoPromot = 0;
 }
 
 MarsStation::~MarsStation()
 {
+}
+int MarsStation::getEventCount() const
+{
+	return eventCount;
+}
+int MarsStation::getEmRoverCount() const
+{
+	return emRoverNo;
+}
+int MarsStation::getMountRoverCount() const
+{
+	return mountRoverNo;
+}
+int MarsStation::getPolRoverCount() const
+{
+	return polRoverNo;
+}
+int MarsStation::getTotalNoRovers() const
+{
+	return polRoverNo+mountRoverNo+emRoverNo;
+}
+void MarsStation::setEventCount(int count)
+{
+	eventCount = (count >= 0 ? count : 0);
+}
+void MarsStation::setEmRoverCount(int count)
+{
+	emRoverNo = (count >= 0 ? count : 0);
+}
+void MarsStation::setMountRoverCount(int count)
+{
+	mountRoverNo = (count >= 0 ? count : 0);
+}
+void MarsStation::setPolRoverCount(int count)
+{
+	polRoverNo = (count >= 0 ? count : 0);
 }
 void MarsStation::setAutoPromot(int autoProm)
 {
@@ -33,6 +75,24 @@ int MarsStation::getAutoPromot()
 unsigned long long MarsStation::getCurDay()
 {
 	return currentDay;
+}
+void MarsStation::setModeOperation(int m)
+{
+	switch (m)
+	{
+	case 1:
+		Mode = Interactive;
+		break;
+	case 2:
+		Mode = step_by_step;
+		break;
+	default:
+		Mode = silent;
+	}
+}
+ModeOpeartion MarsStation::getModeOperation()
+{
+	return Mode;
 }
 void MarsStation::setAvgSpeed(double speed)
 {
