@@ -72,6 +72,7 @@ void Rover::increaseSpeedToDouble()
 
 void Rover::assignMaintainance(int curDay)
 {
+	decreaseSpeedToHalf();
 	missionOrCheckupEndDay = curDay + maintainanceDuration;
 	//missionsNumber = 0;
 	needCheckup = false;

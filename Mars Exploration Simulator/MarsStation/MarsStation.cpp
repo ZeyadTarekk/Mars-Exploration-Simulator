@@ -154,8 +154,8 @@ void MarsStation::promoteMountainousToEmergencyMission(int cD)
 
 		emergencyWaitingMission.enqueue(PromotedMission,PromotedMission->getPriority());
 		mountainousWaitingMission.remove(1);
-		/*if (mountainousWaitingMission.isEmpty())
-			return;*/
+		if (mountainousWaitingMission.isEmpty())
+			return;
 		mtemp = new MountainousMission(mountainousWaitingMission.getEntry(1));
 	}
 
@@ -784,7 +784,7 @@ void MarsStation::moveRoverFromExcuetionToCheckUp(int eD)
 		if (rV->getneedCheckup())
 		{
 			rV->assignCheckup(eD);
-			unavailableRovers.enqueue(rV, rV->getMissionOrCheckupEndDay());
+			unavailableRovers.enqueue(rV, -1*rV->getMissionOrCheckupEndDay());
 		}
 		else 
 		{
@@ -800,6 +800,7 @@ void MarsStation::moveRoverFromExcuetionToCheckUp(int eD)
 					unAvailableMaintainanceMountainous.insert(unAvailableMaintainanceMountainous.getLength() + 1, mR);
 				else
 					unAvailableMaintainancePolar.insert(unAvailableMaintainancePolar.getLength() + 1, pR);
+
 			}
 			else
 			{
@@ -809,9 +810,10 @@ void MarsStation::moveRoverFromExcuetionToCheckUp(int eD)
 					mountainousAvailableRover.enqueue(mR, mR->getSpeed());
 				else if(pR)
 					polarAvailableRover.enqueue(pR, pR->getSpeed());
-				    
+
+				rV->setOutOfCheckup();  //rover is available to be assigned	    
 			}
-			rV->setOutOfCheckup();  //rover is available to be assigned
+			
 		}
 		Found = unavailableRovers.peek(rV);
 	}
