@@ -120,6 +120,8 @@ public:
 	void ExecutePolar(Rover*);
 	void executeEvents();
 
+	//printing function
+	void printOutput(ofstream& o);
 
 	
 };
