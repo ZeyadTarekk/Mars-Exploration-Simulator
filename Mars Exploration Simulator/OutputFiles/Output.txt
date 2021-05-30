@@ -1,5 +1,11 @@
 CD	ID	FD	WD	ED
-Missions: 0[M:0, P:0, E:0]
+16	2	5	0	11
+8	1	2	0	6
+32	5	18	0	14
+38	4	6	1	31
+36	6	25	0	11
+17	3	5	1	11
+Missions: 6[M:0, P:2, E:4]
 Rovers: 8[M:3, P:3, E:2]
-Avg Wait = -nan(ind), Avg Exec = -nan(ind)
-Auto-promoted: -nan(ind)%
+Avg Wait = 0.333333, Avg Exec = 14
+Auto-promoted: 0%

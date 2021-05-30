@@ -29,8 +29,15 @@ void MarsStation::simulate()
 	currentDay = tempEvent->getEventDay();
 	do
 	{
-		if(tempEvent!=nullptr&&tempEvent->getEventDay()==currentDay)
-			tempEvent->execute(this);
+		if (eventList.peek(tempEvent))
+		{
+			if (tempEvent->getEventDay() <= currentDay)
+			{
+				tempEvent->execute(this);
+				eventList.dequeue(tempEvent);
+			}
+		}
+
 		autoPromotion = new AutoPromotionEvent(currentDay);
 		assignEvent = new Assign(currentDay);
 		missionFailure = new MissionFailure(currentDay);
@@ -39,7 +46,7 @@ void MarsStation::simulate()
 		missionFailure->execute(this);
 		completionEvent->execute(this);
 		assignEvent->execute(this);
-		uiPtr->outputFile();
+		
 		switch (Mode)
 		{
 		case Interactive:
@@ -55,10 +62,10 @@ void MarsStation::simulate()
 			break;
 		}
 		currentDay++;
-		eventList.dequeue(tempEvent);
+		//eventList.dequeue(tempEvent);
 		status = !emergencyWaitingMission.isEmpty()||!eventList.isEmpty() || !polarWaitingMission.isEmpty() || !mountainousWaitingMission.isEmpty() || !inServiceMissions.isEmpty();
 	} while (status);
-
+	uiPtr->outputFile();
 }
 
 MarsStation::MarsStation() :currentDay(0)
@@ -963,7 +970,7 @@ bool MarsStation::isCompleted(int eD)
 {
 	Mission* mTemp = nullptr;
 	bool Found = inServiceMissions.peek(mTemp);
-	if (Found && mTemp->getEndDay() == eD) // check if there is a mission in IN-Ex. 
+	if (Found && mTemp->getEndDay() <= eD) // check if there is a mission in IN-Ex. 
 		return true;
 	return false;
 }

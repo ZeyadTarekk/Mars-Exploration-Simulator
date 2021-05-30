@@ -22,16 +22,21 @@
 //		i++;
 //	}
 //	L.print();
-//	cout << L.getLength() << endl;
-//	cout << L.getIndexOf(3) << " Is position of 3" << endl;
-//	L.remove(5);
-//
-//	L.print();
-//	L.remove(L.getLength());
-//	L.print();
 //	L.remove(1);
 //	L.print();
-//	cout << L.getIndexOf(3) << " Is position of 3" << endl;
+//	cout << L.getEntry(1) << endl;
+//	L.remove(1);
+//	cout << L.getEntry(1) << endl;
+//	//cout << L.getLength() << endl;
+//	//cout << L.getIndexOf(3) << " Is position of 3" << endl;
+//	//L.remove(5);
+//
+//	//L.print();
+//	//L.remove(L.getLength());
+//	//L.print();
+//	//L.remove(1);
+//	//L.print();
+//	//cout << L.getIndexOf(3) << " Is position of 3" << endl;
 //	//List<int>L2(L);
 //	///*L.deleteFirst();*/
 //	//cout << L.getLength() << endl;

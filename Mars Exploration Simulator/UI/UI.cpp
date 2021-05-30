@@ -387,19 +387,18 @@ void UI::outputFile()
 	out << "CD\tID\tFD\tWD\tED\n";
 	while (MStation->completedMissions.dequeue(tempMission))
 	{
-		totalMissions++;
 		if (dynamic_cast<EmergencyMission*>(tempMission) != nullptr)
 			totalEmMissions++;
 		else if (dynamic_cast<PolarMission*>(tempMission) != nullptr)
 			totalPolarMissions++;
 		else if (dynamic_cast<PolarMission*>(tempMission) != nullptr)
 			totalMountMissions++;
-
 		out << tempMission->getEndDay() << '\t' << tempMission->getID() << '\t' << tempMission->getFormulationDay();
 		out << '\t' << tempMission->getExecutionDay() - tempMission->getFormulationDay() << '\t';
 		out << tempMission->getEndDay() - tempMission->getExecutionDay() << endl;
 		totalWaitingDays += tempMission->getExecutionDay() - tempMission->getFormulationDay();
 		totalExecutionDays += tempMission->getEndDay() - tempMission->getExecutionDay();
+		totalMissions++;
 	}
 	out << "Missions: " << totalMissions << "[M:" << totalMountMissions << ", P:" << totalPolarMissions << ", E:" << totalEmMissions << "]\n";
 	out << "Rovers: " << MStation->getTotalNoRovers() << "[M:" << MStation->getMountRoverCount() << ", P:" << MStation->getPolRoverCount() << ", E:" << MStation->getEmRoverCount() << "]\n";

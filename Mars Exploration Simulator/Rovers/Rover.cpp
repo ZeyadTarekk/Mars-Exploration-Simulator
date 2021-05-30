@@ -43,7 +43,7 @@ void Rover::assignMission(int idMission, int duration, int location, unsigned lo
 	missionOrCheckupEndDay = curDay + missionDuration + ceil((2 * (float)missionLocation / speed) / 25.0);
 
 	missionsNumber++;
-	if (missionsNumber % checkupMissions == 0)
+	if (missionsNumber % checkupMissions == 0 && missionsNumber>= checkupMissions)
 		needCheckup = true;
 	overallDistance += missionLocation;
 	if (overallDistance >= 1000 && missionsNumber >= 5) 
