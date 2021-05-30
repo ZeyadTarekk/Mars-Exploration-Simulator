@@ -391,7 +391,7 @@ void UI::outputFile()
 			totalEmMissions++;
 		else if (dynamic_cast<PolarMission*>(tempMission) != nullptr)
 			totalPolarMissions++;
-		else if (dynamic_cast<PolarMission*>(tempMission) != nullptr)
+		else if (dynamic_cast<MountainousMission*>(tempMission) != nullptr)
 			totalMountMissions++;
 		out << tempMission->getEndDay() << '\t' << tempMission->getID() << '\t' << tempMission->getFormulationDay();
 		out << '\t' << tempMission->getExecutionDay() - tempMission->getFormulationDay() << '\t';
