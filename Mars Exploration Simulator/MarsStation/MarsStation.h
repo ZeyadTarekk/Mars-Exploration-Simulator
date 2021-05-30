@@ -72,6 +72,7 @@ class MarsStation
 	//Event List
 	Queue<Event*> eventList;
 	int autoPromot;
+	int numberOfPromotedMissions;
 	ModeOpeartion Mode;
 public:
 	MarsStation();
@@ -87,6 +88,7 @@ public:
 	void setPolRoverCount(int count);
 	void setAutoPromot(int);
 	int getAutoPromot();
+	int getNumberOfPromotedMissions();
 	void setModeOperation(int m);
 	ModeOpeartion getModeOperation();
 	unsigned long long getCurDay();

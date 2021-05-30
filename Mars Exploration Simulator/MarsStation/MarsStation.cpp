@@ -23,6 +23,7 @@ MarsStation::MarsStation() :currentDay(0)
 	polRoverNo = 0;
 	eventCount = 0;
 	autoPromot = 0;
+	numberOfPromotedMissions = 0;
 }
 
 MarsStation::~MarsStation()
@@ -71,6 +72,10 @@ void MarsStation::setAutoPromot(int autoProm)
 int MarsStation::getAutoPromot()
 {
 	return autoPromot;
+}
+int MarsStation::getNumberOfPromotedMissions()
+{
+	return numberOfPromotedMissions;
 }
 unsigned long long MarsStation::getCurDay()
 {
@@ -217,8 +222,8 @@ void MarsStation::promoteMountainousToEmergencyMission(int cD)
 		if (mountainousWaitingMission.isEmpty())
 			return;
 		mtemp = new MountainousMission(mountainousWaitingMission.getEntry(1));
+		numberOfPromotedMissions++;
 	}
-
 }
 
 Mission* MarsStation::inserviceRemove(int id)
