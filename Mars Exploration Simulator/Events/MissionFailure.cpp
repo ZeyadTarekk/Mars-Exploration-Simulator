@@ -33,7 +33,4 @@ void MissionFailure::execute(MarsStation* MStation)
 		//	exit(12);
 		//}
 	}
-	else {
-		cout << "Mission not found" << endl;
-	}
 }

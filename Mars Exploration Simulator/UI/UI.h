@@ -30,6 +30,6 @@ public:
 	void TestPrint();
 	void printDay();
 	void outputFile();
-
+	void printSilent();
 };
 

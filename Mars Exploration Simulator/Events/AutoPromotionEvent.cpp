@@ -1,6 +1,6 @@
 #include "AutoPromotionEvent.h"
 
-AutoPromotionEvent::AutoPromotionEvent(int id):Event(id)
+AutoPromotionEvent::AutoPromotionEvent(int ed):Event(ed)
 {
 }
 

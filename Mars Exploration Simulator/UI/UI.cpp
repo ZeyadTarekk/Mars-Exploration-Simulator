@@ -409,6 +409,11 @@ void UI::outputFile()
 	out.close();
 }
 
+void UI::printSilent()
+{
+	cout << "Silent Mode\nSimulation Starts...\nSimulation ends, Output file created\n";
+}
+
 UI::UI(MarsStation* MS) :MStation(MS)
 {
 	read();

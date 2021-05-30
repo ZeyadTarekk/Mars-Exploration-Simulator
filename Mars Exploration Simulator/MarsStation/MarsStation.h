@@ -1,5 +1,6 @@
 #pragma once
 #include<iostream>
+#include<Windows.h>
 using namespace std;
 //data strucures
 #include"../DataStructures/Bag.h"
@@ -22,6 +23,13 @@ using namespace std;
 #include"../Events/FormulationEvent.h"
 #include"../Events/PromotionEvent.h"
 #include"../Events/CancelationEvent.h"
+#include"../Events/AutoPromotionEvent.h"
+#include"../Events/CompletionEvent.h"
+#include"../Events/Assign.h"
+#include"../Events/MissionFailure.h"
+
+//UI
+#include"../UI/UI.h"
 class Event;
 enum ModeOpeartion
 {
@@ -75,6 +83,8 @@ class MarsStation
 	int numberOfPromotedMissions;
 	ModeOpeartion Mode;
 public:
+	void simulate();
+
 	MarsStation();
 	~MarsStation();
 	int getEventCount() const;

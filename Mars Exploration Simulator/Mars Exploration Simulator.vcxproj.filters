@@ -188,6 +188,9 @@
     <ClCompile Include="Events\AutoPromotionEvent.cpp">
       <Filter>Events</Filter>
     </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="InputFiles\Input.txt">

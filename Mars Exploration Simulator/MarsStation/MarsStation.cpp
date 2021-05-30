@@ -1,8 +1,7 @@
 #include "MarsStation.h"
-#include<fstream>
-#include<Windows.h>
+
 template<class T>
- Rover* MarsStation::getFastestRover(List<T>*maintainanceList)
+Rover* MarsStation::getFastestRover(List<T>*maintainanceList)
 {
 	Rover* fastest = maintainanceList->getEntry(1);
 	Rover* temp ;
@@ -13,6 +12,53 @@ template<class T>
 			fastest = temp;
 	}
 	return fastest;
+}
+
+void MarsStation::simulate()
+{
+	UI* uiPtr = new UI(this);
+	AutoPromotionEvent* autoPromotion;
+	Assign* assignEvent;
+	MissionFailure* missionFailure;
+	CompletionEvent* completionEvent;
+	bool status;
+	Event* tempEvent;
+	if (eventList.isEmpty())
+		return;
+	eventList.peek(tempEvent);
+	currentDay = tempEvent->getEventDay();
+	do
+	{
+		if(tempEvent!=nullptr&&tempEvent->getEventDay()==currentDay)
+			tempEvent->execute(this);
+		autoPromotion = new AutoPromotionEvent(currentDay);
+		assignEvent = new Assign(currentDay);
+		missionFailure = new MissionFailure(currentDay);
+		completionEvent = new CompletionEvent(currentDay);
+		autoPromotion->execute(this);
+		missionFailure->execute(this);
+		completionEvent->execute(this);
+		assignEvent->execute(this);
+		uiPtr->outputFile();
+		switch (Mode)
+		{
+		case Interactive:
+			uiPtr->printDay();
+			cin.get();
+			break;
+		case step_by_step:
+			uiPtr->printDay();
+			Sleep(3000);
+			break;
+		case silent :
+			uiPtr->printSilent();
+			break;
+		}
+		currentDay++;
+		eventList.dequeue(tempEvent);
+		status = !emergencyWaitingMission.isEmpty()||!eventList.isEmpty() || !polarWaitingMission.isEmpty() || !mountainousWaitingMission.isEmpty() || !inServiceMissions.isEmpty();
+	} while (status);
+
 }
 
 MarsStation::MarsStation() :currentDay(0)
