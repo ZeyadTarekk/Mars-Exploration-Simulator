@@ -298,6 +298,7 @@ void UI::printDay()
 			cout << noCheckup << " In-Checkup Rovers: ";
 			if (iCheck != 0)
 			{
+
 				cout << '[' << arriCheck[0];
 				for (int i = 1; i < iCheck; i++)
 				{
