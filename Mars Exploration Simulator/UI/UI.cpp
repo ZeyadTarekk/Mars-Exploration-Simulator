@@ -405,7 +405,7 @@ void UI::outputFile()
 	out << "Rovers: " << MStation->getTotalNoRovers() << "[M:" << MStation->getMountRoverCount() << ", P:" << MStation->getPolRoverCount() << ", E:" << MStation->getEmRoverCount() << "]\n";
 	out << "Avg Wait = " << float(totalWaitingDays) / totalMissions;
 	out << ", Avg Exec = " << float(totalExecutionDays) / totalMissions << endl;
-
+	out << "Auto-promoted: " << MStation->getNumberOfPromotedMissions()*100.0 / totalMissions << "%" << endl;
 	out.close();
 }
 
