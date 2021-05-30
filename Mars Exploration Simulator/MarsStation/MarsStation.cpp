@@ -851,7 +851,7 @@ void MarsStation::moveRoverFromExcuetionToCheckUp(int eD)
 			EmergencyRover* eR = dynamic_cast<EmergencyRover*>(rV);
 			MountainousRover* mR = dynamic_cast<MountainousRover*>(rV);
 			PolarRover* pR = dynamic_cast<PolarRover*>(rV);
-			if (rV->getMaintainance())
+			if (rV->getneedMaintainance())
 			{
 				rV->assignMaintainance(eD);
 				if (eR)

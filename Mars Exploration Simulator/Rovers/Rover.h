@@ -24,6 +24,7 @@ class Rover
 	bool needCheckup;			//calculated
 	bool inMaintainance;		//calculated
 	bool inCheckup;				//Checkup Status's rover
+	bool needMaintainance;      //calculated
 
 public:
 	Rover(double roverspeed, int checkupCount, int Days); //essential data only
@@ -53,6 +54,7 @@ public:
 	virtual bool getneedCheckup()const;
 	virtual bool getMaintainance()const;
 	virtual int getOverallDistance()const;
+	virtual bool getneedMaintainance()const;
 
 };
 
