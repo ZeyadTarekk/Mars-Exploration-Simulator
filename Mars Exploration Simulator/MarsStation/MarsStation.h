@@ -31,6 +31,7 @@ enum ModeOpeartion
 };
 class MarsStation
 {
+	friend class UI;
 	unsigned long long currentDay;
 	double avgSpeed;
 	int emRoverNo, mountRoverNo, polRoverNo,eventCount;
@@ -124,6 +125,7 @@ public:
 
 
 	//test functions 
+	void addToUnavaiRover(Rover*);
 	void PrintMountList();
 	void PrintEmergencyList();
 	void printPolarList();
@@ -138,9 +140,9 @@ public:
 	void Executemount(Rover*);
 	void ExecutePolar(Rover*);
 	void executeEvents();
-
+	void CompleteMission();
 	//printing function
-	void printOutput(ofstream& o);
+	//void printOutput(ofstream& o);
 
 	
 };

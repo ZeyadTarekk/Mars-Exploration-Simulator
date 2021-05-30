@@ -27,6 +27,7 @@ public:
 	void outputStart();
 	~UI();
 	void TestPrint();
+	void printDay();
 
 };
 
