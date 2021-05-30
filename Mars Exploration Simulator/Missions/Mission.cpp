@@ -8,10 +8,16 @@ Mission::Mission(int fD, int tL, int mD, int i, double s):formulationDay(fD),tar
 
 
 
-void Mission::assignRover(Rover* rV)
+void Mission::assignRover(Rover* rV,long long curDay)
 {
 	assignedRover = rV;
+	executionDay = curDay;
 	endDay = rV->getMissionOrCheckupEndDay();
+}
+
+long long Mission::getExecutionDay()
+{
+	return executionDay;
 }
 
 

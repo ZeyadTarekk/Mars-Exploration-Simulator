@@ -376,7 +376,7 @@ void MarsStation::ExecuteEm(Rover* r)
 	EmergencyMission* EmMission = nullptr;
 	if (emergencyWaitingMission.dequeue(EmMission))
 	{
-		EmMission->assignRover(r);
+		EmMission->assignRover(r, currentDay);
 		inServiceMissions.enqueue(EmMission, 0);
 		unavailableRovers.enqueue(r, 0);
 	}
@@ -391,7 +391,7 @@ void MarsStation::Executemount(Rover* r)
 	{
 		MountainousMission* EmMission = new MountainousMission(mountainousWaitingMission.getEntry(1));
 		mountainousWaitingMission.remove(1);
-		EmMission->assignRover(r);
+		EmMission->assignRover(r,currentDay);
 		inServiceMissions.enqueue(EmMission, 0);
 		unavailableRovers.enqueue(r, 0);
 	}
@@ -404,7 +404,7 @@ void MarsStation::ExecutePolar(Rover* r)
 	PolarMission* EmMission = nullptr;
 	if (polarWaitingMission.dequeue(EmMission))
 	{
-		EmMission->assignRover(r);
+		EmMission->assignRover(r,currentDay);
 		inServiceMissions.enqueue(EmMission, 0);
 		unavailableRovers.enqueue(r, 0);
 	}
@@ -700,7 +700,7 @@ bool MarsStation::assignEmergencyMission(int evDay)
 		emergencyWaitingMission.dequeue(emMissionTemp);
 		inServiceMissions.enqueue(emMissionTemp,-1*evDay);  // -1*evDay to make the search in complete more easy
 		emRoverTemp->assignMission(emMissionTemp->getID(), emMissionTemp->getMissionDuration(), emMissionTemp->getTargetLocation(), evDay);
-		emMissionTemp->assignRover(emRoverTemp);
+		emMissionTemp->assignRover(emRoverTemp, currentDay);
 		unavailableRovers.enqueue(emRoverTemp, -1 * emMissionTemp->getEndDay()); //due to enqueue rover in order of it's day
 		return true;
 	}
@@ -710,7 +710,7 @@ bool MarsStation::assignEmergencyMission(int evDay)
 		emergencyWaitingMission.dequeue(emMissionTemp);
 		inServiceMissions.enqueue(emMissionTemp, -1 * evDay);// -1*evDay to make the search in complete more easy
 		mRoverTemp->assignMission(emMissionTemp->getID(), emMissionTemp->getMissionDuration(), emMissionTemp->getTargetLocation(), evDay);
-		emMissionTemp->assignRover(mRoverTemp);
+		emMissionTemp->assignRover(mRoverTemp, currentDay);
 		unavailableRovers.enqueue(mRoverTemp, -1 * emMissionTemp->getEndDay());
 		return true;
 	}
@@ -720,7 +720,7 @@ bool MarsStation::assignEmergencyMission(int evDay)
 		emergencyWaitingMission.dequeue(emMissionTemp);
 		inServiceMissions.enqueue(emMissionTemp, -1 * evDay);// -1*evDay to make the search in complete more easy
 		pRoverTemp->assignMission(emMissionTemp->getID(), emMissionTemp->getMissionDuration(), emMissionTemp->getTargetLocation(), evDay);
-		emMissionTemp->assignRover(mRoverTemp);
+		emMissionTemp->assignRover(mRoverTemp, currentDay);
 		unavailableRovers.enqueue(mRoverTemp, -1 * emMissionTemp->getEndDay());
 		return true;
 	}
@@ -732,7 +732,7 @@ bool MarsStation::assignEmergencyMission(int evDay)
 		emergencyWaitingMission.dequeue(emMissionTemp);
 		inServiceMissions.enqueue(emMissionTemp, -1 * evDay);
 		generalTemp->assignMission(emMissionTemp->getID(), emMissionTemp->getMissionDuration(), emMissionTemp->getTargetLocation(), evDay);
-		emMissionTemp->assignRover(generalTemp);
+		emMissionTemp->assignRover(generalTemp, currentDay);
 		unavailableRovers.enqueue(generalTemp, -1 * emMissionTemp->getEndDay()); //due to enqueue rover in order of it's day
 		return true;
 	}
@@ -743,7 +743,7 @@ bool MarsStation::assignEmergencyMission(int evDay)
 		emergencyWaitingMission.dequeue(emMissionTemp);
 		inServiceMissions.enqueue(emMissionTemp, -1 * evDay);
 		generalTemp->assignMission(emMissionTemp->getID(), emMissionTemp->getMissionDuration(), emMissionTemp->getTargetLocation(), evDay);
-		emMissionTemp->assignRover(generalTemp);
+		emMissionTemp->assignRover(generalTemp, currentDay);
 		unavailableRovers.enqueue(generalTemp, -1 * emMissionTemp->getEndDay()); //due to enqueue rover in order of it's day
 		return true;
 	}
@@ -754,7 +754,7 @@ bool MarsStation::assignEmergencyMission(int evDay)
 		emergencyWaitingMission.dequeue(emMissionTemp);
 		inServiceMissions.enqueue(emMissionTemp, -1 * evDay);
 		generalTemp->assignMission(emMissionTemp->getID(), emMissionTemp->getMissionDuration(), emMissionTemp->getTargetLocation(), evDay);
-		emMissionTemp->assignRover(generalTemp);
+		emMissionTemp->assignRover(generalTemp, currentDay);
 		unavailableRovers.enqueue(generalTemp, -1 * emMissionTemp->getEndDay()); //due to enqueue rover in order of it's day
 		return true;
 	}
@@ -777,7 +777,7 @@ bool MarsStation::assignMountainousMission(int evDay)
 		mountainousWaitingMission.remove(1); //->>remove(1)
 		inServiceMissions.enqueue(mMissionTemp, -1 * evDay);
 		mRoverTemp->assignMission(mMissionTemp->getID(), mMissionTemp->getMissionDuration(), mMissionTemp->getTargetLocation(), evDay);
-		mMissionTemp->assignRover(mRoverTemp);
+		mMissionTemp->assignRover(mRoverTemp, currentDay);
 		unavailableRovers.enqueue(mRoverTemp, -1 * mMissionTemp->getEndDay());
 		return true;
 	}
@@ -788,7 +788,7 @@ bool MarsStation::assignMountainousMission(int evDay)
 		mountainousWaitingMission.remove(mountainousWaitingMission.getLength());
 		inServiceMissions.enqueue(mMissionTemp, -1 * evDay);
 		emRoverTemp->assignMission(mMissionTemp->getID(), mMissionTemp->getMissionDuration(), mMissionTemp->getTargetLocation(), evDay);
-		mMissionTemp->assignRover(emRoverTemp);
+		mMissionTemp->assignRover(emRoverTemp, currentDay);
 		unavailableRovers.enqueue(emRoverTemp, -1 * mMissionTemp->getEndDay());
 		return true;
 	}
@@ -802,7 +802,7 @@ bool MarsStation::assignMountainousMission(int evDay)
 		inServiceMissions.enqueue(mMissionTemp, -1 * evDay);
 		generalTemp = getFastestRover(&unAvailableMaintainanceMountainous);
 		generalTemp->assignMission(mMissionTemp->getID(), mMissionTemp->getMissionDuration(), mMissionTemp->getTargetLocation(), evDay);
-		mMissionTemp->assignRover(generalTemp);
+		mMissionTemp->assignRover(generalTemp, currentDay);
 		unavailableRovers.enqueue(generalTemp, -1 * mMissionTemp->getEndDay()); //due to enqueue rover in order of it's day
 		return true;
 	}
@@ -814,7 +814,7 @@ bool MarsStation::assignMountainousMission(int evDay)
 		inServiceMissions.enqueue(mMissionTemp, -1 * evDay);
 		generalTemp = getFastestRover(&unAvailableMaintainanceEmergency);
 		generalTemp->assignMission(mMissionTemp->getID(), mMissionTemp->getMissionDuration(), mMissionTemp->getTargetLocation(), evDay);
-		mMissionTemp->assignRover(generalTemp);
+		mMissionTemp->assignRover(generalTemp, currentDay);
 		unavailableRovers.enqueue(generalTemp, -1 * mMissionTemp->getEndDay()); //due to enqueue rover in order of it's day
 		return true;
 	}
@@ -834,7 +834,7 @@ bool MarsStation::assignPolarMission(int evDay)
 		polarWaitingMission.dequeue(pMissionTemp);
 		inServiceMissions.enqueue(pMissionTemp, -1 * evDay);
 		pRoverTemp->assignMission(pMissionTemp->getID(), pMissionTemp->getMissionDuration(), pMissionTemp->getTargetLocation(), evDay);
-		pMissionTemp->assignRover(pRoverTemp);
+		pMissionTemp->assignRover(pRoverTemp, currentDay);
 		unavailableRovers.enqueue(pRoverTemp, -1 * pMissionTemp->getEndDay());
 		return true;
 	}
@@ -846,7 +846,7 @@ bool MarsStation::assignPolarMission(int evDay)
 		generalTemp = getFastestRover(&unAvailableMaintainancePolar);
 		polarWaitingMission.dequeue(pMissionTemp);
 		generalTemp->assignMission(pMissionTemp->getID(), pMissionTemp->getMissionDuration(), pMissionTemp->getTargetLocation(), evDay);
-		pMissionTemp->assignRover(generalTemp);
+		pMissionTemp->assignRover(generalTemp, currentDay);
 		inServiceMissions.enqueue(pMissionTemp, -1 * evDay);
 		unavailableRovers.enqueue(generalTemp, -1 * pMissionTemp->getEndDay()); //due to enqueue rover in order of it's day
 		return true;

@@ -10,10 +10,12 @@ private:
 		id;
 	const double significance;
 	int endDay;
+	int executionDay;
 	Rover * assignedRover;   //the attribute isn't const because it's assigned after formulation
 public:
 	Mission(int, int, int, int, double);
-	void assignRover(Rover*);
+	void assignRover(Rover*,long long);
+	long long getExecutionDay();
 	int getFormulationDay() const;
 	int getTargetLocation() const;
 	int getMissionDuration() const;

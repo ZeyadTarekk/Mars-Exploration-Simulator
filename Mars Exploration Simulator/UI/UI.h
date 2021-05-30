@@ -17,17 +17,19 @@ class UI
 	int NoEvents;
 	//line 8
 	char eventType, missionType; int eventDay, ID, location, duration, signifiance;
-	
+	// for output file
+	long long totalMissions, totalWaitingDays, totalExecutionDays;
+	long long totalEmMissions, totalPolarMissions, totalMountMissions;
 	double avgSpeed;
 	void calcAvgSpeed();
 	void read();
 	void createRovers();
 public:
 	UI(MarsStation*);
-	void outputStart();
 	~UI();
 	void TestPrint();
 	void printDay();
+	void outputFile();
 
 };
 

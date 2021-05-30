@@ -48,6 +48,7 @@ int main()
 	MS->executeEvents();
 	MS->ExecuteEm(emRover4);
 	MS->CompleteMission();
+	MS->CompleteMission();
 	cout << "\n\nEmergency Missions \n\n";
 //	MS->PrintEmergencyList();
 	cout << "\n\nmount Missions \n\n";
@@ -65,6 +66,8 @@ int main()
 	//as->execute(MS);
 	u.printDay();
 //	u.outputStart();
+	
+	u.outputFile();
 	return 0;
 }
 //ofstream out;

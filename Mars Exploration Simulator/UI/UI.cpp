@@ -144,7 +144,8 @@ void UI::printDay()
 			PriorityQueue<MountainousRover*>tempMountainousAvailableRover = MStation->mountainousAvailableRover;
 			//2) Unavailable rovers
 			PriorityQueue<Rover*>tempUnavailableRovers = MStation->unavailableRovers;
-
+			//completed
+			Queue<Mission*> tempCompletedMissions = MStation->completedMissions;
 			int no = 0, i = 0, j = 0, k = 0, iEx = 0, jEx = 0, kEx = 0, noEx = 0, noAvRo = 0;
 			int arri[100], arrj[100], arrk[100], arriEx[100], arrjEx[100], arrkEx[100], arriExRO[100], arrjExRO[100], arrkExRO[100];
 			int iRo = 0, jRo = 0, kRo = 0, noComp = 0, iComp = 0, jComp = 0, kComp = 0;
@@ -330,7 +331,7 @@ void UI::printDay()
 
 
 			cout << "\n-------------------------------------------------------\n";
-			while (MStation->completedMissions.dequeue(tempMission))
+			while (tempCompletedMissions.dequeue(tempMission))
 			{
 				noComp++;
 				if (dynamic_cast<EmergencyMission*>(tempMission) != nullptr)
@@ -377,18 +378,47 @@ void UI::printDay()
 	//}
 }
 
+void UI::outputFile()
+{
+	ofstream out;
+	Mission* tempMission;
+	out.open("OutputFiles/Output.txt");
+	out << "CD\tID\tFD\tWD\tED\n";
+	while (MStation->completedMissions.dequeue(tempMission))
+	{
+		totalMissions++;
+		if (dynamic_cast<EmergencyMission*>(tempMission) != nullptr)
+			totalEmMissions++;
+		else if (dynamic_cast<PolarMission*>(tempMission) != nullptr)
+			totalPolarMissions++;
+		else if (dynamic_cast<PolarMission*>(tempMission) != nullptr)
+			totalMountMissions++;
+
+		out << tempMission->getEndDay() << '\t' << tempMission->getID() << '\t' << tempMission->getFormulationDay();
+		out << '\t' << tempMission->getExecutionDay() - tempMission->getFormulationDay() << '\t';
+		out << tempMission->getEndDay() - tempMission->getExecutionDay() << endl;
+		totalWaitingDays += tempMission->getExecutionDay() - tempMission->getFormulationDay();
+		totalExecutionDays += tempMission->getEndDay() - tempMission->getExecutionDay();
+	}
+	out << "Missions: " << totalMissions << "[M:" << totalMountMissions << ", P:" << totalPolarMissions << ", E:" << totalEmMissions << "]\n";
+	out << "Rovers: " << MStation->getTotalNoRovers() << "[M:" << MStation->getMountRoverCount() << ", P:" << MStation->getPolRoverCount() << ", E:" << MStation->getEmRoverCount() << "]\n";
+	out << "Avg Wait = " << float(totalWaitingDays) / totalMissions;
+	out << ", Avg Exec = " << float(totalExecutionDays) / totalMissions << endl;
+
+	out.close();
+}
+
 UI::UI(MarsStation* MS) :MStation(MS)
 {
 	read();
+	totalMissions = 0;
+	totalWaitingDays = 0;
+	totalExecutionDays = 0;
+	totalEmMissions = 0;
+	totalPolarMissions = 0;
+	totalMountMissions = 0;
 }
 
-void UI::outputStart()
-{
-	ofstream out;
-	out.open("OutputFiles/Output.txt");
-	//tempPrint();
-	
-	//out << "zeyad";
-}
+
 
 UI::~UI() {}
