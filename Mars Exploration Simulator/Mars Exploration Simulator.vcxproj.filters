@@ -202,5 +202,11 @@
     <Text Include="InputFiles\Input file description.txt">
       <Filter>InputFiles</Filter>
     </Text>
+    <Text Include="InputFiles\Input2.txt">
+      <Filter>InputFiles</Filter>
+    </Text>
+    <Text Include="InputFiles\input3.txt">
+      <Filter>InputFiles</Filter>
+    </Text>
   </ItemGroup>
 </Project>

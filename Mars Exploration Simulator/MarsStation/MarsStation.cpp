@@ -76,7 +76,7 @@ void MarsStation::simulate()
 		if(increment)
 			currentDay++;
 		//eventList.dequeue(tempEvent);
-		status = !emergencyWaitingMission.isEmpty()||!eventList.isEmpty() || !polarWaitingMission.isEmpty() || !mountainousWaitingMission.isEmpty() || !inServiceMissions.isEmpty();
+		status = !emergencyWaitingMission.isEmpty()||!eventList.isEmpty() || !polarWaitingMission.isEmpty() || !mountainousWaitingMission.isEmpty() || !inServiceMissions.isEmpty() || !unavailableRovers.isEmpty();
 	} while (status);
 	if(Mode == silent)
 		uiPtr->printSilent();
@@ -793,10 +793,10 @@ bool MarsStation::assignEmergencyMission(int evDay)
 	{
 		emergencyWaitingMission.dequeue(emMissionTemp);
 		pRoverTemp->assignMission(emMissionTemp->getID(), emMissionTemp->getMissionDuration(), emMissionTemp->getTargetLocation(), evDay);
-		emMissionTemp->assignRover(mRoverTemp, currentDay);
+		emMissionTemp->assignRover(pRoverTemp, currentDay);
 		inServiceMissions.enqueue(emMissionTemp, -1 * emMissionTemp->getEndDay());// -1*evDay to make the search in complete more easy
 
-		unavailableRovers.enqueue(mRoverTemp, -1 * emMissionTemp->getEndDay());
+		unavailableRovers.enqueue(pRoverTemp, -1 * emMissionTemp->getEndDay());
 		return true;
 	}
 	// now we will check the lists of maintainance Rovers
@@ -863,8 +863,8 @@ bool MarsStation::assignMountainousMission(int evDay)
 	EmergencyRover* emRoverTemp;
 	if (emergencyAvailableRover.dequeue(emRoverTemp))
 	{
-		mMissionTemp = new MountainousMission(mountainousWaitingMission.getEntry(mountainousWaitingMission.getLength()));
-		mountainousWaitingMission.remove(mountainousWaitingMission.getLength());
+		mMissionTemp = new MountainousMission(mountainousWaitingMission.getEntry(1));
+		mountainousWaitingMission.remove(1);
 		
 		emRoverTemp->assignMission(mMissionTemp->getID(), mMissionTemp->getMissionDuration(), mMissionTemp->getTargetLocation(), evDay);
 		mMissionTemp->assignRover(emRoverTemp, currentDay);
@@ -877,8 +877,8 @@ bool MarsStation::assignMountainousMission(int evDay)
 	Rover* generalTemp;
 	if (!unAvailableMaintainanceMountainous.isEmpty())
 	{
-		mMissionTemp = new MountainousMission(mountainousWaitingMission.getEntry(mountainousWaitingMission.getLength()));
-		mountainousWaitingMission.remove(mountainousWaitingMission.getLength());
+		mMissionTemp = new MountainousMission(mountainousWaitingMission.getEntry(1));
+		mountainousWaitingMission.remove(1);
 		
 		generalTemp = getFastestRover(&unAvailableMaintainanceMountainous);
 		generalTemp->assignMission(mMissionTemp->getID(), mMissionTemp->getMissionDuration(), mMissionTemp->getTargetLocation(), evDay);
@@ -890,8 +890,8 @@ bool MarsStation::assignMountainousMission(int evDay)
 
 	if (!unAvailableMaintainanceEmergency.isEmpty())
 	{
-		mMissionTemp = new MountainousMission(mountainousWaitingMission.getEntry(mountainousWaitingMission.getLength()));
-		mountainousWaitingMission.remove(mountainousWaitingMission.getLength());
+		mMissionTemp = new MountainousMission(mountainousWaitingMission.getEntry(1));
+		mountainousWaitingMission.remove(1);
 		generalTemp = getFastestRover(&unAvailableMaintainanceEmergency);
 		generalTemp->assignMission(mMissionTemp->getID(), mMissionTemp->getMissionDuration(), mMissionTemp->getTargetLocation(), evDay);
 		mMissionTemp->assignRover(generalTemp, currentDay);
@@ -938,7 +938,7 @@ bool MarsStation::assignPolarMission(int evDay)
 	return false;  //if polar rovers are un available
 }
 
-void MarsStation::addToCompletedMission(int eD)
+void MarsStation::addToCompletedMission()
 {
 	Mission* m;
 	inServiceMissions.dequeue(m);
@@ -960,6 +960,7 @@ void MarsStation::moveRoverFromExcuetionToCheckUp(int eD)
 		}
 		else 
 		{
+			rV->setOutOfCheckup();  //rover is available to be assigned	 
 			EmergencyRover* eR = dynamic_cast<EmergencyRover*>(rV);
 			MountainousRover* mR = dynamic_cast<MountainousRover*>(rV);
 			PolarRover* pR = dynamic_cast<PolarRover*>(rV);
@@ -983,7 +984,7 @@ void MarsStation::moveRoverFromExcuetionToCheckUp(int eD)
 				else if(pR)
 					polarAvailableRover.enqueue(pR, pR->getSpeed());
 
-				rV->setOutOfCheckup();  //rover is available to be assigned	    
+				//rV->setOutOfCheckup();  //rover is available to be assigned	    
 			}
 			
 		}

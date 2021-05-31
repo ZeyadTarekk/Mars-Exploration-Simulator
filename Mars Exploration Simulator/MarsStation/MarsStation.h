@@ -131,7 +131,7 @@ public:
 	bool assignPolarMission(int);
 
 	// Completed Mission && Rover
-	void addToCompletedMission(int);
+	void addToCompletedMission();
 	void moveRoverFromExcuetionToCheckUp(int);
 	bool isCompleted(int);
 
