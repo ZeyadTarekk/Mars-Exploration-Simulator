@@ -14,5 +14,5 @@ int MountainousMission::getAutoProm()
 
 bool MountainousMission::needAutoProm(int curDay)
 {
-	return (autoPromot >= (curDay - getFormulationDay()));
+	return (autoPromot <= (curDay - getFormulationDay()));
 }

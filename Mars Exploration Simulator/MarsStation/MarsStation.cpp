@@ -27,6 +27,7 @@ void MarsStation::simulate()
 		return;
 	eventList.peek(tempEvent);
 	currentDay = tempEvent->getEventDay();
+	cin.get();
 	do
 	{
 		if (eventList.peek(tempEvent))
@@ -58,13 +59,14 @@ void MarsStation::simulate()
 			Sleep(3000);
 			break;
 		case silent :
-			uiPtr->printSilent();
 			break;
 		}
 		currentDay++;
 		//eventList.dequeue(tempEvent);
 		status = !emergencyWaitingMission.isEmpty()||!eventList.isEmpty() || !polarWaitingMission.isEmpty() || !mountainousWaitingMission.isEmpty() || !inServiceMissions.isEmpty();
 	} while (status);
+	if(Mode == silent)
+		uiPtr->printSilent();
 	uiPtr->outputFile();
 }
 
