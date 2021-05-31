@@ -77,6 +77,7 @@ void MarsStation::simulate()
 			currentDay++;
 		//eventList.dequeue(tempEvent);
 		status = !emergencyWaitingMission.isEmpty()||!eventList.isEmpty() || !polarWaitingMission.isEmpty() || !mountainousWaitingMission.isEmpty() || !inServiceMissions.isEmpty() || !unavailableRovers.isEmpty();
+		delete autoPromotion;delete assignEvent;delete missionFailure; delete completionEvent;
 	} while (status);
 	if(Mode == silent)
 		uiPtr->printSilent();
