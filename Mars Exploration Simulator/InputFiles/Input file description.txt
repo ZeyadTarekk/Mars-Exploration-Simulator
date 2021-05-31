@@ -1,0 +1,17 @@
+Mountainous_rover_count Polar_rover_count Emergancy_rover_count
+speed of each mountainous rover
+speed of each Polar rover
+speed of each emergancy rover
+Number_of_missions_before_checkup MountRoverDaysCount PolRoverDaysCount EMRoverDaysCount 
+Number_of_missions_before_Auto_Promotion
+number_of_events
+type_of_event type_of_mission formulation_day mission_id target_location mission_duartion significance ---->for formulation
+type_of_event formulation_day mission_id ---> for cancelation and promotion
+
+***************************Notes***************************
+For line(s) 2,3,4
+	it consists of N number where N is the number of rover of each type
+
+For line(s) >= 8
+	the number of lines is the number of events 
+			

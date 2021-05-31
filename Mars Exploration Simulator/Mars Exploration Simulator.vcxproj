@@ -73,7 +73,7 @@
     <ClCompile Include="UI\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="C:\Users\Lenovo\OneDrive\Desktop\files\Project1\Input file\Input file description.txt" />
+    <Text Include="InputFiles\Input file description.txt" />
     <Text Include="InputFiles\Input.txt" />
     <Text Include="OutputFiles\Output.txt" />
   </ItemGroup>
