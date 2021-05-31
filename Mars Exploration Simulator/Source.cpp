@@ -1,7 +1,7 @@
-//#include"MarsStation/MarsStation.h"
-//int main()
-//{
-//	MarsStation* mStation = new MarsStation();
-//	mStation->simulate();
-//	return 0;
-//}
+#include"MarsStation/MarsStation.h"
+int main()
+{
+	MarsStation* mStation = new MarsStation();
+	mStation->simulate();
+	return 0;
+}
