@@ -67,7 +67,7 @@ void MarsStation::simulate()
 			if (increment)
 			{
 				uiPtr->printDay();
-				Sleep(3000);
+				Sleep(1500);
 			}
 			break;
 		case silent :

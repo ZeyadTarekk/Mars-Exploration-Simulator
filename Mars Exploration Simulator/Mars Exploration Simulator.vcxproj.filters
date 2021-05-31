@@ -208,5 +208,8 @@
     <Text Include="InputFiles\input3.txt">
       <Filter>InputFiles</Filter>
     </Text>
+    <Text Include="InputFiles\Input4.txt">
+      <Filter>InputFiles</Filter>
+    </Text>
   </ItemGroup>
 </Project>
