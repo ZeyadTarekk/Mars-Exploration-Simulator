@@ -27,6 +27,7 @@ void MarsStation::simulate()
 		return;
 	eventList.peek(tempEvent);
 	currentDay = tempEvent->getEventDay();
+	bool increment = false;
 	cin.get();
 	do
 	{
@@ -36,8 +37,13 @@ void MarsStation::simulate()
 			{
 				tempEvent->execute(this);
 				eventList.dequeue(tempEvent);
+				increment = false;
 			}
+			else
+				increment = true;
 		}
+		else
+			increment = true;
 
 		autoPromotion = new AutoPromotionEvent(currentDay);
 		assignEvent = new Assign(currentDay);
@@ -51,17 +57,24 @@ void MarsStation::simulate()
 		switch (Mode)
 		{
 		case Interactive:
-			uiPtr->printDay();
-			cin.get();
+			if (increment)
+			{
+				uiPtr->printDay();
+				cin.get();
+			}
 			break;
 		case step_by_step:
-			uiPtr->printDay();
-			Sleep(3000);
+			if (increment)
+			{
+				uiPtr->printDay();
+				Sleep(3000);
+			}
 			break;
 		case silent :
 			break;
 		}
-		currentDay++;
+		if(increment)
+			currentDay++;
 		//eventList.dequeue(tempEvent);
 		status = !emergencyWaitingMission.isEmpty()||!eventList.isEmpty() || !polarWaitingMission.isEmpty() || !mountainousWaitingMission.isEmpty() || !inServiceMissions.isEmpty();
 	} while (status);
