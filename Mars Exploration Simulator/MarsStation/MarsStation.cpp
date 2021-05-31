@@ -741,7 +741,8 @@ void MarsStation::printCompleteMission()
 		std::cout << "TargetLocation : " << EMission->getTargetLocation() << std::endl;
 		std::cout << "MissionDuration : " << EMission->getMissionDuration() << std::endl;
 		std::cout << "Significance : " << EMission->getSignificance() << std::endl;
-
+		cout << "End day in mission : " << EMission->getEndDay() << endl;
+		cout << "End day in rover : " << EMission->getAssignedRover()->getMissionOrCheckupEndDay() << endl;
 
 	}
 
