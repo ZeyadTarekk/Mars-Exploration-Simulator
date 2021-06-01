@@ -78,6 +78,7 @@
     <Text Include="InputFiles\Input2.txt" />
     <Text Include="InputFiles\input3.txt" />
     <Text Include="InputFiles\Input4.txt" />
+    <Text Include="InputFiles\input5.txt" />
     <Text Include="OutputFiles\Output.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
