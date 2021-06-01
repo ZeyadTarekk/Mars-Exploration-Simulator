@@ -78,7 +78,7 @@ void MarsStation::simulate()
 		if (currentDay == 25)
 			cout << "" << endl;
 		//eventList.dequeue(tempEvent);
-		status = (!emergencyWaitingMission.isEmpty()&&(!emRoverNo==0||!mountRoverNo==0))||!eventList.isEmpty() || (!polarWaitingMission.isEmpty()&& !(polRoverNo == 0)) || (!mountainousWaitingMission.isEmpty() && (!emRoverNo == 0 || !mountRoverNo == 0))|| !inServiceMissions.isEmpty() || !unavailableRovers.isEmpty()||!(emRoverNo==0);
+		status = !emergencyWaitingMission.isEmpty() || !eventList.isEmpty() || !polarWaitingMission.isEmpty() || !mountainousWaitingMission.isEmpty() || !inServiceMissions.isEmpty() || !unavailableRovers.isEmpty();
 		delete autoPromotion;delete assignEvent;delete missionFailure; delete completionEvent;
 	} while (status);
 	if(Mode == silent)
@@ -324,7 +324,7 @@ void MarsStation::promoteMountainousToEmergencyMission(int cD)
 			mtemp->getTargetLocation(),
 			mtemp->getMissionDuration(), mtemp->getID(),
 			mtemp->getSignificance(),getAvgSpeed());
-		numberOfPromotedMissions++; //increament No. of Promoted Mission
+		//numberOfPromotedMissions++; //increament No. of Promoted Mission
 		emergencyWaitingMission.enqueue(PromotedMission,PromotedMission->getPriority());
 		mountainousWaitingMission.remove(1);
 		if (mountainousWaitingMission.isEmpty())
