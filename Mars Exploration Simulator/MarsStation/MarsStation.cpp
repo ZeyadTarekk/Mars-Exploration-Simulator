@@ -75,8 +75,10 @@ void MarsStation::simulate()
 		}
 		if(increment)
 			currentDay++;
+		if (currentDay == 25)
+			cout << "" << endl;
 		//eventList.dequeue(tempEvent);
-		status = !emergencyWaitingMission.isEmpty()||!eventList.isEmpty() || !polarWaitingMission.isEmpty() || !mountainousWaitingMission.isEmpty() || !inServiceMissions.isEmpty() || !unavailableRovers.isEmpty();
+		status = (!emergencyWaitingMission.isEmpty()&&(!emRoverNo==0||!mountRoverNo==0))||!eventList.isEmpty() || (!polarWaitingMission.isEmpty()&& !(polRoverNo == 0)) || (!mountainousWaitingMission.isEmpty() && (!emRoverNo == 0 || !mountRoverNo == 0))|| !inServiceMissions.isEmpty() || !unavailableRovers.isEmpty()||!(emRoverNo==0);
 		delete autoPromotion;delete assignEvent;delete missionFailure; delete completionEvent;
 	} while (status);
 	if(Mode == silent)
@@ -97,6 +99,43 @@ MarsStation::MarsStation() :currentDay(0)
 
 MarsStation::~MarsStation()
 {
+	// delete objects in the heap;
+	while (!emergencyWaitingMission.isEmpty())
+	{
+		EmergencyMission* temp;
+		emergencyWaitingMission.dequeue(temp);
+		delete temp;
+	}
+	while (polarWaitingMission.isEmpty())
+	{
+		PolarMission* temp;
+		polarWaitingMission.dequeue(temp);
+		delete temp;
+	}
+	while (!completedMissions.isEmpty())
+	{
+		Mission* temp;
+		completedMissions.dequeue(temp);
+		delete temp;
+	}
+	while (!emergencyAvailableRover.isEmpty())
+	{
+		EmergencyRover* temp;
+		emergencyAvailableRover.dequeue(temp);
+		delete temp;
+	}
+	while (!mountainousAvailableRover.isEmpty())
+	{
+		MountainousRover* temp;
+		mountainousAvailableRover.dequeue(temp);
+		delete temp;
+	}
+	while (!polarAvailableRover.isEmpty())
+	{
+		PolarRover* temp;
+		polarAvailableRover.dequeue(temp);
+		delete temp;
+	}
 }
 int MarsStation::getEventCount() const
 {
