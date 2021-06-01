@@ -324,7 +324,7 @@ void MarsStation::promoteMountainousToEmergencyMission(int cD)
 			mtemp->getTargetLocation(),
 			mtemp->getMissionDuration(), mtemp->getID(),
 			mtemp->getSignificance(),getAvgSpeed());
-		//numberOfPromotedMissions++; //increament No. of Promoted Mission
+		numberOfPromotedMissions++; //increament No. of Promoted Mission
 		emergencyWaitingMission.enqueue(PromotedMission,PromotedMission->getPriority());
 		mountainousWaitingMission.remove(1);
 		if (mountainousWaitingMission.isEmpty())
