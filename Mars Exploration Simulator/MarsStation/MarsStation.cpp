@@ -95,6 +95,7 @@ MarsStation::MarsStation() :currentDay(0)
 	eventCount = 0;
 	autoPromot = 0;
 	numberOfPromotedMissions = 0;
+	mountMissionCount = 0;
 }
 
 MarsStation::~MarsStation()
@@ -106,7 +107,7 @@ MarsStation::~MarsStation()
 		emergencyWaitingMission.dequeue(temp);
 		delete temp;
 	}
-	while (polarWaitingMission.isEmpty())
+	while (!polarWaitingMission.isEmpty())
 	{
 		PolarMission* temp;
 		polarWaitingMission.dequeue(temp);
@@ -136,6 +137,10 @@ MarsStation::~MarsStation()
 		polarAvailableRover.dequeue(temp);
 		delete temp;
 	}
+}
+int MarsStation::getMountMissionCount()
+{
+	return mountMissionCount;
 }
 int MarsStation::getEventCount() const
 {
@@ -227,6 +232,7 @@ void MarsStation::addMission(Mission* nM) //add new mission im the appropriate f
 	if (newMission2)
 	{
 		mountainousWaitingMission.insert(mountainousWaitingMission.getLength() + 1, *newMission2);
+		mountMissionCount++;
 		return;
 	}
 	PolarMission* newMission3 = dynamic_cast<PolarMission*>(nM);

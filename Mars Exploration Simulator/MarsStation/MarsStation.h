@@ -42,7 +42,7 @@ class MarsStation
 	friend class UI;
 	unsigned long long currentDay;
 	double avgSpeed;
-	int emRoverNo, mountRoverNo, polRoverNo,eventCount;
+	int emRoverNo, mountRoverNo, polRoverNo,eventCount,mountMissionCount;
 	//Missions :-
 	// 1) Waiting
 	PriorityQueue<EmergencyMission*> emergencyWaitingMission;
@@ -87,6 +87,7 @@ public:
 
 	MarsStation();
 	~MarsStation();
+	int getMountMissionCount();
 	int getEventCount() const;
 	int getEmRoverCount() const;
 	int getMountRoverCount() const;
