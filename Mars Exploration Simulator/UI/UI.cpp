@@ -16,12 +16,12 @@ void UI::read()
 	string Filename;
 	cout << "Please enter the name of the input file without the extention: ";
 	cin >> Filename;
-
+	fileName = Filename;
 	ifstream in;
-	in.open("InputFiles/"+Filename+".txt");
+	in.open("InputFiles/" + Filename + ".txt");
 	if (!in.is_open())
 	{
-		cout << Filename+".txt not found" << endl;
+		cout << Filename + ".txt not found" << endl;
 		exit(1);
 	}
 	int ModeOfOperation;
@@ -117,10 +117,10 @@ void UI::TestPrint()
 
 void UI::printDay()
 {
-//	int n;
-	//cout << "Please select the mode\n1 for Interactive Mode\n2 for Step-By-Step Mode\n3 for Silent Mode\n";
-	//cin >> n;
-	//int no = currentDay;
+	//	int n;
+		//cout << "Please select the mode\n1 for Interactive Mode\n2 for Step-By-Step Mode\n3 for Silent Mode\n";
+		//cin >> n;
+		//int no = currentDay;
 	EmergencyMission* emMission;
 	//MountainousMission mountMission(0, 0, 0, 0, 0, 0);
 	PolarMission* polarMission;
@@ -129,261 +129,285 @@ void UI::printDay()
 	EmergencyRover* emRover;
 	PolarRover* polarRover;
 	MountainousRover* mountRover;
-	
-		//while (true)
-		//{
-			//waiting
-			PriorityQueue<EmergencyMission*>tempEmergencyWaitingMission =MStation-> emergencyWaitingMission;
-			List<MountainousMission>tempMountainousWaitingMission = MStation->mountainousWaitingMission;
-			Queue<PolarMission*>tempPolarWaitingMission = MStation->polarWaitingMission;
-			// 3) Execution (In-service) missions
-			PriorityQueue<Mission*>tempInServiceMissions = MStation->inServiceMissions;
-			//available rovers
-			PriorityQueue<EmergencyRover*>tempEmergencyAvailableRover = MStation->emergencyAvailableRover;
-			PriorityQueue<PolarRover*>tempPolarAvailableRover = MStation->polarAvailableRover;
-			PriorityQueue<MountainousRover*>tempMountainousAvailableRover = MStation->mountainousAvailableRover;
-			//2) Unavailable rovers
-			PriorityQueue<Rover*>tempUnavailableRovers = MStation->unavailableRovers;
-			//completed
-			Queue<Mission*> tempCompletedMissions = MStation->completedMissions;
-			int no = 0, i = 0, j = 0, k = 0, iEx = 0, jEx = 0, kEx = 0, noEx = 0, noAvRo = 0;
-			int arri[100], arrj[100], arrk[100], arriEx[100], arrjEx[100], arrkEx[100], arriExRO[100], arrjExRO[100], arrkExRO[100];
-			int iRo = 0, jRo = 0, kRo = 0, noComp = 0, iComp = 0, jComp = 0, kComp = 0;
-			int arriRo[100], arrjRo[100], arrkRo[100], arriComp[100], arrjComp[100], arrkComp[100];
-			int noCheckup = 0, iCheck = 0, jCheck = 0, kCheck = 0;
-			int* arriCheck = new int[MStation->getTotalNoRovers()];
-			int* arrjCheck = new int[MStation->getTotalNoRovers()];
-			int* arrkCheck = new int[MStation->getTotalNoRovers()];
-			cout << "\nCurrent day:" << MStation->currentDay << endl;
-			while (tempEmergencyWaitingMission.dequeue(emMission))
-			{
-				no++;
-				arri[i++] = emMission->getID();
-			}
-			while (!tempMountainousWaitingMission.isEmpty())
-			{
-				no++;
-				arrk[k++] = tempMountainousWaitingMission.getEntry(1).getID();
-				tempMountainousWaitingMission.remove(1);
-			}
-			while (tempPolarWaitingMission.dequeue(polarMission))
-			{
-				no++;
-				arrj[j++] = polarMission->getID();
-			}
-			cout << no << " Waiting missions:";
-			if (i != 0)
-			{
-				cout << " [" << arri[0];
-				for (int im = 1; im < i; im++)
-					cout << ',' << arri[im];
-				cout << "] ";
-			}
 
-			if (j != 0)
-			{
-				cout << '(' << arrj[0];
-				for (int ip = 1; ip < j; ip++)
-					cout << ',' << arrj[ip];
-				cout << ')';
-			}
-			if (k != 0)
-			{
-				cout << " {" << arrk[0];
-				for (int imm = 1; imm < k; imm++)
-					cout << ',' << arrk[imm];
-				cout << '}';
-			}
-			cout << "\n-------------------------------------------------------\n";
-			while (tempInServiceMissions.dequeue(tempMission))
-			{
-				noEx++;
-				if (dynamic_cast<EmergencyMission*>(tempMission) != nullptr)
-				{
+	//while (true)
+	//{
+		//waiting
+	PriorityQueue<EmergencyMission*>tempEmergencyWaitingMission = MStation->emergencyWaitingMission;
+	List<MountainousMission>tempMountainousWaitingMission = MStation->mountainousWaitingMission;
+	Queue<PolarMission*>tempPolarWaitingMission = MStation->polarWaitingMission;
+	// 3) Execution (In-service) missions
+	PriorityQueue<Mission*>tempInServiceMissions = MStation->inServiceMissions;
+	//available rovers
+	PriorityQueue<EmergencyRover*>tempEmergencyAvailableRover = MStation->emergencyAvailableRover;
+	PriorityQueue<PolarRover*>tempPolarAvailableRover = MStation->polarAvailableRover;
+	PriorityQueue<MountainousRover*>tempMountainousAvailableRover = MStation->mountainousAvailableRover;
+	//2) Unavailable rovers
+	PriorityQueue<Rover*>tempUnavailableRovers = MStation->unavailableRovers;
+	//completed
+	Queue<Mission*> tempCompletedMissions = MStation->completedMissions;
+	int no = 0, i = 0, j = 0, k = 0, iEx = 0, jEx = 0, kEx = 0, noEx = 0, noAvRo = 0;
+	int* arri = new int[MStation->getEventCount()], * arrj = new int[MStation->getEventCount()];
+	int* arrk = new int[MStation->getEventCount()];
+	int *arriEx = new int[MStation->getEventCount()], *arrjEx = new int[MStation->getEventCount()];
+	int *arrkEx = new int[MStation->getEventCount()], *arriExRO = new int[MStation->getEventCount()];
+	int *arrjExRO = new int[MStation->getEventCount()],*arrkExRO = new int[MStation->getEventCount()];
+	int iRo = 0, jRo = 0, kRo = 0, noComp = 0, iComp = 0, jComp = 0, kComp = 0;
+	int* arriRo = new int[MStation->getTotalNoRovers()], * arrjRo = new int[MStation->getTotalNoRovers()];
+	int* arrkRo = new int[MStation->getTotalNoRovers()];
+	int *arriComp = new int[MStation->getEventCount()], *arrjComp =new int[MStation->getEventCount()];
+	int *arrkComp =  new int[MStation->getEventCount()];
+	int noCheckup = 0, iCheck = 0, jCheck = 0, kCheck = 0;
+	int* arriCheck = new int[MStation->getTotalNoRovers()];
+	int* arrjCheck = new int[MStation->getTotalNoRovers()];
+	int* arrkCheck = new int[MStation->getTotalNoRovers()];
+	cout << "\nCurrent day:" << MStation->currentDay << endl;
+	while (tempEmergencyWaitingMission.dequeue(emMission))
+	{
+		no++;
+		arri[i++] = emMission->getID();
+	}
+	while (!tempMountainousWaitingMission.isEmpty())
+	{
+		no++;
+		arrk[k++] = tempMountainousWaitingMission.getEntry(1).getID();
+		tempMountainousWaitingMission.remove(1);
+	}
+	while (tempPolarWaitingMission.dequeue(polarMission))
+	{
+		no++;
+		arrj[j++] = polarMission->getID();
+	}
+	cout << no << " Waiting missions:";
+	if (i != 0)
+	{
+		cout << " [" << arri[0];
+		for (int im = 1; im < i; im++)
+			cout << ',' << arri[im];
+		cout << "] ";
+	}
 
-					arriEx[iEx] = tempMission->getID();
-					arriExRO[iEx++] = tempMission->getAssignedRover()->getID();
-				}
-				else if (dynamic_cast<PolarMission*>(tempMission) != nullptr)
-				{
+	if (j != 0)
+	{
+		cout << '(' << arrj[0];
+		for (int ip = 1; ip < j; ip++)
+			cout << ',' << arrj[ip];
+		cout << ')';
+	}
+	if (k != 0)
+	{
+		cout << " {" << arrk[0];
+		for (int imm = 1; imm < k; imm++)
+			cout << ',' << arrk[imm];
+		cout << '}';
+	}
+	cout << "\n-------------------------------------------------------\n";
+	while (tempInServiceMissions.dequeue(tempMission))
+	{
+		noEx++;
+		if (dynamic_cast<EmergencyMission*>(tempMission) != nullptr)
+		{
 
-					arrjEx[jEx] = tempMission->getID();
-					arrjExRO[jEx++] = tempMission->getAssignedRover()->getID();
-				}
-				else if (dynamic_cast<MountainousMission*>(tempMission) != nullptr)
-				{
+			arriEx[iEx] = tempMission->getID();
+			arriExRO[iEx++] = tempMission->getAssignedRover()->getID();
+		}
+		else if (dynamic_cast<PolarMission*>(tempMission) != nullptr)
+		{
 
-					arrkEx[kEx] = tempMission->getID();
-					arrkExRO[kEx++] = tempMission->getAssignedRover()->getID();
-				}
-			}
-			cout << noEx << " In-Execution Missions/Rovers:";
-			if (iEx != 0)
-			{
-				cout << " [" << arriEx[0] << '/' << arriExRO[0];
-				for (int iemex = 1; iemex < iEx; iemex++)
-					cout << ',' << arriEx[iemex] << '/' << arriExRO[iemex];
-				cout << ']';
-			}
+			arrjEx[jEx] = tempMission->getID();
+			arrjExRO[jEx++] = tempMission->getAssignedRover()->getID();
+		}
+		else if (dynamic_cast<MountainousMission*>(tempMission) != nullptr)
+		{
 
-			if (jEx != 0)
-			{
-				cout << " (" << arrjEx[0] << '/' << arrjExRO[0];
-				for (int jemex = 1; jemex < jEx; jemex++)
-					cout << ',' << arrjEx[jemex] << '/' << arrjExRO[jemex];
-				cout << ')';
-			}
+			arrkEx[kEx] = tempMission->getID();
+			arrkExRO[kEx++] = tempMission->getAssignedRover()->getID();
+		}
+	}
+	cout << noEx << " In-Execution Missions/Rovers:";
+	if (iEx != 0)
+	{
+		cout << " [" << arriEx[0] << '/' << arriExRO[0];
+		for (int iemex = 1; iemex < iEx; iemex++)
+			cout << ',' << arriEx[iemex] << '/' << arriExRO[iemex];
+		cout << ']';
+	}
 
-			if (kEx != 0)
-			{
-				cout << " {" << arrkEx[0] << '/' << arrkExRO[0];
-				for (int kemex = 1; kemex < kEx; kemex++)
-					cout << ',' << arrkEx[kemex] << '/' << arrkExRO[kemex];
-				cout << "} ";
-			}
-			cout << "\n-------------------------------------------------------\n";
-			while (tempEmergencyAvailableRover.dequeue(emRover))
-			{
-				noAvRo++;
-				arriRo[iRo++] = emRover->getID();
-			}
-			while (tempPolarAvailableRover.dequeue(polarRover))
-			{
-				noAvRo++;
-				arrjRo[jRo++] = polarRover->getID();
-			}
-			while (tempMountainousAvailableRover.dequeue(mountRover))
-			{
-				noAvRo++;
-				arrkRo[kRo++] = mountRover->getID();
-			}
-			cout << noAvRo << " Available Rovers : ";
-			if (iRo != 0)
-			{
-				cout << "[" << arriRo[0];
-				for (int avEm = 1; avEm < iRo; avEm++)
-					cout << ',' << arriRo[avEm];
-				cout << "] ";
-			}
+	if (jEx != 0)
+	{
+		cout << " (" << arrjEx[0] << '/' << arrjExRO[0];
+		for (int jemex = 1; jemex < jEx; jemex++)
+			cout << ',' << arrjEx[jemex] << '/' << arrjExRO[jemex];
+		cout << ')';
+	}
 
-			if (jRo != 0)
-			{
-				cout << "(" << arrjRo[0];
-				for (int avEm = 1; avEm < jRo; avEm++)
-					cout << ',' << arrjRo[avEm];
-				cout << ") ";
-			}
+	if (kEx != 0)
+	{
+		cout << " {" << arrkEx[0] << '/' << arrkExRO[0];
+		for (int kemex = 1; kemex < kEx; kemex++)
+			cout << ',' << arrkEx[kemex] << '/' << arrkExRO[kemex];
+		cout << "} ";
+	}
+	cout << "\n-------------------------------------------------------\n";
+	while (tempEmergencyAvailableRover.dequeue(emRover))
+	{
+		noAvRo++;
+		arriRo[iRo++] = emRover->getID();
+	}
+	while (tempPolarAvailableRover.dequeue(polarRover))
+	{
+		noAvRo++;
+		arrjRo[jRo++] = polarRover->getID();
+	}
+	while (tempMountainousAvailableRover.dequeue(mountRover))
+	{
+		noAvRo++;
+		arrkRo[kRo++] = mountRover->getID();
+	}
+	cout << noAvRo << " Available Rovers : ";
+	if (iRo != 0)
+	{
+		cout << "[" << arriRo[0];
+		for (int avEm = 1; avEm < iRo; avEm++)
+			cout << ',' << arriRo[avEm];
+		cout << "] ";
+	}
 
-			if (kRo != 0)
-			{
-				cout << "{" << arrkRo[0];
-				for (int avEm = 1; avEm < kRo; avEm++)
-					cout << ',' << arrkRo[avEm];
-				cout << "} ";
-			}
-			cout << "\n-------------------------------------------------------\n";
-			while (tempUnavailableRovers.dequeue(tempRover))
-			{
-				if (tempRover->getRoverInCheckup() == true)
-				{
-					noCheckup++;
-					if (dynamic_cast<EmergencyRover*>(tempRover) != nullptr)
-						arriCheck[iCheck++] = tempRover->getID();
-					if (dynamic_cast<PolarRover*>(tempRover) != nullptr)
-						arrjCheck[jCheck++] = tempRover->getID();
-					if (dynamic_cast<MountainousRover*>(tempRover) != nullptr)
-						arrkCheck[kCheck++] = tempRover->getID();
-				}
+	if (jRo != 0)
+	{
+		cout << "(" << arrjRo[0];
+		for (int avEm = 1; avEm < jRo; avEm++)
+			cout << ',' << arrjRo[avEm];
+		cout << ") ";
+	}
 
-			}
-			cout << noCheckup << " In-Checkup Rovers: ";
-			if (iCheck != 0)
-			{
+	if (kRo != 0)
+	{
+		cout << "{" << arrkRo[0];
+		for (int avEm = 1; avEm < kRo; avEm++)
+			cout << ',' << arrkRo[avEm];
+		cout << "} ";
+	}
+	cout << "\n-------------------------------------------------------\n";
+	while (tempUnavailableRovers.dequeue(tempRover))
+	{
+		if (tempRover->getRoverInCheckup() == true)
+		{
+			noCheckup++;
+			if (dynamic_cast<EmergencyRover*>(tempRover) != nullptr)
+				arriCheck[iCheck++] = tempRover->getID();
+			if (dynamic_cast<PolarRover*>(tempRover) != nullptr)
+				arrjCheck[jCheck++] = tempRover->getID();
+			if (dynamic_cast<MountainousRover*>(tempRover) != nullptr)
+				arrkCheck[kCheck++] = tempRover->getID();
+		}
 
-				cout << '[' << arriCheck[0];
-				for (int i = 1; i < iCheck; i++)
-				{
-					cout << ',' << arriCheck[i];
-				}
-				cout << "] ";
-			}
+	}
+	cout << noCheckup << " In-Checkup Rovers: ";
+	if (iCheck != 0)
+	{
 
-			if (jCheck != 0)
-			{
-				cout << '(' << arrjCheck[0];
-				for (int i = 1; i < jCheck; i++)
-				{
-					cout << ',' << arrjCheck[i];
-				}
-				cout << ") ";
-			}
-			
-			if (kCheck != 0)
-			{
-				cout << '{' << arrkCheck[0];
-				for (int i = 1; i < kCheck; i++)
-				{
-					cout << ',' << arrkCheck[i];
-				}
-				cout << "} ";
-			}
+		cout << '[' << arriCheck[0];
+		for (int i = 1; i < iCheck; i++)
+		{
+			cout << ',' << arriCheck[i];
+		}
+		cout << "] ";
+	}
 
+	if (jCheck != 0)
+	{
+		cout << '(' << arrjCheck[0];
+		for (int i = 1; i < jCheck; i++)
+		{
+			cout << ',' << arrjCheck[i];
+		}
+		cout << ") ";
+	}
 
-
-
-			cout << "\n-------------------------------------------------------\n";
-			while (tempCompletedMissions.dequeue(tempMission))
-			{
-				noComp++;
-				if (dynamic_cast<EmergencyMission*>(tempMission) != nullptr)
-					arriComp[iComp++] = tempMission->getID();
-				else if (dynamic_cast<PolarMission*>(tempMission) != nullptr)
-					arrjComp[jComp++] = tempMission->getID();
-				else if (dynamic_cast<MountainousMission*>(tempMission) != nullptr)
-					arrkComp[kComp++] = tempMission->getID();
-			}
-			cout << noComp << " Completed Missions:";
-			if (kComp != 0)
-			{
-				cout << " {" << arrkComp[0];
-				for (int compIter = 1; compIter < kComp; compIter++)
-					cout << ',' << arrkComp[compIter];
-				cout << '}';
-			}
-			if (iComp != 0)
-			{
-				cout << " [" << arriComp[0];
-				for (int compIter = 1; compIter < iComp; compIter++)
-					cout << ',' << arriComp[compIter];
-				cout << ']';
-			}
-			if (jComp != 0)
-			{
-				cout << " (" << arrjComp[0];
-				for (int compIter = 1; compIter < jComp; compIter++)
-					cout << ',' << arrjComp[compIter];
-				cout << ')';
-			}
-
-
-			//o << "zeyadwwww";
+	if (kCheck != 0)
+	{
+		cout << '{' << arrkCheck[0];
+		for (int i = 1; i < kCheck; i++)
+		{
+			cout << ',' << arrkCheck[i];
+		}
+		cout << "} ";
+	}
 
 
 
 
-			//currentDay++;
-		//	Sleep(3000);
-		
+	cout << "\n-------------------------------------------------------\n";
+	while (tempCompletedMissions.dequeue(tempMission))
+	{
+		noComp++;
+		if (dynamic_cast<EmergencyMission*>(tempMission) != nullptr)
+			arriComp[iComp++] = tempMission->getID();
+		else if (dynamic_cast<PolarMission*>(tempMission) != nullptr)
+			arrjComp[jComp++] = tempMission->getID();
+		else if (dynamic_cast<MountainousMission*>(tempMission) != nullptr)
+			arrkComp[kComp++] = tempMission->getID();
+	}
+	cout << noComp << " Completed Missions:";
+	if (kComp != 0)
+	{
+		cout << " {" << arrkComp[0];
+		for (int compIter = 1; compIter < kComp; compIter++)
+			cout << ',' << arrkComp[compIter];
+		cout << '}';
+	}
+	if (iComp != 0)
+	{
+		cout << " [" << arriComp[0];
+		for (int compIter = 1; compIter < iComp; compIter++)
+			cout << ',' << arriComp[compIter];
+		cout << ']';
+	}
+	if (jComp != 0)
+	{
+		cout << " (" << arrjComp[0];
+		for (int compIter = 1; compIter < jComp; compIter++)
+			cout << ',' << arrjComp[compIter];
+		cout << ')';
+	}
+
+	delete[]arri; 
+	delete[]arrj;
+	delete[]arrk;
+	delete[]arriEx; 
+	delete[]arrjEx;
+	delete[]arrkEx;
+	delete[]arriExRO;
+	delete[]arrjExRO;
+	delete[]arrkExRO;
+	delete[]arriRo;
+	delete[]arrjRo;
+	delete[]arrkRo;
+	delete[]arriComp;
+	delete[]arrjComp;
+	delete[]arrkComp;
+	delete[]arriCheck;
+	delete[]arrjCheck;
+	delete[]arrkCheck;
+	//o << "zeyadwwww";
 
 
-	//}
+
+
+	//currentDay++;
+//	Sleep(3000);
+
+
+
+//}
 }
 
 void UI::outputFile()
 {
 	ofstream out;
 	Mission* tempMission;
-	out.open("OutputFiles/Output.txt");
+	out.open("OutputFiles/Output" + fileName + ".txt");
 	out << "CD\tID\tFD\tWD\tED\n";
 	while (MStation->completedMissions.dequeue(tempMission))
 	{
@@ -402,9 +426,19 @@ void UI::outputFile()
 	}
 	out << "Missions: " << totalMissions << "[M:" << totalMountMissions << ", P:" << totalPolarMissions << ", E:" << totalEmMissions << "]\n";
 	out << "Rovers: " << MStation->getTotalNoRovers() << "[M:" << MStation->getMountRoverCount() << ", P:" << MStation->getPolRoverCount() << ", E:" << MStation->getEmRoverCount() << "]\n";
-	out << "Avg Wait = " << float(totalWaitingDays) / totalMissions;
-	out << ", Avg Exec = " << float(totalExecutionDays) / totalMissions << endl;
-	out << "Auto-promoted: " << MStation->getNumberOfPromotedMissions()*100.0 / MStation->getMountMissionCount() << "%" << endl;
+	if (totalMissions != 0)
+	{
+		out << "Avg Wait = " << float(totalWaitingDays) / totalMissions;
+		out << ", Avg Exec = " << float(totalExecutionDays) / totalMissions << endl;
+	}
+	else {
+		out << "Avg Wait = No Missions!!!";
+		out << ", Avg Exec = No Missions!!!"<<endl;
+	}
+	if (MStation->getMountMissionCount() != 0)
+		out << "Auto-promoted: " << MStation->getNumberOfPromotedMissions() * 100.0 / MStation->getMountMissionCount() << "%" << endl;
+	else
+		out << "Auto-promoted: No mountainous missions!!!"; 
 	out.close();
 }
 

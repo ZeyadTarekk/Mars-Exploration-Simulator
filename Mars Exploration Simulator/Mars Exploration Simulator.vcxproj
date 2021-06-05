@@ -79,7 +79,16 @@
     <Text Include="InputFiles\input3.txt" />
     <Text Include="InputFiles\Input4.txt" />
     <Text Include="InputFiles\input5.txt" />
+    <Text Include="InputFiles\input6.txt" />
+    <Text Include="InputFiles\input7.txt" />
     <Text Include="OutputFiles\Output.txt" />
+    <Text Include="OutputFiles\Outputinput.txt" />
+    <Text Include="OutputFiles\Outputinput2.txt" />
+    <Text Include="OutputFiles\Outputinput3.txt" />
+    <Text Include="OutputFiles\Outputinput4.txt" />
+    <Text Include="OutputFiles\Outputinput5.txt" />
+    <Text Include="OutputFiles\Outputinput6.txt" />
+    <Text Include="OutputFiles\Outputinput7.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

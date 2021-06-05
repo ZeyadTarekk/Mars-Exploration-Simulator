@@ -2,9 +2,11 @@
 #include"../MarsStation/MarsStation.h"
 //#include""
 #include<fstream>
+#include<string>
 class UI
 {
 	MarsStation* MStation;
+	string fileName;
 	//Line 1
 	int emRoverCount, mountRoverCount, polRoverCount;
 	//line 2,3,4

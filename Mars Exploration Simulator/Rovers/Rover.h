@@ -28,7 +28,7 @@ class Rover
 
 public:
 	Rover(double roverspeed, int checkupCount, int Days); //essential data only
-	~Rover();
+	virtual ~Rover();
 	void reset();
 
 	//setters

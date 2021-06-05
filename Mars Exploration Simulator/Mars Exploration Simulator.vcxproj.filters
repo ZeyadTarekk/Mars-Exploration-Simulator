@@ -214,5 +214,32 @@
     <Text Include="InputFiles\input5.txt">
       <Filter>InputFiles</Filter>
     </Text>
+    <Text Include="OutputFiles\Outputinput5.txt">
+      <Filter>OutputFiles</Filter>
+    </Text>
+    <Text Include="OutputFiles\Outputinput.txt">
+      <Filter>OutputFiles</Filter>
+    </Text>
+    <Text Include="OutputFiles\Outputinput2.txt">
+      <Filter>OutputFiles</Filter>
+    </Text>
+    <Text Include="OutputFiles\Outputinput3.txt">
+      <Filter>OutputFiles</Filter>
+    </Text>
+    <Text Include="OutputFiles\Outputinput4.txt">
+      <Filter>OutputFiles</Filter>
+    </Text>
+    <Text Include="InputFiles\input6.txt">
+      <Filter>InputFiles</Filter>
+    </Text>
+    <Text Include="InputFiles\input7.txt">
+      <Filter>InputFiles</Filter>
+    </Text>
+    <Text Include="OutputFiles\Outputinput7.txt">
+      <Filter>OutputFiles</Filter>
+    </Text>
+    <Text Include="OutputFiles\Outputinput6.txt">
+      <Filter>OutputFiles</Filter>
+    </Text>
   </ItemGroup>
 </Project>
