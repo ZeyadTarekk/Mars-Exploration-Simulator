@@ -780,7 +780,7 @@ void MarsStation::addToCompletedMission()
 
 }
 
-void MarsStation::moveRoverFromExcuetionToCheckUp(int eD)
+void MarsStation::completeRover(int eD)
 {
 	Rover* rV;
 	bool Found = unavailableRovers.peek(rV);

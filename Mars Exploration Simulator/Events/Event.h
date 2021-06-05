@@ -10,7 +10,7 @@ public:
 	int getEventDay()const;
 	virtual void execute(MarsStation*) = 0; //pure virtual as each event has its logic and to make the event abstract class
 	Event(int);
-	~Event();
+	virtual ~Event();
 };
 
 

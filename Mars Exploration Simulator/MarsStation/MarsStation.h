@@ -133,7 +133,7 @@ public:
 
 	// Completed Mission && Rover
 	void addToCompletedMission();
-	void moveRoverFromExcuetionToCheckUp(int);
+	void completeRover(int);
 	bool isCompleted(int);
 
 

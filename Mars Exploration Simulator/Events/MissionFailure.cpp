@@ -11,7 +11,7 @@ MissionFailure::~MissionFailure()
 int MissionFailure::IDprobability()
 {
 	srand(time(0));
-	return rand()%100 +1; // generate rondom number form 1 to 100
+	return rand()%1000 +1; // generate rondom number form 1 to 1000
 }
 
 void MissionFailure::execute(MarsStation* MStation)

@@ -15,5 +15,5 @@ void CompletionEvent::execute(MarsStation*m)
 	{
 		m->addToCompletedMission();
 	}
-	m->moveRoverFromExcuetionToCheckUp(getEventDay());
+	m->completeRover(getEventDay());
 }

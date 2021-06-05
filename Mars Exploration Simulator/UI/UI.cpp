@@ -14,21 +14,22 @@ void UI::calcAvgSpeed()
 void UI::read()
 {
 	string Filename;
-	cout << "Please enter the name of the input file without the extention: ";
+	cout << "\t********************************** Welcome To Mars Station Expolration Simulation **********************************\n";
+	cout << "\n\tPlease enter the name of the input file without the extention: ";
 	cin >> Filename;
 	fileName = Filename;
 	ifstream in;
 	in.open("InputFiles/" + Filename + ".txt");
 	if (!in.is_open())
 	{
-		cout << Filename + ".txt not found" << endl;
+		cout <<"\t" << Filename + ".txt not found" << endl;
 		exit(1);
 	}
 	int ModeOfOperation;
-	cout << "Please choose mode of operation : -" << endl;
-	cout << "For interactive mode press 1 :" << endl;
-	cout << "For step-by-step mode press 2 :" << endl;
-	cout << "For silent mode press any other key :" << endl;
+	cout << "\n\t\tPlease choose mode of operation : -\n" << endl;
+	cout << "\t\tFor interactive mode press 1 :" << endl;
+	cout << "\t\tFor step-by-step mode press 2 :" << endl;
+	cout << "\t\tFor silent mode press any other key :" << endl;
 	cin >> ModeOfOperation;
 	MStation->setModeOperation(ModeOfOperation);
 
